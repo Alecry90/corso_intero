@@ -1,0 +1,394 @@
+[
+  {
+    "cell": 1,
+    "title": "Titolo: preparare l'ambiente e leggere i dati",
+    "purpose": "È una cella di testo: presenta il primo pezzo del lavoro e ti dice cosa cercare nella cella successiva.",
+    "steps": [
+      "Una cella markdown contiene una spiegazione, non istruzioni Python da eseguire. Il simbolo ## serve a visualizzare un titolo.",
+      "Il programma deve avere tre cose prima di iniziare: le librerie, il modello linguistico e gli archivi dei dipendenti, delle spese e delle regole. È come preparare il tavolo con tutti i documenti prima di esaminare una richiesta."
+    ],
+    "result": "Introduce il setup; non crea oggetti né legge file.",
+    "remember": "Le celle di testo spiegano il percorso; le celle di codice svolgono il lavoro."
+  },
+  {
+    "cell": 2,
+    "title": "Importare le librerie, collegare Ollama e caricare i tre archivi",
+    "purpose": "Prepara gli strumenti usati da tutto il notebook e rende disponibili i dati aziendali in memoria.",
+    "steps": [
+      "import carica una libreria; from ... import ... carica nomi specifici. json traduce tra testo JSON e oggetti Python; operator fornisce operator.add per unire liste; re servirà per cercare strutture nel testo con espressioni regolari. Importare una libreria non esegue ancora il workflow di rimborso.",
+      "Path rappresenta i percorsi dei file. TypedDict descrive le chiavi di un dizionario; Annotated permette di associare informazioni aggiuntive a un tipo. uuid4 genera identificatori quasi certamente unici per le conversazioni; date gestisce le date. Questi ultimi strumenti verranno usati nelle celle successive.",
+      "ChatOllama è il collegamento al modello locale gestito da Ollama. tool trasforma una funzione in uno strumento chiamabile dagli agenti. AnyMessage è un tipo per i messaggi; SystemMessage contiene istruzioni, HumanMessage una richiesta dell'utente e ToolMessage il risultato effettivo di uno strumento.",
+      "StateGraph permette di costruire un percorso fatto di nodi e collegamenti. START ed END sono marcatori di inizio e fine, non agenti. MemorySaver conserverà lo stato delle esecuzioni in memoria; interrupt metterà in pausa il workflow; Command consentirà di riprenderlo con una risposta.",
+      "llm = ChatOllama(model=\"qwen2.5:latest\", temperature=0) crea l'oggetto che contatta quel modello. temperature=0 cerca di rendere le risposte meno variabili: non garantisce che siano sempre corrette o identiche. Questa riga non addestra il modello e non installa Ollama.",
+      "DATA_DIR = Path(\"../data\") indica la cartella data un livello sopra la directory di esecuzione. Il percorso ha senso avviando il notebook dalla cartella deliverables. L'operatore / tra Path e nome del file costruisce un percorso: non è una divisione numerica.",
+      "Il blocco try prova llm.invoke([...]): invoke significa eseguire una chiamata. Riceve una lista con un HumanMessage che chiede soltanto OK e restituisce un messaggio di risposta. risposta_test.content contiene il testo prodotto; llm.model contiene il nome del modello. print mostra queste informazioni; f\"...{valore}...\" inserisce un valore dentro una stringa.",
+      "Se la chiamata fallisce, except Exception as errore intercetta l'eccezione e ne stampa il messaggio. raise, senza argomenti, rilancia lo stesso errore: la cella si ferma, quindi non finge che il modello sia pronto. Il codice stampa la risposta di prova, ma non verifica con un confronto che sia davvero uguale a OK.",
+      "with open(...) as f apre un file e lo chiude automaticamente alla fine del blocco. json.load(f) legge JSON da un file aperto e lo converte in una lista di dizionari. EMPLOYEES_DB, CLAIMS_DB e POLICIES_DB diventano i tre archivi in memoria; non sono database collegati a un server.",
+      "len(...) conta gli elementi. Nei file presenti ci sono 3 dipendenti, 4 claim e 4 policy. La stampa finale permette di controllare che il caricamento sia avvenuto. Le righe open non specificano encoding e non sono dentro il try del modello: un file assente o illeggibile interrompe comunque la cella."
+    ],
+    "result": "Definisce llm e carica i tre archivi. L'output salvato nel notebook mostra il modello disponibile, risposta OK, 3 dipendenti, 4 richieste e 4 policy; è il resoconto di una precedente esecuzione.",
+    "remember": "Qui prepariamo la cucina: ancora non stiamo decidendo se una spesa è rimborsabile."
+  },
+  {
+    "cell": 3,
+    "title": "Titolo: la scheda condivisa della richiesta",
+    "purpose": "Introduce ExpenseState, cioè le informazioni che viaggiano tra i nodi del workflow.",
+    "steps": [
+      "Immagina una cartellina che passa da un ufficio all'altro: ogni ufficio legge ciò che serve e aggiunge il proprio risultato. Lo stato condiviso è questa cartellina, rappresentata da un dizionario Python.",
+      "total=False dichiara che le chiavi possono essere assenti. L'aggiornamento parziale dello stato è gestito da LangGraph: non è total=False da solo a unire i dizionari."
+    ],
+    "result": "Spiega il ruolo della struttura che verrà definita subito dopo.",
+    "remember": "Lo stato condiviso contiene i dati dell'intera pratica; lo stato interno di ciascun agente conterrà invece i suoi messaggi."
+  },
+  {
+    "cell": 4,
+    "title": "ExpenseState: i campi della pratica di rimborso",
+    "purpose": "Dà un nome e un tipo alle informazioni che il workflow può conservare e aggiornare.",
+    "steps": [
+      "class ExpenseState(TypedDict, total=False) descrive un dizionario con chiavi conosciute. Non crea ancora una pratica concreta. TypedDict aiuta a capire i tipi e a controllare il codice con strumenti esterni; da solo non controlla né converte i valori durante l'esecuzione.",
+      "input_originale è il testo completo dell'utente; intent indica se chiede un rimborso. employee_id e employee_name identificano il dipendente; claim_id identifica la spesa. Un employee_id come E001 e un claim_id come CLM001 sono due codici diversi e non vanno confusi.",
+      "category è il tipo di spesa, amount l'importo, currency la valuta, expense_date la data e note_aggiuntive il testo extra. str significa testo; float significa numero con decimali. Il simbolo | significa oppure: str | None ammette un testo oppure l'assenza di un valore.",
+      "missing_info: list[str] è una lista di nomi dei campi mancanti, per esempio ['employee_id']. awaiting_clarification: bool è una bandierina True/False che indica se serve un chiarimento. Una lista è una sequenza di valori; un dizionario associa chiavi a valori.",
+      "employee_data, expense_data e policy_data sono i dizionari recuperati dagli archivi. travel_approval è un campo previsto nello schema, ma non viene valorizzato o utilizzato dalle regole di questa parte del notebook.",
+      "deterministic_result e deterministic_reason custodiscono esito e spiegazione delle regole Python. reviewer_output conserva la risposta del revisore LLM; reviewer_coerente può essere True, False oppure None, cioè non ancora disponibile.",
+      "esito e motivazione rappresentano il risultato che il workflow sta costruendo; risposta_finale è il messaggio da mostrare all'utente. È normale avere campi distinti per la decisione delle regole e per quella finale: i passaggi successivi possono aggiungere controlli.",
+      "human_decision e human_note conserveranno un'eventuale decisione umana e la sua nota. errori è una lista di testi che registra i problemi incontrati. I due punti dopo ogni nome sono annotazioni di tipo, non assegnazioni di valori.",
+      "La riga print conferma solo che Python ha definito la struttura. Per esempio {'input_originale': 'Posso rimborsare CLM001?', 'errori': []} è una pratica iniziale possibile: gli altri campi possono arrivare dopo."
+    ],
+    "result": "Definisce lo schema ExpenseState; non chiama il modello e non decide nulla.",
+    "remember": "ExpenseState è la forma della cartellina. Ogni richiesta concreta sarà un dizionario che usa questi campi."
+  },
+  {
+    "cell": 5,
+    "title": "Titolo: capire la frase dell'utente",
+    "purpose": "Presenta il Request Agent e la funzione che trasferisce la sua interpretazione nello stato condiviso.",
+    "steps": [
+      "Il modello viene usato come un addetto che legge una frase e compila una scheda: riconosce codici, categoria, importo e data. Non gli viene affidata qui la decisione sul rimborso.",
+      "Il risultato richiesto è JSON, un formato testuale con chiavi e valori. La funzione interpreta_richiesta dovrà trasformarlo in un dizionario e gestire risposte sbagliate o informazioni mancanti."
+    ],
+    "result": "Introduce le tre celle che definiscono l'agente, gli danno istruzioni e lo collegano al workflow.",
+    "remember": "Interpretare la domanda significa capire quali dati contiene; approvare la spesa è un compito successivo."
+  },
+  {
+    "cell": 6,
+    "title": "RequestAgent: un piccolo grafo con una sola chiamata al modello",
+    "purpose": "Definisce la classe che trasforma una conversazione in una risposta del modello.",
+    "steps": [
+      "Una classe è il progetto di un oggetto. La docstring tra triple virgolette ne descrive il compito. Scrivere class RequestAgent non esegue subito una richiesta: l'oggetto concreto sarà creato nella cella seguente.",
+      "__init__(self, model, system='', checkpointer=None) è il costruttore: Python lo esegue quando si crea RequestAgent(...). model è il modello da usare; system è il testo delle istruzioni, vuoto per impostazione predefinita; checkpointer è un eventuale sistema di salvataggio. self indica l'oggetto che si sta costruendo. self.model e self.system conservano i parametri dentro quell'oggetto.",
+      "La classe interna RequestState descrive uno stato contenente soltanto messages. AnyMessage permette vari tipi di messaggio. Annotated[list[AnyMessage], operator.add] dice a LangGraph che, quando arriva una nuova lista di messaggi, deve aggiungerla alla lista già presente. Esempio: [domanda] + [risposta] diventa [domanda, risposta].",
+      "StateGraph(RequestState) crea il progetto del grafo. add_node('llm', self.call_llm) registra una funzione come nodo chiamato llm. Non chiama ancora quella funzione. add_edge(START, 'llm') e add_edge('llm', END) costruiscono il percorso: inizio → modello → fine. START non è un vero nodo da eseguire, ma il punto di ingresso.",
+      "compile(checkpointer=checkpointer) prepara un grafo eseguibile e lo salva in self.graph. Qui non si passa un checkpointer quando si crea l'agente: la conversazione è conservata nello stato durante ciascuna invocazione, senza una memoria persistente configurata per questo agente.",
+      "call_llm(self, state) riceve lo stato interno. state['messages'] legge la lista dei messaggi usando una chiave obbligatoria; se non esistesse, Python darebbe un errore. Questo è lo stato dell'agente, non l'intera ExpenseState.",
+      "if self.system controlla che le istruzioni non siano vuote. [SystemMessage(content=self.system)] + messages crea una nuova lista con le istruzioni davanti alla conversazione. Non aggiunge permanentemente il SystemMessage allo stato con un return: serve per la chiamata corrente.",
+      "self.model.invoke(messages) manda la lista al modello e restituisce un messaggio AI. return {'messages': [response]} produce un aggiornamento con una lista contenente solo la nuova risposta. Il riduttore operator.add aggiungerà questa risposta ai messaggi già presenti.",
+      "Il contratto della funzione call_llm è: ingresso = dizionario con messages; uscita = dizionario con un nuovo messaggio. Non analizza il JSON e non controlla se la risposta è corretta: questo controllo sarà fatto da interpreta_richiesta. print conferma soltanto che la classe è definita."
+    ],
+    "result": "Rende disponibile la classe RequestAgent con i metodi __init__ e call_llm.",
+    "remember": "Il grafo è una mappa; compile prepara la mappa all'uso; invoke avvierà davvero il viaggio."
+  },
+  {
+    "cell": 7,
+    "title": "Le istruzioni del Request Agent e la sua creazione",
+    "purpose": "Costruisce il prompt di sistema e crea request_agent usando il modello già preparato.",
+    "steps": [
+      "{policy['expense_type'] for policy in POLICIES_DB} legge le categorie delle policy con una comprensione di insieme: esegue la stessa piccola operazione per ogni policy e il set elimina eventuali duplicati. Con i dati presenti ricava travel_train, hotel, meal e client_meal.",
+      "sorted(...) ordina alfabeticamente le categorie. ', '.join(...) le unisce in un solo testo separato da virgola e spazio: client_meal, hotel, meal, travel_train. join è un metodo delle stringhe; il testo prima di .join è il separatore.",
+      "request_system = f'''...''' crea una stringa su più righe. La f permette di inserire {categorie}. Le doppie parentesi {{ e }} servono a scrivere parentesi graffe letterali nel modello JSON senza farle interpretare come sostituzioni Python.",
+      "Le istruzioni assegnano un compito preciso: estrarre i dati presenti, usare codici di categoria validi, non cercare negli archivi e non decidere il rimborso. Il prompt guida il comportamento del modello, ma non è una garanzia: la risposta dovrà essere controllata.",
+      "L'esempio JSON elenca intent, employee_id, employee_name, claim_id, category, amount, currency, expense_date e note_aggiuntive. null nel JSON significa valore assente; json.loads lo tradurrà in None. amount deve essere un numero; la data è richiesta nel formato anno-mese-giorno.",
+      "Se la frase non è una richiesta di rimborso, il modello dovrebbe usare intent='ALTRO'. Per esempio, 'Ciao, come stai?' non contiene una pratica di spesa. Il codice successivo controllerà intent, ma non valida qui tutte le categorie o tutti i tipi suggeriti dal prompt.",
+      "RequestAgent(model=llm, system=request_system) chiama il costruttore della cella 6. request_agent è ora l'oggetto concreto, con il suo modello, prompt e grafo. La stampa 'Request Agent creato' non significa che abbia già interpretato una frase."
+    ],
+    "result": "Crea categorie, request_system e request_agent. Nessuna richiesta utente è ancora eseguita in questa cella.",
+    "remember": "Il prompt è il foglio di istruzioni dato all'addetto; l'agente è l'addetto pronto a lavorare."
+  },
+  {
+    "cell": 8,
+    "title": "interpreta_richiesta: leggere, pulire e segnalare i dati mancanti",
+    "purpose": "È il ponte tra ExpenseState e il Request Agent. Riceve il testo dell'utente e restituisce i campi estratti oppure un errore strutturato.",
+    "steps": [
+      "def interpreta_richiesta(state: ExpenseState) -> dict definisce una funzione: state è l'ingresso, il dizionario restituito è l'uscita. Le annotazioni indicano i tipi attesi, senza controllarli automaticamente. La funzione parte solo quando viene chiamata.",
+      "Nel try, request_agent.graph.invoke riceve {'messages': [HumanMessage(content=state['input_originale'])]}. Il testo della pratica viene quindi trasformato in un messaggio utente e passato al piccolo grafo del Request Agent. L'uscita contiene la conversazione aggiornata.",
+      "risultato['messages'][-1] prende l'ultimo messaggio: in Python l'indice -1 significa ultimo elemento. .content ne legge il testo. json.loads(testo) converte una stringa JSON in un oggetto Python; è diverso da json.load, che legge direttamente un file.",
+      "isinstance(dati, dict) controlla che il risultato sia un dizionario. Un JSON come [] è valido ma è una lista: qui viene rifiutato con raise ValueError. Anche testo aggiunto prima del JSON o JSON malformato può far fallire json.loads.",
+      "except Exception as errore intercetta i problemi di questa prima fase e restituisce esito='DATI_INSUFFICIENTI', una motivazione e la lista degli errori aggiornata. state.get('errori', []) legge gli errori già presenti o usa una lista vuota; + [str(errore)] aggiunge il nuovo messaggio. return interrompe la funzione: le righe successive non vengono eseguite in quel caso.",
+      "dati.get('amount') legge l'importo, usando None se la chiave è assente. Se non è None, float(importo) prova a convertirlo in un numero: '110' diventa 110.0. Se il valore non è convertibile, TypeError o ValueError porta importo a None. Questa fase non decide se un importo negativo sia rimborsabile.",
+      "dati.get('expense_date') legge la data. Se c'è un valore, str(...) lo rende testo, date.fromisoformat(...) prova a costruire una data reale e .isoformat() la restituisce normalizzata come '2026-10-08'. Una data impossibile, per esempio '2026-02-30', provoca ValueError e diventa None. Il parser Python accetta anche alcune altre rappresentazioni ISO: il codice normalizza la data, anziché imporre soltanto con un controllo testuale la forma YYYY-MM-DD.",
+      "intent = dati.get('intent', 'ALTRO') usa ALTRO soltanto se la chiave è assente. employee_id e claim_id vengono letti senza inventarli. Qui il nome Luca Bianchi non viene convertito automaticamente in E001, anche se esiste negli archivi: il Request Agent non deve cercare dati esterni.",
+      "mancanti inizia come lista vuota. I quattro if sono indipendenti: aggiungono intent_rimborso se l'intento è diverso da RIMBORSO_SPESA, employee_id se manca il dipendente, claim_id se manca la spesa ed expense_date se manca una data valida. append aggiunge un elemento in fondo alla lista.",
+      "Categoria, importo e valuta non entrano qui nella lista obbligatoria: i dati ufficiali della spesa potranno essere recuperati tramite claim_id. La data invece è richiesta dalla logica di questo notebook anche se le regole deterministiche successive non la confrontano con una data del claim.",
+      "Il return finale costruisce un dizionario con tutti i campi estratti, missing_info e awaiting_clarification. bool(mancanti) è False per [] e True per una lista non vuota. Esempio: ['employee_id'] significa che va chiesto il codice del dipendente.",
+      "La funzione restituisce un aggiornamento, non l'intera pratica ricopiata. Quando viene usata nel grafo principale, LangGraph unisce questi campi allo stato condiviso. print fuori dalla funzione conferma la definizione, senza interpretare ancora una richiesta."
+    ],
+    "result": "Disponibile la funzione interpreta_richiesta. Quando chiamata, produce dati estratti e informazioni mancanti, oppure un esito di dati insufficienti con errore.",
+    "remember": "Prima si prova a capire la frase; poi si controlla se abbiamo almeno i codici e la data necessari per continuare."
+  },
+  {
+    "cell": 9,
+    "title": "Test dell'interpretazione: manca il codice del dipendente",
+    "purpose": "Mostra con un caso concreto che il Request Agent estrae ciò che c'è e segnala ciò che manca.",
+    "steps": [
+      "richiesta è una stringa composta da più stringhe vicine tra parentesi. Python le unisce automaticamente: le parentesi qui servono a distribuire la frase su più righe, non a creare una lista.",
+      "La frase contiene CLM001, treno, 110 EUR, il nome Luca Bianchi e la data 2026-10-08. Non contiene E001. Il nome e il codice sono campi distinti.",
+      "stato_prova: ExpenseState = {...} crea una pratica minima con input_originale e una lista errori vuota. L'annotazione ExpenseState ne descrive la forma, ma il contenuto resta un normale dizionario.",
+      "interpreta_richiesta(stato_prova) esegue davvero la funzione della cella 8 e quindi chiama il modello. Il risultato viene salvato in risultato_nodo.",
+      "json.dumps(risultato_nodo, indent=2, ensure_ascii=False) converte il dizionario in testo JSON leggibile. indent=2 aggiunge rientri; ensure_ascii=False mantiene direttamente le lettere accentate. print lo mostra.",
+      "Nell'output salvato, category è travel_train, amount è 110.0, employee_name è Luca Bianchi, employee_id è null e missing_info contiene soltanto employee_id. awaiting_clarification è true. Non è una bocciatura del rimborso: è una richiesta di completare i dati."
+    ],
+    "result": "La precedente esecuzione registrata segnala correttamente il codice dipendente mancante; il comportamento futuro del modello può variare.",
+    "remember": "Non è necessario indovinare un dato assente. È meglio chiedere E001 che attribuire la pratica alla persona sbagliata."
+  },
+  {
+    "cell": 10,
+    "title": "Titolo: cercare il dipendente nell'archivio",
+    "purpose": "Introduce il primo tool, get_employee_info.",
+    "steps": [
+      "Un tool è una funzione concreta che l'agente può chiedere di eseguire. Qui il modello non deve ricordare chi sia E001: lo strumento va a leggere l'archivio.",
+      "OK significa record trovato; NOT_FOUND significa codice non presente. È una ricerca di dati, non una decisione sul rimborso."
+    ],
+    "result": "Prepara la lettura della funzione di ricerca e del suo test diretto.",
+    "remember": "Il tool legge la fonte; il modello può decidere quando chiamarlo."
+  },
+  {
+    "cell": 11,
+    "title": "get_employee_info: cercare un codice e restituire JSON",
+    "purpose": "Recupera tutti i campi del dipendente corrispondente a un employee_id.",
+    "steps": [
+      "@tool è un decoratore: trasforma la funzione in uno strumento LangChain con nome, descrizione e schema degli argomenti. Per questo nel notebook lo si esegue con get_employee_info.invoke({...}). Il modello riceverà la descrizione della docstring per capire come usarlo.",
+      "def get_employee_info(employee_id: str) -> str stabilisce il contratto: ingresso = un codice testuale, per esempio E001; uscita = una stringa JSON. Il JSON viene poi convertito in dizionario da chi lo utilizza.",
+      "for employee in EMPLOYEES_DB visita un dipendente alla volta. employee['employee_id'] == employee_id confronta il codice dell'archivio con quello richiesto. == è confronto; = sarebbe assegnazione. La ricerca è esatta: E001 non è automaticamente uguale a e001.",
+      "Se trova una corrispondenza, return termina subito la funzione. Il dizionario contiene status='OK' e **employee: l'operatore ** copia tutte le coppie chiave-valore del record, senza dover scrivere manualmente nome, ruolo e altri campi.",
+      "json.dumps(..., ensure_ascii=False) produce testo JSON preservando direttamente gli accenti. Non scrive su un file e non modifica l'archivio.",
+      "Se il ciclo finisce senza trovare il codice, il secondo return produce {'status': 'NOT_FOUND', 'employee_id': codice}. Esempio: E999 non esiste nei dati presenti e quindi porta a NOT_FOUND.",
+      "La chiamata finale .invoke({'employee_id': 'E001'}) prova direttamente il tool, senza far intervenire il modello. L'output salvato trova Luca Bianchi, ruolo Consultant, dipartimento Consulting, progetto PRJ-DELTA, limite annuo 3000 e manager E900. Il limite annuo viene recuperato come dato, ma non viene applicato dalla funzione verifica_regole della cella 25."
+    ],
+    "result": "Definisce il tool e ne stampa la risposta per E001. I dati del dipendente sono consultati, non cambiati.",
+    "remember": "Questo tool è una ricerca nell'elenco: dato il codice, restituisce la scheda o dice che non c'è."
+  },
+  {
+    "cell": 12,
+    "title": "Titolo: l'agente che recupera i dati del dipendente",
+    "purpose": "Introduce EmployeeAgent e il nodo che salverà i risultati nella pratica.",
+    "steps": [
+      "A differenza del Request Agent, questo agente può chiedere un tool. Il percorso può quindi ripetere modello → azione → modello finché il modello smette di richiedere strumenti.",
+      "employee_node leggerà la risposta reale dello strumento e non userà come fonte ufficiale il riassunto scritto dal modello. È come controllare la scheda originale invece di affidarsi a un racconto."
+    ],
+    "result": "Introduce le celle che costruiscono, istruiscono, provano e collegano EmployeeAgent.",
+    "remember": "Agente e nodo sono diversi: l'agente gestisce la conversazione, il nodo lo collega allo stato della pratica."
+  },
+  {
+    "cell": 13,
+    "title": "EmployeeAgent: il ciclo tra modello e tool",
+    "purpose": "Definisce un agente capace di ricevere un codice dipendente, chiedere uno strumento e leggere la risposta.",
+    "steps": [
+      "__init__(self, model, tools, system='', checkpointer=None) costruisce l'agente. Conserva il prompt in self.system. tools è una lista di strumenti passati dall'esterno: la classe non li cerca o inventa da sola.",
+      "self.tools = {t.name: t for t in tools} è una comprensione di dizionario. Per ogni tool crea una voce nome → oggetto tool. Con get_employee_info ottiene una rubrica che permette di recuperare lo strumento usando il suo nome.",
+      "model.bind_tools(tools) associa al modello le descrizioni e gli schemi degli strumenti. Non li esegue: permette al modello di restituire una richiesta strutturata di chiamata. L'espressione 'A if tools else B' è una scelta su una riga: usa il modello con tool se la lista è non vuota, altrimenti quello normale.",
+      "EmployeeState descrive lo stato interno con messages. Annotated[..., operator.add] accumula i messaggi, così rimangono la domanda, la richiesta del modello, il risultato del tool e il riepilogo finale. Non contiene tutti i campi di ExpenseState.",
+      "StateGraph(EmployeeState) crea il progetto; add_node registra llm con call_llm e action con take_action. add_conditional_edges('llm', self.exists_action, {True: 'action', False: END}) crea un bivio: se il modello ha chiesto tool si va ad action, altrimenti si termina.",
+      "add_edge('action', 'llm') fa tornare il risultato dello strumento al modello; add_edge(START, 'llm') fissa l'ingresso. compile prepara il grafo eseguibile e lo salva in self.graph. Il costruttore non fa ancora una ricerca.",
+      "exists_action(self, state) riceve lo stato e restituisce True/False. state['messages'][-1] è l'ultimo messaggio. getattr(messaggio, 'tool_calls', []) legge l'attributo tool_calls oppure usa [] se non esiste. bool(...) è True quando ci sono chiamate e False quando la lista è vuota. Questo metodo sceglie la prossima strada del grafo.",
+      "call_llm(self, state) legge i messaggi, aggiunge davanti un SystemMessage se il prompt esiste e invoca il modello. Restituisce {'messages': [response]}; LangGraph aggiunge quel messaggio alla storia. Il commento dice 'verifica se ci sono messaggi', ma la riga messages = state['messages'] li legge: non controlla da sola che la lista esista o sia non vuota.",
+      "take_action(self, state) riceve le chiamate prodotte nell'ultimo messaggio e crea results = []. Per ogni call legge call['name'] e call['args']. Una chiamata tipica contiene name='get_employee_info', args={'employee_id': 'E001'} e un id che identifica la chiamata.",
+      "Nel try controlla che nome sia in self.tools; se manca, raise ValueError segnala tool sconosciuto. Altrimenti self.tools[nome].invoke(argomenti) esegue realmente lo strumento. Il modello chiede l'azione, ma è questo codice Python a svolgerla.",
+      "except Exception converte un errore in una stringa JSON con status='TOOL_FAILURE' e message=str(errore). In questo modo il modello riceve un risultato strutturato anche quando l'azione fallisce.",
+      "results.append(ToolMessage(...)) costruisce una risposta con il nome dello strumento, tool_call_id=call['id'] per collegarla alla richiesta e content=str(risposta). È come applicare lo stesso numero di pratica alla domanda e alla risposta. Questa aggiunta avviene sia in caso di successo sia in caso di errore; il commento 'altrimenti' non rappresenta un vero ramo else.",
+      "return {'messages': results} consegna tutti i risultati del giro. LangGraph li aggiunge alla conversazione e torna al nodo llm. Se il modello chiede un altro strumento il ciclo continua; se produce solo testo la condizione porta a END. La cella definisce __init__, exists_action, call_llm e take_action; la stampa finale non li esegue su un dipendente."
+    ],
+    "result": "Definisce EmployeeAgent e il suo ciclo interno inizio → modello → eventuali azioni → modello → fine.",
+    "remember": "bind_tools presenta gli strumenti al modello; take_action li esegue davvero. Sono due momenti diversi."
+  },
+  {
+    "cell": 14,
+    "title": "Creare EmployeeAgent con un solo strumento",
+    "purpose": "Stabilisce i compiti dell'agente e gli assegna get_employee_info.",
+    "steps": [
+      "employee_system è una stringa multilinea con le istruzioni. Deve usare esattamente l'employee_id ricevuto e segnalare NOT_FOUND o TOOL_FAILURE senza inventare informazioni.",
+      "Il prompt delimita il compito: recuperare e riassumere il dipendente. Non cercare la spesa, non applicare le policy e non approvare il rimborso. Queste frasi guidano il modello; i controlli del nodo successivo verificano poi il codice effettivamente cercato.",
+      "EmployeeAgent(model=llm, tools=[get_employee_info], system=employee_system) crea l'oggetto. [get_employee_info] è una lista con un solo elemento: per questo agente l'unico strumento consentito è la ricerca del dipendente.",
+      "I nomi model=, tools= e system= passano i parametri esplicitamente, così si capisce quale valore serve a cosa. employee_agent conserva l'oggetto pronto e print conferma la creazione. Nessun ID viene cercato in questa cella."
+    ],
+    "result": "Crea employee_system ed employee_agent.",
+    "remember": "Questo addetto può aprire solo l'archivio dei dipendenti: gli altri archivi saranno compito di un altro agente."
+  },
+  {
+    "cell": 15,
+    "title": "Test EmployeeAgent: ha davvero chiamato get_employee_info?",
+    "purpose": "Prova la ricerca di E001 e mostra sia il risultato reale del tool sia il riepilogo del modello.",
+    "steps": [
+      "employee_agent.graph.invoke avvia il grafo con un HumanMessage che chiede di recuperare E001 usando get_employee_info. Non è una chiamata diretta al tool: qui si verifica anche che il modello lo richieda.",
+      "config={'recursion_limit': 10} limita il numero di passi del grafo in questa invocazione. Serve a fermare un possibile ciclo troppo lungo; non significa 10 dipendenti o 10 tentativi completi di ricerca.",
+      "tool_chiamato = False è una bandierina iniziale. Il ciclo for message in risultato_employee['messages'] visita la storia della conversazione. isinstance(message, ToolMessage) riconosce le risposte degli strumenti e porta la bandierina a True.",
+      "Per ogni ToolMessage il codice stampa message.name e message.content. Questi sono nome e dati effettivi restituiti dal tool. Poi stampa l'ultimo .content, che normalmente è il riepilogo scritto dal modello dopo aver letto quei dati.",
+      "if not tool_chiamato avvisa quando non è stata trovata alcuna risposta di tool. not inverte il valore booleano: se tool_chiamato è False, la condizione è vera. Questo controllo stampa un avviso, ma non usa assert per far fallire formalmente il test.",
+      "L'output registrato mostra get_employee_info chiamato, status OK per E001 e un riassunto di Luca Bianchi. Il commento iniziale cita anche E999, ma il codice di questa cella prova soltanto E001: il caso inesistente non viene eseguito qui."
+    ],
+    "result": "Nell'esecuzione salvata l'agente usa correttamente il tool per E001. Il test permette di distinguere la fonte dei dati dal testo del modello.",
+    "remember": "Un riepilogo plausibile non basta: il test cerca il messaggio del tool per vedere che l'archivio sia stato consultato davvero."
+  },
+  {
+    "cell": 16,
+    "title": "employee_node: salvare nella pratica la risposta ufficiale del tool",
+    "purpose": "Riceve ExpenseState, esegue EmployeeAgent e restituisce employee_data oppure un errore.",
+    "steps": [
+      "def employee_node(state: ExpenseState) -> dict definisce un nodo del workflow principale. state.get('employee_id') legge il codice già presente nella pratica; non lo inserisce, nonostante il commento sotto la riga dica così.",
+      "if not employee_id intercetta un codice assente o vuoto. Restituisce subito employee_data con status='NOT_FOUND' e message='employee_id mancante'. Qui non chiama il modello e non aggiunge un testo alla lista errori.",
+      "Nel try, employee_agent.graph.invoke riceve un HumanMessage con l'ID esatto dentro una f-string: 'Chiama get_employee_info con employee_id=E001'. config={'recursion_limit': 10} imposta il limite dei passi per il grafo interno.",
+      "reversed(risultato['messages']) percorre la storia dalla fine all'inizio. Il nodo cerca quindi l'ultima risposta del tool get_employee_info. La condizione usa and: il messaggio deve essere un ToolMessage e avere proprio quel nome.",
+      "json.loads(str(message.content)) trasforma il contenuto testuale in un oggetto Python. isinstance(dati, dict) controlla la forma. Se è TOOL_FAILURE, raise ValueError usa il messaggio del problema; .get('message', 'Errore del tool') fornisce un testo di riserva.",
+      "dati.get('employee_id') != employee_id controlla che il tool abbia cercato la persona corretta. != significa diverso da. Anche una risposta formalmente valida viene rifiutata se appartiene a un altro codice.",
+      "Se i controlli passano, return {'employee_data': dati} aggiorna la pratica con la risposta effettiva del tool. Uno status NOT_FOUND con il codice giusto può essere conservato normalmente: le regole successive capiranno che i dati non sono disponibili. Questo nodo non impone direttamente che lo status sia OK.",
+      "Se il ciclo termina senza trovare il ToolMessage richiesto, raise ValueError segnala che l'agente non ha usato get_employee_info. Il riepilogo del modello non viene usato per riempire i dati ufficiali.",
+      "except Exception cattura gli errori del try e restituisce employee_data con TOOL_FAILURE e il messaggio. Inoltre aggiorna errori con state.get('errori', []) + [f'Employee Agent: {errore}']. Il prefisso aiuta a capire quale passaggio è fallito.",
+      "Il contratto è: ingresso = pratica con employee_id; uscita = aggiornamento con employee_data e, se serve, errori. print fuori dalla funzione conferma soltanto la definizione del nodo."
+    ],
+    "result": "Definisce il collegamento tra EmployeeAgent e lo stato comune, con verifica del codice e gestione degli errori.",
+    "remember": "L'agente conversazionale può riassumere; il nodo salva la scheda originale e controlla che sia quella giusta."
+  },
+  {
+    "cell": 17,
+    "title": "Titolo: cercare la spesa e le regole applicabili",
+    "purpose": "Introduce i due strumenti del Claims Agent.",
+    "steps": [
+      "Claim significa pratica o richiesta di rimborso, per esempio CLM001. Policy significa regola aziendale, per esempio la regola per travel_train.",
+      "get_expense_details usa il codice della pratica; get_reimbursement_policy usa il codice della categoria. Sono due ricerche diverse: prima bisogna conoscere la spesa e la sua categoria, poi si cerca la policy corrispondente."
+    ],
+    "result": "Spiega quali archivi vengono letti dai due tool della cella successiva.",
+    "remember": "CLM001 è una singola spesa; travel_train è la categoria a cui appartiene."
+  },
+  {
+    "cell": 18,
+    "title": "get_expense_details e get_reimbursement_policy: due ricerche negli archivi",
+    "purpose": "Definisce strumenti che restituiscono i dati ufficiali della spesa e della sua policy, senza decidere l'esito.",
+    "steps": [
+      "Entrambe le funzioni hanno @tool. Le annotazioni e le docstring descrivono al modello gli argomenti: claim_id per il primo strumento, category per il secondo. Entrambe restituiscono una stringa JSON.",
+      "get_expense_details(claim_id: str) -> str visita CLAIMS_DB con for claim in CLAIMS_DB. Se claim['claim_id'] == claim_id, restituisce json.dumps({'status': 'OK', **claim}, ensure_ascii=False). **claim include tutti i campi della spesa; return termina alla prima corrispondenza.",
+      "Per CLM001 l'archivio contiene employee_id E001, expense_type travel_train, amount 110, currency EUR, receipt_id R001, project_code PRJ-DELTA e la descrizione del treno Roma-Milano. Il claim non contiene un campo data: la data della richiesta viene raccolta separatamente dall'utente.",
+      "Se il codice della spesa non viene trovato, il primo tool restituisce status='NOT_FOUND' e lo stesso claim_id richiesto. Non deduce una spesa da una descrizione somigliante e non inserisce nuovi record.",
+      "get_reimbursement_policy(category: str) -> str visita POLICIES_DB e confronta policy['expense_type'] con category. Se trova la corrispondenza restituisce status OK e **policy; altrimenti restituisce status NOT_FOUND e category. Il nome dell'argomento è category, mentre la chiave nell'archivio è expense_type.",
+      "Per travel_train la policy dice max_amount 250, receipt_required true, allowed_roles Analyst/Consultant/Manager e approval_over 250. Questi sono dati di una regola: il tool non confronta ancora i 110 EUR del claim con i 250 EUR del massimo.",
+      "json.dumps converte i dizionari in testo JSON e ensure_ascii=False conserva gli accenti. print('Tool del Claims Agent definiti') conferma le definizioni; a differenza della cella 11, qui non c'è una chiamata finale di prova .invoke."
+    ],
+    "result": "Rende disponibili due tool: uno accetta un ID pratica, l'altro una categoria. Nessuna decisione di rimborso viene presa.",
+    "remember": "Prima leggiamo il conto; poi leggiamo il regolamento. Fare i confronti sarà compito delle regole Python."
+  },
+  {
+    "cell": 19,
+    "title": "Titolo: l'agente che recupera claim e policy",
+    "purpose": "Introduce ClaimsAgent e claims_node.",
+    "steps": [
+      "L'ordine logico è importante: cercare il claim, leggere il suo expense_type e usare quel valore per cercare la policy. La categoria ufficiale del claim prevale su quella eventualmente indicata nella frase dell'utente.",
+      "claims_node controllerà le risposte reali dei due strumenti e verificherà che codice del claim e categoria della policy siano quelli corretti."
+    ],
+    "result": "Presenta il recupero coordinato di due fonti di dati.",
+    "remember": "L'LLM coordina le ricerche; non stabilisce ancora se il rimborso sia consentito."
+  },
+  {
+    "cell": 20,
+    "title": "ClaimsAgent: lo stesso ciclo modello-tool con due strumenti",
+    "purpose": "Definisce la classe dell'agente che cercherà spesa e policy. La struttura è simile a EmployeeAgent, ma l'oggetto riceverà strumenti e istruzioni diversi.",
+    "steps": [
+      "__init__(self, model, tools, system='', checkpointer=None) conserva il prompt, crea la rubrica self.tools = {t.name: t for t in tools} e associa i tool al modello con bind_tools se la lista non è vuota. Gli argomenti esterni rendono riutilizzabile la struttura.",
+      "ClaimsState contiene messages: Annotated[list[AnyMessage], operator.add]. Questo stato conserva la conversazione e somma le nuove liste di messaggi alle precedenti: domanda, richieste di tool, risposte e testo finale.",
+      "StateGraph(ClaimsState) costruisce il progetto. add_node registra i nodi llm/call_llm e action/take_action. add_conditional_edges collega llm ad action quando exists_action restituisce True e a END quando restituisce False.",
+      "add_edge('action', 'llm') riporta i risultati degli strumenti al modello; add_edge(START, 'llm') avvia la conversazione. compile(checkpointer=checkpointer) crea self.graph, pronto per invoke. La classe da sola non obbliga il modello a usare prima il claim e poi la policy: l'ordine è richiesto dal prompt della cella 21 e verificato nei dati dal nodo della cella 22.",
+      "exists_action(self, state) prende l'ultimo messaggio con [-1], legge tool_calls con getattr(..., []) e ne restituisce bool. È un controllo di instradamento: ci sono azioni richieste oppure possiamo finire?",
+      "call_llm(self, state) legge la storia; se self.system è presente antepone un SystemMessage; self.model.invoke(messages) restituisce il messaggio del modello. return {'messages': [response]} fornisce solo il nuovo messaggio, che viene aggiunto allo stato dal riduttore.",
+      "take_action(self, state) prepara results = [] e visita le tool_calls dell'ultimo messaggio. Per ogni richiesta prende name e args. Esempi: get_expense_details con {'claim_id': 'CLM001'}, oppure get_reimbursement_policy con {'category': 'travel_train'}.",
+      "Il try verifica che il nome sia tra quelli assegnati all'agente. Se non c'è, raise ValueError. Se c'è, self.tools[nome].invoke(argomenti) esegue quel tool. Si possono eseguire più richieste di tool nello stesso giro quando il modello ne produce più di una.",
+      "except Exception restituisce una stringa JSON con TOOL_FAILURE e il dettaglio dell'errore, anziché inventare un risultato. Ogni risposta viene inserita in un ToolMessage con name, tool_call_id e content: l'ID collega la risposta alla chiamata corretta.",
+      "results.append aggiunge i ToolMessage alla lista. return {'messages': results} li consegna a LangGraph; il collegamento action → llm farà leggere i risultati al modello. Finché l'LLM richiede strumenti il ciclo continua; quando smette, si raggiunge END.",
+      "I contratti sono: exists_action restituisce un booleano; call_llm restituisce un aggiornamento con un messaggio AI; take_action restituisce un aggiornamento con le risposte dei tool. print conferma soltanto che ClaimsAgent è definita."
+    ],
+    "result": "Definisce ClaimsAgent con __init__, exists_action, call_llm e take_action.",
+    "remember": "Non devi imparare da zero un meccanismo nuovo: è la struttura di EmployeeAgent, assegnata a un altro compito."
+  },
+  {
+    "cell": 21,
+    "title": "Creare ClaimsAgent e ordinare le due ricerche",
+    "purpose": "Dà al Claims Agent i suoi due strumenti e le istruzioni su come combinarli.",
+    "steps": [
+      "claims_system è il prompt multilinea. Ordina: 1) cerca il claim con get_expense_details; 2) se esiste, leggi expense_type; 3) cerca la policy con get_reimbursement_policy usando proprio quella categoria.",
+      "Se l'utente scrive 'hotel' ma il claim CLM001 dice travel_train, la policy da recuperare è travel_train. Il dato ufficiale arriva dal tool, non dall'interpretazione della frase. Questo evita di applicare una regola sbagliata alla pratica.",
+      "Il prompt richiede di segnalare errori o dati assenti senza inventare. Ribadisce che la decisione sarà presa dalle regole deterministiche, cioè da confronti espliciti nel codice.",
+      "ClaimsAgent(model=llm, tools=[get_expense_details, get_reimbursement_policy], system=claims_system) chiama il costruttore della cella 20. La lista contiene due tool; l'oggetto concreto viene salvato in claims_agent.",
+      "print conferma la creazione. In questa cella non si cercano ancora CLM001 o una policy: l'agente è soltanto pronto."
+    ],
+    "result": "Crea claims_system e claims_agent con due strumenti autorizzati dal codice.",
+    "remember": "L'agente deve leggere la categoria della spesa prima di scegliere il regolamento da consultare."
+  },
+  {
+    "cell": 22,
+    "title": "claims_node: controllare e salvare spesa e policy",
+    "purpose": "Riceve la pratica condivisa, esegue ClaimsAgent e restituisce expense_data e policy_data controllati.",
+    "steps": [
+      "def claims_node(state: ExpenseState) -> dict definisce il ponte col workflow principale. claim_id = state.get('claim_id') legge l'ID già estratto. Se manca, return produce expense_data con NOT_FOUND e il messaggio 'claim_id mancante', senza chiamare il modello.",
+      "Nel try, claims_agent.graph.invoke riceve un HumanMessage con 'Recupera il claim CLM001 e la sua policy', usando la f-string per l'ID. recursion_limit 10 limita i passi del grafo interno, evitando che un ciclo continui senza fine.",
+      "expense_data e policy_data iniziano a None, cioè non ancora trovati. Il ciclo visita i messaggi. if not isinstance(message, ToolMessage): continue salta subito i messaggi che non sono risposte di tool e passa al successivo elemento.",
+      "Se message.name è get_expense_details, json.loads(str(message.content)) salva il dizionario in expense_data. elif message.name è get_reimbursement_policy, lo salva in policy_data. elif significa 'altrimenti, se': per ogni messaggio si sceglie il ramo corrispondente. Se uno strumento viene chiamato più volte, l'ultima risposta incontrata sostituisce quella precedente.",
+      "Il nodo non usa il riassunto finale del modello come fonte. Controlla prima isinstance(expense_data, dict): se non c'è un oggetto valido, raise ValueError segnala che il claim non è stato recuperato.",
+      "Se expense_data.status è TOOL_FAILURE, il nodo solleva un errore col relativo messaggio. Poi controlla che expense_data.claim_id sia uguale al claim_id richiesto: una ricerca di una pratica diversa viene rifiutata.",
+      "Se lo status del claim è NOT_FOUND, return restituisce solo expense_data: senza claim non c'è una categoria ufficiale con cui cercare la policy. Qualunque altro status diverso da OK provoca un errore di risposta non valida.",
+      "Con il claim trovato, controlla che policy_data sia un dizionario e che non abbia TOOL_FAILURE. Se manca, non inventa una policy e segnala il problema.",
+      "categoria_claim = expense_data.get('expense_type') legge la categoria ufficiale. Se la policy ha status OK, policy_data.expense_type deve coincidere; se ha NOT_FOUND, policy_data.category deve coincidere con la categoria cercata. Anche non trovare una policy è un risultato possibile, purché sia stata cercata la categoria giusta.",
+      "Uno status della policy diverso da OK o NOT_FOUND viene rifiutato. Se tutti i controlli passano, return restituisce expense_data e policy_data insieme. Esempio: CLM001 con travel_train e policy travel_train; una policy hotel per CLM001 farebbe scattare un errore.",
+      "except Exception cattura gli errori della fase di recupero e validazione. Restituisce expense_data con TOOL_FAILURE e message, e aggiunge alla lista errori il prefisso 'Claims Agent:'. In questo ramo non restituisce una nuova policy_data e non conserva il claim trovato come esito OK.",
+      "Il contratto è: ingresso = stato con claim_id; uscita = aggiornamento con claim e policy verificati, oppure dati non trovati/fallimento. La stampa esterna alla funzione conferma soltanto che il nodo è definito."
+    ],
+    "result": "Definisce claims_node e i controlli che impediscono di salvare un claim o una policy relativi a codici diversi da quelli attesi.",
+    "remember": "Recuperare un dato non basta: bisogna controllare che sia il dato della pratica e della categoria corrette."
+  },
+  {
+    "cell": 23,
+    "title": "Test ClaimsAgent: entrambi i tool e la policy giusta",
+    "purpose": "Prova l'agente con CLM001 e verifica esplicitamente le risposte dei due strumenti.",
+    "steps": [
+      "claims_agent.graph.invoke avvia la conversazione chiedendo CLM001 e la sua policy. La configurazione recursion_limit 10 limita i passi interni. Il test chiama l'agente, non claims_node: esercita quindi le ricerche e la conversazione, senza tutti i controlli del nodo principale.",
+      "risposte_tool = {} prepara un dizionario vuoto. Il ciclo visita tutti i messaggi e seleziona i ToolMessage con isinstance. json.loads(str(message.content)) traduce ogni risposta da testo JSON a dati Python.",
+      "risposte_tool[message.name] = dati salva ciascuna risposta usando il nome dello strumento come chiave. È una rubrica dei risultati: get_expense_details → claim; get_reimbursement_policy → policy. Una seconda risposta con lo stesso nome sostituirebbe la prima.",
+      "Le stampe mostrano il nome e i dati formattati con json.dumps(..., indent=2, ensure_ascii=False), così è possibile leggere a occhio le fonti consultate.",
+      "assert risposte_tool['get_expense_details']['claim_id'] == 'CLM001' richiede che sia stata cercata la pratica giusta; il secondo assert richiede status OK. I due assert sulla policy richiedono expense_type travel_train e status OK.",
+      "assert è una verifica: se la condizione è falsa, in una normale esecuzione del notebook Python solleva AssertionError e interrompe la cella. Se un tool non ha lasciato alcuna risposta nel dizionario, l'accesso alla chiave può sollevare KeyError prima del confronto. Non è un messaggio di errore del rimborso: è un test che non passa.",
+      "La stampa finale si raggiunge solo se tutte queste verifiche passano. Il test verifica i valori delle risposte, ma non dimostra da solo il loro ordine temporale né decide se il rimborso sia approvabile."
+    ],
+    "result": "Per i dati presenti, i valori attesi sono CLM001/travel_train e due status OK. L'output salvato nel notebook mostra le due risposte e la conferma finale del test.",
+    "remember": "Qui controlliamo che siano arrivati i documenti giusti; il giudizio sul loro contenuto arriva nella cella 25."
+  },
+  {
+    "cell": 24,
+    "title": "Titolo: decidere con regole esplicite",
+    "purpose": "Introduce il controllo deterministico del rimborso, basato su dati e confronti Python.",
+    "steps": [
+      "Deterministico significa che, a parità di dati, il codice segue gli stessi controlli e restituisce lo stesso risultato. Non si chiede al modello di scegliere liberamente se approvare.",
+      "Le quattro etichette previste sono APPROVABILE, NON_APPROVABILE, DATI_INSUFFICIENTI e NECESSARIA_APPROVAZIONE. Quest'ultima richiede un importo sopra la soglia di approvazione ma non sopra il massimo: con le policy attuali, soglia e massimo coincidono e questo caso non può verificarsi."
+    ],
+    "result": "Presenta i controlli e i possibili esiti teorici della funzione successiva.",
+    "remember": "Le regole non sono opinioni del modello: sono condizioni if scritte e leggibili."
+  },
+  {
+    "cell": 25,
+    "title": "verifica_regole: la sequenza di controlli che decide l'esito",
+    "purpose": "Applica le regole ai dati ufficiali recuperati e restituisce deterministic_result e deterministic_reason. Non chiama alcun LLM.",
+    "steps": [
+      "def verifica_regole(state: ExpenseState) -> dict riceve la pratica e restituisce un aggiornamento con esito e motivo. state.get('employee_data', {}), .get('expense_data', {}) e .get('policy_data', {}) recuperano i tre documenti; se una chiave manca usano un dizionario vuoto.",
+      "Il ciclo for nome, dati in [('dipendente', dipendente), ('spesa', spesa), ('policy', policy)] visita tre coppie. nome è l'etichetta leggibile, dati il relativo dizionario. È un modo per eseguire lo stesso controllo senza scrivere tre if identici.",
+      "if dati.get('status') != 'OK' restituisce subito DATI_INSUFFICIENTI. La motivazione inserisce nome e status; .get('status', 'mancanti') usa il testo 'mancanti' quando non esiste lo status. Se manca il dipendente, non si può procedere come se fosse valido. L'ordine è dipendente, spesa, policy: il primo problema incontrato è quello restituito.",
+      "spesa['employee_id'] != dipendente['employee_id'] controlla la proprietà: la spesa deve appartenere alla persona della richiesta. Se E002 chiede una spesa di E001, restituisce NON_APPROVABILE. Le parentesi quadre qui presuppongono che il campo ci sia: un dizionario OK ma incompleto può ancora causare KeyError, perché questi primi confronti non sono dentro il try numerico successivo.",
+      "spesa['expense_type'] != policy['expense_type'] verifica che il regolamento riguardi la categoria reale. Una spesa travel_train con policy hotel porta a DATI_INSUFFICIENTI: non significa che il treno sia vietato, ma che abbiamo la regola sbagliata per giudicarlo.",
+      "dipendente['role'] not in policy['allowed_roles'] verifica l'ammissibilità del ruolo. not in significa 'non è tra gli elementi'. Consultant è ammesso per travel_train; Analyst non è ammesso per client_meal nei dati presenti. Se il ruolo non è consentito, l'esito è NON_APPROVABILE.",
+      "policy['receipt_required'] and not spesa.get('receipt_id') richiede entrambe le condizioni: ricevuta obbligatoria e codice ricevuta assente. Se sono vere, restituisce NON_APPROVABILE con motivo 'Manca la ricevuta obbligatoria'. CLM003 è il caso concreto: meal, 48 EUR, ma receipt_id null. Il codice verifica l'esistenza del codice della ricevuta, non apre o analizza un'immagine della ricevuta.",
+      "Nel try numerico, float(spesa['amount']), float(policy['max_amount']) e float(policy['approval_over']) convertono importo, massimo e soglia in numeri. Se manca una chiave oppure il valore non è convertibile, except (KeyError, TypeError, ValueError) restituisce DATI_INSUFFICIENTI con motivo 'Importo o limiti della policy non validi'.",
+      "if importo <= 0 restituisce NON_APPROVABILE: l'importo deve essere positivo. Include sia numeri negativi sia zero. Il commento sopra il try dice che un importo negativo non permette di decidere, ma il comportamento effettivo è un rifiuto esplicito, non DATI_INSUFFICIENTI.",
+      "if importo > limite rifiuta importi superiori al massimo. Per CLM002 l'importo dell'archivio è 240 e il massimo hotel è 180: 240 > 180, quindi NON_APPROVABILE. La f-string usa {importo:g} e {limite:g} per visualizzare numeri senza decimali inutili, per esempio 240 anziché 240.0. Il testo scrive EUR direttamente; questa funzione non controlla il campo currency.",
+      "Solo dopo aver superato tutti i controlli precedenti, if importo > soglia_approvazione può restituire NECESSARIA_APPROVAZIONE. Esempio teorico: massimo 250, soglia 200, spesa 220 → entro il massimo ma sopra la soglia. Il confronto è strettamente >: un importo uguale alla soglia non richiede approvazione per questa regola.",
+      "Nei quattro JSON delle policy presenti max_amount e approval_over coincidono: treno 250/250, hotel 180/180, meal 60/60, client_meal 120/120. Perciò qualunque importo sopra la soglia viene già rifiutato dal controllo del massimo; NECESSARIA_APPROVAZIONE è irraggiungibile con questi dati. Il codice contiene il ramo, ma le policy non creano un intervallo per usarlo.",
+      "Se nessun return precedente è scattato, l'ultimo return produce APPROVABILE con la motivazione che dipendente, categoria, ricevuta e importo rispettano la policy. CLM001 soddisfa questi controlli: appartiene a E001, categoria travel_train, ruolo Consultant ammesso, ricevuta R001 e importo 110 ≤ 250. Anche CLM004, associato correttamente a E003, ha ruolo Manager ammesso, ricevuta R004 e 95 ≤ 120.",
+      "La funzione usa l'importo e la categoria dei dati ufficiali del claim, non state['amount'] o state['category'] estratti dalla frase. Non applica il limite annual_expense_limit, non confronta project_code col progetto del dipendente, non controlla la data e non verifica l'autorizzazione di una trasferta. I campi possono esistere nei dati senza essere usati nei controlli.",
+      "L'ordine dei controlli conta perché ogni return termina la funzione. Non si accumulano tutte le violazioni: si mostra il primo ostacolo. Per esempio, CLM003 viene fermato alla ricevuta prima di discutere il suo importo. Il print finale conferma la definizione delle regole; non esegue un caso completo.",
+      "Limite tecnico: float accetta anche valori speciali come NaN e infinito, e qui non c'è un controllo esplicito che tutti i numeri siano finiti. Nei JSON forniti gli importi e i limiti sono numeri ordinari; questa osservazione riguarda dati anomali, non cambia gli esempi presenti."
+    ],
+    "result": "Definisce verifica_regole. Con i dati ufficiali presenti: E001/CLM001 è APPROVABILE; E001/CLM003 è NON_APPROVABILE per ricevuta mancante; E002/CLM002 è NON_APPROVABILE per 240 EUR oltre 180; E003/CLM004 è APPROVABILE. Questi sono esiti della sola funzione, da distinguere dalla risposta finale del workflow.",
+    "remember": "Pensa a una lista di controlli alla porta: dati disponibili? proprietario corretto? policy giusta? ruolo ammesso? ricevuta? importo? Il primo controllo che fallisce ferma la pratica e spiega perché."
+  }
+]

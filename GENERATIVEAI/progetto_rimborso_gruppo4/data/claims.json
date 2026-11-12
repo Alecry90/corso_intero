@@ -1,0 +1,42 @@
+[
+  {
+    "claim_id": "CLM001",
+    "employee_id": "E001",
+    "expense_type": "travel_train",
+    "amount": 110,
+    "currency": "EUR",
+    "receipt_id": "R001",
+    "project_code": "PRJ-DELTA",
+    "description": "Treno Roma-Milano per workshop"
+  },
+  {
+    "claim_id": "CLM002",
+    "employee_id": "E002",
+    "expense_type": "hotel",
+    "amount": 240,
+    "currency": "EUR",
+    "receipt_id": "R002",
+    "project_code": "PRJ-OMEGA",
+    "description": "Hotel per evento cliente"
+  },
+  {
+    "claim_id": "CLM003",
+    "employee_id": "E001",
+    "expense_type": "meal",
+    "amount": 48,
+    "currency": "EUR",
+    "receipt_id": null,
+    "project_code": "PRJ-DELTA",
+    "description": "Cena durante trasferta"
+  },
+  {
+    "claim_id": "CLM004",
+    "employee_id": "E003",
+    "expense_type": "client_meal",
+    "amount": 95,
+    "currency": "EUR",
+    "receipt_id": "R004",
+    "project_code": "PRJ-DELTA",
+    "description": "Cena con cliente"
+  }
+]

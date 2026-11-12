@@ -1,0 +1,90 @@
+[
+  {
+    "claim_id": "CLM001",
+    "employee_id": "E001",
+    "expense_type": "travel_train",
+    "expense_date": "2026-10-08",
+    "amount": 110,
+    "currency": "EUR",
+    "receipt_id": "R001",
+    "project_code": "PRJ-DELTA",
+    "description": "Treno Roma-Milano per workshop"
+  },
+  {
+    "claim_id": "CLM002",
+    "employee_id": "E002",
+    "expense_type": "hotel",
+    "expense_date": "2026-10-08",
+    "amount": 240,
+    "currency": "EUR",
+    "receipt_id": "R002",
+    "project_code": "PRJ-OMEGA",
+    "description": "Hotel per evento cliente"
+  },
+  {
+    "claim_id": "CLM003",
+    "employee_id": "E001",
+    "expense_type": "meal",
+    "expense_date": "2026-10-08",
+    "amount": 48,
+    "currency": "EUR",
+    "receipt_id": null,
+    "project_code": "PRJ-DELTA",
+    "description": "Cena durante trasferta"
+  },
+  {
+    "claim_id": "CLM004",
+    "employee_id": "E003",
+    "expense_type": "client_meal",
+    "expense_date": "2026-10-08",
+    "amount": 95,
+    "currency": "EUR",
+    "receipt_id": "R004",
+    "project_code": "PRJ-DELTA",
+    "description": "Cena con cliente"
+  },
+  {
+    "claim_id": "CLM005",
+    "employee_id": "E001",
+    "expense_type": "travel_train",
+    "expense_date": "2026-10-07",
+    "amount": 110,
+    "currency": "EUR",
+    "receipt_id": "R005",
+    "project_code": "PRJ-DELTA",
+    "description": "Treno per una trasferta non autorizzata"
+  },
+  {
+    "claim_id": "CLM006",
+    "employee_id": "E001",
+    "expense_type": "travel_train",
+    "expense_date": "2026-10-06",
+    "amount": 110,
+    "currency": "EUR",
+    "receipt_id": "R006",
+    "project_code": "PRJ-DELTA",
+    "description": "Treno per una trasferta senza autorizzazione registrata"
+  },
+  {
+    "claim_id": "CLM007",
+    "employee_id": "E001",
+    "expense_type": "parking",
+    "expense_date": "2026-10-08",
+    "amount": 20,
+    "currency": "EUR",
+    "receipt_id": "R007",
+    "project_code": "PRJ-DELTA",
+    "description": "Parcheggio durante una trasferta autorizzata"
+  },
+  {
+    "claim_id": "CLM008",
+    "employee_id": "E002",
+    "expense_type": "client_meal",
+    "expense_date": "2026-10-08",
+    "amount": 95,
+    "currency": "EUR",
+    "receipt_id": "R008",
+    "project_code": "PRJ-OMEGA",
+    "description": "Cena con cliente per un ruolo non ammesso dalla policy"
+  }
+]

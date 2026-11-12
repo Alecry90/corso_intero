@@ -1,0 +1,6 @@
+{
+  "id": "01_rimborso_spese",
+  "title": "Assistente per richiesta rimborso spese",
+  "domain": "Finance / HR",
+  "goal": "Valutare una richiesta di rimborso sulla base di dipendente, policy, ricevute e progetto."
+}

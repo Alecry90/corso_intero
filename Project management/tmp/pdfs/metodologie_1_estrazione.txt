@@ -1,0 +1,2115 @@
+=== SLIDE 1 ===
+1
+Metodologie di Project Management
+Ing. Salvatore Forte 
+3 - 6 Ottobre 2023
+
+=== SLIDE 2 ===
+2
+Summary
+▪ Nozioni generali
+▪ Il Project Manager
+▪ Il Project Management e le aree di conoscenza
+▪ Metodologie Agili
+
+=== SLIDE 3 ===
+3
+Nozioni generali
+
+
+=== SLIDE 4 ===
+4
+Summary
+• La definizione di progetto
+• Caratteristiche di un progetto
+• Il Project Management
+• Il Programma
+• Il Portfolio
+• Il ciclo di vita del progetto
+• I processi di Project Management
+• I gruppi di processo
+• I documenti aziendali di business per il Project Management
+• Business Case
+• Piano di gestione dei benefici
+• Gli stakeholder di progetto e ruoli nel Project Management
+• Strutture Organizzative
+
+=== SLIDE 5 ===
+5
+Il Progetto
+Con il termine progetto si intende far riferimento ad un vasto insieme di applicazioni nell’ambito della
+progettazione e/o fornitura di prodotti e servizi, nella realizzazione di impianti, attrezzature, opere edili, 
+ecc.
+Esempi
+• Produzione di sistemi complessi come navi, aerei, missili.
+• Costruzione di opere pubbliche come ferrovie, autostrade, aeroporti, ecc.
+• Realizzazione di un film.
+• …
+
+=== SLIDE 6 ===
+6
+Il Progetto
+«Un progetto è un’iniziativa temporanea intrapresa per creare un prodotto, un servizio o un risultato 
+con caratteristiche di unicità»
+Temporaneo  inizio e fine stabilite
+• Le attività che costituiscono il progetto sono temporanee (periodo limitato in cui produrre i risultati)
+• Il team di progetto raramente rimane attivo alla fine del progetto stesso
+Unico   il prodotto o il servizio differiscono in qualche modo da quanto  
+   precedentemente realizzato
+• La presenza di elementi ripetitivi non cambia la fondamentale unicità del prodotto/servizio realizzato 
+(design, contesto, contractors)
+
+
+=== SLIDE 7 ===
+7
+Il Progetto
+I progetti quindi non sono ripetitivi ed in questo si distinguono dai processi aziendali (Operational 
+Activities) per il fatto che questi ultimi si ripetono seguendo procedure fisse e con impegni lavorativi 
+continuativi (Ongoing Work Efforts)
+Operational Activities: attività continuative e ripetitive contrapposte al progetto in quanto a
+• temporalità: destinate a non avere una fine
+• unicità: destinate alla erogazione continuativa di beni
+Projects Operational Activities
+Time Temporary Continous
+Object Unique Repetitive
+Mode Progressive elaboration Detailed procedure 
+(working instructions)
+Performance Stakeholder happiness Business Indicators (KPI)
+
+=== SLIDE 8 ===
+8
+Il Progetto
+Consideriamo le attività di una Banca. Una Banca ha normalmente sia operazioni che progetti. 
+Le operazioni sono continue, quotidiane, e non terminano mai, come incassare o dare soldi ai clienti, 
+aprire conti correnti, investire in titoli, ecc. Queste operazioni possono essere pianificate, realizzate da 
+persone, vincolate da risorse limitate ma sono destinate a non avere fine.
+La stessa banca avrà anche dei progetti, ad esempio progetti IT, che sono avviati, ad esempio, per 
+rendere il lavoro più efficiente. I progetti IT sono realizzati da persone, vincolati da risorse limitate, come 
+le operazioni, ma sono pianificati per essere conclusi.
+
+=== SLIDE 9 ===
+9
+Caratteristiche di un Progetto
+Complessità
+Temporaneità
+Elaborazione Progressiva
+Risorse
+Unicità
+Pianificazione, Esecuzione e Controllo
+Triplo Vincolo: costi, tempi e 
+qualità
+
+=== SLIDE 10 ===
+10
+Caratteristiche di un Progetto
+Complessità
+La complessità non è facile da misurare in quanto può essere determinata da numerosi fattori, tra i quali:
+• la necessità di svolgere attività che sono tra loro collegate
+• la necessità di svolgere attività che possono essere tecnicamente complesse e/o poco conosciute
+• la necessità di far lavorare insieme più persone, che possono avere mentalità e opinioni differenti e 
+appartenere ad organizzazioni differenti
+• la necessità di rispettare i vincoli imposti ed operare con risorse limitate 
+• la presenza di diverse persone (stakeholder) che attendono qualcosa dal progetto.
+Maggiore è la complessità del progetto, maggiore attenzione deve essere posta nella sua gestione, e più 
+accurato deve essere l’utilizzo degli strumenti messi a disposizione, ma maggiori saranno anche i benefici 
+potenziali che potranno derivare dall’utilizzo del project management.
+
+=== SLIDE 11 ===
+11
+Caratteristiche di un Progetto
+Unicità
+Il lavoro di un’organizzazione è composto:
+• da progetti, ovvero elementi di natura straordinaria e unica
+• da operazioni (operations), ovvero elementi di natura ordinaria, corrente, quotidiana.
+Operazioni e progetti condividono molte caratteristiche; in particolare, entrambi sono eseguiti da persone, 
+vincolati da risorse limitate e pianificati, eseguiti e controllati.
+• I progetti differiscono sostanzialmente dalle «operazioni», in quanto le operazioni sono caratterizzate da 
+lavoro ripetitivo, continuativo, ricorrente, mentre i progetti sono caratterizzati da lavoro non-ripetitivo, 
+temporaneo, unico. Inoltre, ogni progetto crea deliverable unici, in termini di prodotti/servizi/risultati. La 
+caratteristica di unicità dipende da diversi fattori, nonostante il progetto possa rifarsi a schemi o modelli 
+derivanti da progetti simili realizzati in passato o simili nello stesso settore applicativo.
+Inoltre, i due concetti sono legati a modalità di gestione differenti:
+• le operazioni hanno luogo facendo riferimento a procedure operative dettagliate, che assicurano processi 
+standardizzati e ricorrenti, e risultati ripetitivi
+• i progetti sono gestiti con metodologia e tecniche di project management.
+
+=== SLIDE 12 ===
+12
+Caratteristiche di un Progetto
+Temporaneità
+Un progetto deve avere un inizio e una fine ben definiti e quindi deve prevedere la sua conclusione entro 
+una durata determinata:
+• l’inizio del progetto è spesso subordinato ai tempi tecnici necessari a concretizzare l’idea iniziale, e a 
+trovare le risorse per avviarlo: l’inizio deve essere sempre formalizzato, e questa formalizzazione deve 
+costituire un atto ufficiale
+• la fine del progetto dipende sia da fattori interni che da fattori esterni: entrambi vanno monitorati e 
+controllati, e anche la fine del progetto deve essere formalizzata
+• se non si opera con criterio, si finisce per avere “poco tempo” a disposizione per completare un progetto: 
+pertanto è necessario imparare ad organizzare le attività (pianificare) per essere quanto più possibile 
+certi di riuscire a rispettare le scadenze.
+• Il tempo del progetto, non coincide necessariamente con il tempo del prodotto/servizio da questo creato, 
+la cui durata supera, generalmente, la durata del progetto stesso (c’è un’importante differenza fra il ciclo 
+di vita del progetto e il ciclo di vita del prodotto).
+
+=== SLIDE 13 ===
+13
+Caratteristiche di un Progetto
+Pianificazione, Esecuzione e Controllo
+
+
+=== SLIDE 14 ===
+14
+Caratteristiche di un Progetto
+Risorse
+La realizzazione di un progetto richiede l’impiego di risorse che possono essere di tipo differente quali, ad 
+esempio:
+• denaro
+• persone con conoscenze e competenze specifiche
+• forniture esterne di prodotti e servizi
+• attrezzature e macchinari
+• beni “intangibili” (ad es. brevetti)
+• materiali vari
+Il project manager gestisce le risorse per ottenere il migliore risultato possibile (efficacia), risparmiando sul 
+loro impiego ed eliminando gli sprechi (efficienza).
+
+=== SLIDE 15 ===
+15
+Caratteristiche di un Progetto
+Triplo Vincolo
+Tempi, costi (vincoli di budget) e qualità 
+(qualità del prodotto che rispetta i requisiti 
+richiesti) sono tre vincoli di progetto, fra loro 
+interdipendenti e strettamente correlati.
+Sono spesso rappresentati con un triangolo 
+o, se si tiene conto anche dell’ambito 
+(scope) del progetto (ambito e qualità sono 
+strettamente connessi), con un tetraedro.
+E' difficile, se non impossibile, ottimizzare 
+tutti e tre i vincoli allo stesso tempo: il 
+responsabile di progetto deve, di norma, 
+trovare la soluzione migliore per rispettare 
+i tre principali vincoli di progetto
+
+
+=== SLIDE 16 ===
+16
+Caratteristiche di un Progetto
+Elaborazione Progressiva
+Un progetto viene generalmente elaborato in maniera progressiva, realizzando la pianificazione, l’esecuzione 
+e il controllo del progetto attraverso successive “iterazioni” o “stadi”, caratterizzate da un livello di dettaglio via 
+via crescente.
+In funzione della sua complessità ed estensione, un progetto può anche essere suddiviso in sotto-progetti, 
+fasi e sotto-fasi, che possono essere sviluppate in periodi successivi e in via sequenziale, ma che rimangono 
+collegate da opportune relazioni di continuità e interdipendenza.
+Il principio di elaborazione progressiva si applica sia a ciascuna fase sia all’intero progetto.
+
+
+=== SLIDE 17 ===
+17
+Il Project Management
+«L’applicazione di conoscenze, capacità, strumenti e tecniche alle attività di progetto per soddisfarne i 
+requisiti» (PMBOK).
+Il Project Management (Gestione del Progetto) è l’impegno di tutti coloro che cercano di contribuire al 
+successo del progetto, applicando conoscenze, capacità e mezzi alle attività necessarie per soddisfare i 
+requisiti degli stakeholders, il particolare del cliente.
+Richiede:
+• Padronanza della disciplina (la conoscenza del prodotto di progetto aiuta ma non è fondamentale)
+• Skill di general management, tecnici e interpersonali
+• Strumenti e tecniche quali ad esempio Earned Value management, tecniche di diagrammazione, 
+scomposizione, ecc.
+La sfida principale del Project Management è quella di raggiungere tutti gli obiettivi del progetto nel rispetto 
+dei vincoli del progetto stesso.
+
+=== SLIDE 18 ===
+18
+Il Programma
+Un programma è un gruppo di progetti (e anche attività operative), gestiti in modo coordinato per ottenere 
+maggiori benefici ed efficienza che non sarebbe possibile ottenere gestendo gli stessi progetti singolarmente
+Affinché un gruppo di progetti possa essere definito un programma ci deve essere un evidente vantaggio nel 
+gestirli in modo coordinato. Altrimenti non si tratta di un programma
+Il Program Management è la gestione coordinata di uno specifico programma per raggiungere obiettivi 
+strategici, risultati e benefici
+Il Program Management consente di coordinare l’assegnazione delle risorse ai progetti secondo priorità, 
+gestire i legami tra i progetti, i costi complessivi e i rischi del programma
+Il programma è focalizzato alla realizzazione dei benefici mediante i progetti.
+Pensiamo ad esempio ad un programma spaziale che prevede la costruzione di alcune navicelle ma anche le 
+missioni di ciascuna di esse e la loro manutenzione ed evoluzione tra un lancio e l’altro. Solo l’integrazione di 
+queste attività può garantire il successo del programma e raccogliere gli elementi utili a preparare il 
+successivo.
+
+=== SLIDE 19 ===
+19
+Il Portfolio
+Un Portfolio è una raccolta di progetti e/o programmi e altre attività che sono gestiti insieme per raggiungere 
+più efficacemente gli obiettivi di business. Il focus è sull’efficienza. L’obiettivo è selezionare i progetti giusti 
+(Strategic Planning).
+I progetti o i programmi di un portfolio possono non essere necessariamente interdipendenti o direttamente 
+collegati. 
+Il Portfolio Management è un termine usato per descrivere i metodi per analizzare e gestire collettivamente 
+un Portfolio ed è focalizzato alla gestione della priorità di allocazione delle risorse ai vari progetti/programmi a 
+servizio delle strategie dell’organizzazione. Essendo inseriti in un determinato portfolio possono essere 
+valutati nel loro insieme, ed è più facile assegnare priorità e risorse alle varie iniziative in funzione delle 
+strategie aziendali. Nel caso che le strategie aziendali cambino basta recuperare risorse da un portfolio ed 
+assegnarle ad un altro che promette migliori risultati. Stabilendo le priorità all’interno di ciascun portfolio è più 
+facile identificare quali progetti o programmi debbono essere fermati per recuperare risorse e quali conviene 
+attivare o potenziare 
+In altre parole il Portfolio Management è la traduzione della strategia aziendale in iniziative progettuali.
+
+=== SLIDE 20 ===
+20
+Progetti-Programma-Portfolio
+
+
+=== SLIDE 21 ===
+21
+Gestione delle Operations
+La gestione delle Operations è la funzione dell’organizzazione che è responsabile della produzione di beni e 
+servizi nel modo più efficiente ed efficace possibile
+I progetti interagiscono spesso con le operazioni specie all’inizio del progetto (sottraendo risorse e o 
+acquisendo know-how dalle operazioni) o alla fine del progetto (restituendo risorse, prodotti, servizi e know-
+how). Questo avviene in particolare quando l’obiettivo del progetto è quello di riorganizzare procedure o 
+processi o migliorare prodotti o servizi. Infatti i progetti possono modificare delle operazioni esistenti (progetti 
+di ottimizzazione o revisione di processi) oppure avviare nuove operazioni (progetti di creazione di nuovi 
+prodotti/servizi che debbono quindi essere gestiti) o terminare delle operazioni (progetti di dismissione di 
+prodotti o servizi – si pensi all’affidamento in outsourcing di attività finora gestite internamente).
+Possiamo trovarle in un programma quando le finalità di queste operazioni siano indispensabili per gli 
+obiettivi di un programma come ad esempio la manutenzione delle navicelle all’interno del programma Space 
+Shuttle
+
+=== SLIDE 22 ===
+22
+Ciclo di vita di un Progetto
+Per ciclo di vita del progetto (Project Life-cycle) si intende l’insieme delle fasi tecniche in cui un progetto è 
+diviso.
+Le caratteristiche comuni dei cicli di vita sono:
+• costi e livelli di personale (impegno) bassi all’inizio, aumentano nelle fasi intermedie e diminuiscono alla 
+fine
+• livello di incertezza e rischio massimo all’inizio poi diminuisce
+• influenza degli stakeholder massima all’inizio poi diminuisce
+• il costo delle modifiche richieste tende a crescere man mano che il prodotto è stato realizzato.
+Le fasi procedono in genere sequenzialmente, ma per alcuni progetti può essere conveniente avere fasi 
+sovrapposte o iterative
+• Fasi sequenziali possono ridurre incertezze e rischi ma possono rendere difficile comprimere i tempi
+• Fasi sovrapposte permettono di anticipare il lavoro di una fase quando non è ancora conclusa la fase 
+precedente o propedeutica; in questo modo aumentano i rischi ma si può ridurre la durata complessiva del 
+progetto
+
+=== SLIDE 23 ===
+23
+Ciclo di vita di un Progetto
+I cicli di vita del progetto sono catalogati in:
+• Cicli di vita predittivi o «plan driven» (Predictive Life-cycles)
+• Cicli di vita iterativi e incrementali (Iterative and Incremental Life-cycles)
+• Cicli di vita adattativi (Adaptative Life-cycles)
+• Cicli di vita ibridi (Hybrid Life-cycles)
+
+=== SLIDE 24 ===
+24
+Ciclo di vita di un Progetto
+Cicli di vita predittivi
+Sono utilizzabili quando i requisiti e l’ambito sono ben definiti e stabili già dall’inizio del progetto, il lavoro 
+può procedere per fasi successive o sovrapposte solo in parte e che non riciclano e il prodotto del progetto 
+è ben conosciuto e tecnologicamente maturo.
+Nel ciclo di sviluppo Predittivo - detto anche Fully Plan-driven o a cascata (waterfall):
+• L’ambito del progetto, tempi e costi richiesti per realizzarlo si determinano prima possibile
+• Il prodotto/servizio si sviluppa in genere per fasi successive ben definite (il prodotto è ben conosciuto)
+• In ogni fase le attività di progetto e le competenze sono ben definite
+• Richiede la gestione delle richieste di cambiamento (Change Requests): i cambiamenti devono essere 
+approvati e le attività ripianificate
+
+=== SLIDE 25 ===
+25
+Ciclo di vita di un Progetto
+Cicli di vita iterativi e incrementali
+Nei cicli di sviluppo Iterativo o Incrementale l’ambito viene sviluppato progressivamente a ogni iterazione 
+ma in modo diverso:
+• Nel ciclo incrementale si rilascia una funzione completa ed utilizzabile del prodotto/servizio alla volta
+• nel ciclo iterativo invece si rilasciano ogni volta tutte le funzioni a livelli di dettaglio via via crescenti fino 
+a completarle
+Entrambi i cicli prevedono la ripetizione intenzionale di una o più attività di progetto (iterazioni) man mano 
+che il team di progetto migliora la conoscenza del prodotto che è chiamato a realizzare.
+Si utilizza quando occorre gestire obiettivi e ambito in continua evoluzione. Lavorando per approssimazioni 
+successive si riduce la complessità del progetto
+
+=== SLIDE 26 ===
+26
+Ciclo di vita di un Progetto
+Cicli di vita adattativi (change-driven o Agile)
+Gli approcci adattativi (change-driven) si usano in progetti caratterizzati da forti incertezze o che si 
+svolgono in ambienti in rapida evoluzione dove il cambiamento è la regola.
+Pur essendo un ciclo iterativo e incrementale, la differenza risiede nel fatto che le iterazioni sono molto 
+rapide e con durata e costi predeterminati e con un team a dimensione fissa ed impegno full time
+• Si fissano i costi e i tempi all’inizio lasciando l’ambito a una definizione di massima
+• I requisiti sono raccolti e classificati per priorità in un backlog che verrà affinato in corso d'opera
+• Si parte dalle funzioni più urgenti e si aggiusta il tiro in corso d’opera cercando di rimanere nei costi e 
+nei tempi stabiliti
+• il lavoro viene programmato a piccoli blocchi cercando di rispettare la schedulazione e il budget 
+predefiniti e consentendo al committente di aggiustare la priorità dei requisiti. 
+• Utilizzato in caso di ambiente in rapida evoluzione e quando i requisiti e l’ambito sono difficili da definire 
+in anticipo
+
+=== SLIDE 27 ===
+27
+Ciclo di vita di un Progetto
+Cicli di vita ibridi
+Gli approcci ibridi sono una combinazione di approcci predittivi e adattativi. In un approccio ibrido il ciclo di 
+vita predittivo può essere usato per gestire requisiti ben definiti mentre il ciclo di vita adattativo viene usato 
+per gestire requisiti meno chiari.
+
+=== SLIDE 28 ===
+28
+I processi di Project Management
+Un processo è un insieme di attività correlate, volte a ottenere un determinato insieme di prodotti, risultati 
+o servizi.
+Il project management si articola in una serie di processi che, ripetutamente attivati per tutta la durata del 
+progetto (dall’avvio alla conclusione), forniscono al responsabile di progetto il necessario supporto per 
+svolgere al meglio la propria attività di conduzione del progetto.
+Un processo trasforma un insieme di input, aggiungendo valore agli stessi utilizzando tecniche e 
+strumenti, nell’ottica di conseguire un determinato risultato (output), che sia congruente con gli altri 
+processi.
+L’insieme dei processi di project management, con le proprie attività interne, e con i relativi input e output, 
+strumenti e tecniche, consente di avviare, pianificare, eseguire, monitorare, controllare e concludere 
+qualsiasi tipo di progetto.
+Il responsabile di progetto deve stabilire quali processi, e con quale eventuale adattamento (tailoring), sia 
+conveniente utilizzare per ciascun progetto.
+
+=== SLIDE 29 ===
+29
+I processi di Project Management
+I processi di project management devono 
+essere eseguiti secondo una determinata 
+sequenza, in quanto molti di essi 
+producono come output dei risultati 
+intermedi (deliverable), utilizzati da 
+processi successivi.
+Tuttavia, la natura iterativa della gestione 
+dei progetti comporta la necessità di 
+ripetere alcuni processi nel tempo, 
+parallelizzando o sovrapponendo fra loro 
+più gruppi e tipi di processi.
+
+
+=== SLIDE 30 ===
+30
+I processi di Project Management
+Durante l’evoluzione del progetto si può osservare una certa sovrapposizione dei processi, ad un diverso 
+livello di intensità. Di seguito viene illustrato l’andamento temporale tipico del livello di attività dei processi 
+di project management (per una fase o per l’intero progetto). 
+In generale:
+• la curva dei processi di controllo è una costante presenza nella vita del progetto, con la salita in 
+prossimità del consolidamento della pianificazione, e la contestuale convergenza verso il punto critico 
+dell’esecuzione
+• la curva dei processi di pianificazione presenta effetti di interazione simili a quelli dei processi di 
+esecuzione, anche se anticipati temporalmente nel ciclo di vita del progetto.
+
+
+=== SLIDE 31 ===
+31
+I processi di Project Management
+I 5 gruppi di processi sono:
+Avvio (Initiating): processi per autorizzare e avviare correttamente il progetto. Contiene 2 processi usati 
+per:
+• Sviluppare il Project Charter
+• Identificare gli Stakeholder
+Pianificazione (Planning): processi per definire gli obiettivi e selezionare le migliori azioni per 
+raggiungerli. Ci sono 24 processi di pianificazione che sono usati per:
+• Definire l’ambito del progetto
+• Definire gli obiettivi del progetto
+• Definire le attività necessarie per realizzarli (Piano di Project Management)
+Esecuzione (Executing): processi per coordinare le persone e altre risorse per eseguire il piano. Ci sono 
+10 processi di esecuzione per svolgere il lavoro pianificato.
+
+=== SLIDE 32 ===
+32
+I processi di Project Management
+Monitoraggio e Controllo (Monitoring & Controlling): processi che aiutano a raggiungere gli obiettivi 
+tramite monitoraggio del progetto e misurazione degli avanzamenti. Consiste di 12 processi utilizzati 
+essenzialmente per:
+• Rilevare le prestazioni
+• Evidenziare deviazioni dal piano
+• Implementare azioni correttive (e preventive)
+• Produrre report sulle prestazioni del progetto
+Chiusura (Closing):  processi per la formalizzazione dell’accettazione e della conclusione del progetto o 
+di una sua fase. Contiene 1 solo processo per:
+• Chiudere formalmente il progetto o le sue fasi
+
+=== SLIDE 33 ===
+33
+Le aree di conoscenza
+Le 10 Aree di Conoscenza sono:
+• Gestione dell’Integrazione (Project Integration Mgmt) 7 – Per garantire l’integrazione di tutti i 
+processi e le attività di Project Management durante tutto il ciclo di vita del progetto, per raggiungere gli 
+obiettivi del progetto. Definisce il Piano di Project Management
+• Gestione dell’Ambito (Project Scope Mgmt) 6 – Per assicurare che il progetto contenga tutto il lavoro 
+necessario per raggiungere gli obiettivi, niente di più e niente di meno.
+• Gestione della Schedulazione (Project Schedule Mgmt) 6 – Per assicurare che il progetto sia 
+realizzato entro le scadenze imposte.
+• Gestione dei Costi (Project Cost Mgmt) 4 – Per garantire che il progetto possa essere completato nel 
+budget approvato.
+• Gestione della Qualità (Project Quality Mgmt) 3 – Per assicurare che il progetto rispetti i requisiti di 
+qualità richiesti dagli stakeholder.
+
+=== SLIDE 34 ===
+34
+Le aree di conoscenza
+• Gestione delle Risorse (Project Resource Mgmt) 6 – Per organizzare, sviluppare e gestire il gruppo 
+di progetto
+• Gestione delle Comunicazioni (Project Communication Mgmt) 3 – Per garantire la gestione delle 
+informazioni di progetto dalla raccolta alla distribuzione fino all’archiviazione
+• Gestione dei rischi (Project Risk Mgmt) 7 – Per aumentare la probabilità (P) e l’Impatto (I) delle 
+opportunità e ridurre la probabilità (P) e l’Impatto (I) delle minacce
+• Gestione degli Approvvigionamenti (Project Procurement Mgmt) 3 – Per garantire che i prodotti e i 
+servizi siano della qualità richiesta e siano acquisiti per essere integrati nel prodotto/servizio finale del 
+progetto
+• Gestione degli Stakeholder (Project Stakeholder Mgmt) 4 – Per identificare e gestire gli stakholder 
+del progetto durante il ciclo di vita del progetto per aumentare le probabilità di successo del progetto.
+
+=== SLIDE 35 ===
+35
+Le aree di conoscenza
+
+
+=== SLIDE 36 ===
+36
+Le aree di conoscenza
+
+
+=== SLIDE 37 ===
+37
+Documenti aziendali di Project Mgmt
+Questi documenti precedono la nascita del progetto e pertanto non sono prodotti dal Project Manager. 
+In genere sono curati dallo sponsor che è lo stakeholder che ha proposto alla performing organization di 
+avviare il progetto. Questi documenti vengono passati dallo sponsor al project manager per aiutarlo a 
+capire per quali ragioni il progetto è stato attivato e quali benefici è chiamato a produrre.
+• Business Case
+• Piano di gestione dei benefici
+
+=== SLIDE 38 ===
+38
+Documenti aziendali di Project Mgmt
+Business Case
+Il Business Case contiene le esigenze di business, l’analisi della situazione al momento della nascita del 
+progetto, le indicazioni su come sviluppare il progetto e gli elementi per valutarne i benefici. 
+• studio documentato di fattibilità economica utilizzato per stabilire la validità dei benefici di un 
+componente già selezionato ma non sufficientemente definito.
+• utilizzato come base per autorizzare ulteriori attività di Project Management.
+• elenca gli obiettivi e le ragioni per l’avvio del progetto 
+• aiuta a misurare il successo del progetto al suo termine rispetto agli obiettivi di progetto
+• può contenere una valutazione delle esigenze propedeutica alla sua formulazione
+
+=== SLIDE 39 ===
+39
+Documenti aziendali di Project Mgmt
+Business Case
+Richiesta di cliente 
+esterno Bisogni sociali
+Progresso tecnologico Altro
+Descrizione degli impulsi
+Impulsi scatenanti
+Domanda di mercato Requisito di legge
+Bisogno interno 
+all'organizzazione Impatto ecologico
+Funzione
+Cognome Nome
+Ruolo
+Titolo
+Descrizione breve
+Iniziatore
+Azienda
+Business Case Codice Documento
+Anagrafica Iniziativa proposta
+Codice iniziativa
+Informazioni su chi propone l’iniziativa
+Identificare le categorie di possibili 
+impulsi che scatenano l’iniziativa
+
+=== SLIDE 40 ===
+40
+Documenti aziendali di Project Mgmt
+Business Case
+IRR (%) NPV (€) Payback period (mesi)
+Descrizione
+Livello allineamento su 
+Business Driver 1
+Livello allineamento su Business 
+Driver 2
+Livello allineamento su 
+Business Driver 3
+Livello allineamento su Business 
+Driver 4
+….
+Opportunità Valore complessivo Opportunità 
+VO
+Analisi dei concorrenti
+Analisi economico/finanziaria Valore complessivo 
+economico/finanziario VEF
+Allineamento strategico Valore complessivo 
+dell'allineamento strategico VAS
+Prodotto/servizio da realizzare
+Risultati e benefici attesi
+Stima dimensioni del mercato
+Valutazione quantitativa del nr. potenziale di unità che 
+possono essere vendute
+IRR: Internal Rate of Return. Tasso di rendimento che 
+eguaglia il costo iniziale => resa dell’investimento
+NPV: Net Present Value. Valore attualizzato netto del profitto 
+=> ricavi previsti – valore dell’investimento
+Payback Period: periodo necessario per rientrane 
+dall’investimento
+VEF: Valore complessivo Economico-Finanziario (da 0 a 5)
+Allineamento strategico: Valutazione da 0 a 5 per ogni BD. Il 
+valore complessivo è una valutazione pesata
+Opportunità che possono scaturire dall’iniziativa. Il VO è una 
+valutazione da 0 a 5
+
+=== SLIDE 41 ===
+41
+Documenti aziendali di Project Mgmt
+Business Case
+Data Firma
+Data Firma
+Documenti collegati
+Documento Codice Link
+Valore complessivo dell'iniziativa (VEF+VAS+VO-VR)
+Iniziativa approvata
+Iniziativa non approvata
+Motivazioni dell'approvazione/non approvazione
+Priorità del progetto
+Livello di rischio su rischio 
+3 (R3) Livello di rischio su rischio 4 (R4)
+Livello di rischio su rischio 
+5 (R5) Livello di rischio su rischio 6 (R6)
+….
+Rischiosità Valore complessivo Rischiosità 
+VR
+Livello di rischio su rischio 
+1 (R1) Livello di rischio su rischio 2 (R2)
+Rischiosità. Valutazione dei livelli di rischio da 0 a 5. 
+VR è un calcolo pesato dei livelli di rischiosità
+Scala da 1 a 10 con 1 valore massimo
+
+=== SLIDE 42 ===
+42
+Documenti aziendali di Project Mgmt
+Business Case - esempio
+Iniziativa: Sistema di PM aziendale
+Business Drivers (metrica 0-5 con 5 allineamento massimo):
+• BD1: riduzione costi (peso 30%)
+• BD2: aumento del fatturato (peso 20%)
+• BD3: miglioramento nella qualità di gestione (peso 15%)
+• BD4: crescita professionalità del personale (peso 15%) 
+• BD5: miglioramento della comunicazione (peso 10%)
+• BD6: differenziazione delle proposte sul mercato (peso 10%) 
+L’allineamento strategico complessivo (VAS) è:
+VAS= BD1*0,3+BD2*0,2+BD3*0,15+BD4*0,15+BD5*0,1+BD6*0,1
+
+=== SLIDE 43 ===
+43
+Documenti aziendali di Project Mgmt
+Business Case - esempio
+Iniziativa: Sistema di PM aziendale
+Rischiosità del progetto (da 0 a 5 con 5 rischio massimo):
+R1: rischio economico/finanziario
+R2: rischio di mercato
+R3: rischio dell’organizzazione
+R4: rischio ambientale
+R5: rischio «paese»
+R6: rischio immagine
+
+=== SLIDE 44 ===
+44
+Documenti aziendali di Project Mgmt
+Business Case - esempio
+*
+*
+Prodotto/servizio da realizzare
+….
+Richiesta di cliente 
+esterno Bisogni sociali
+Progresso tecnologico Altro
+Descrizione degli impulsi Bisogno interno all'organizzazione: ……
+Progresso tecnologico: …
+Impulsi scatenanti
+Domanda di mercato Requisito di legge
+Bisogno interno 
+all'organizzazione Impatto ecologico
+Funzione Top Management
+Cognome Nome ….
+Ruolo Direttore Generale
+Titolo Sistema di PM
+Descrizione breve ….
+Iniziatore
+Azienda XYZ
+Business Case Codice Documento INI220100
+Anagrafica Iniziativa proposta
+Codice iniziativa INI 22 0100
+n.a
+IRR (%) n.a NPV (€) n.a Payback period (mesi) n.a
+2,75
+2 2
+5 4
+4 0
+Livello allineamento su 
+Business Driver 1
+Livello allineamento su Business 
+Driver 2
+Livello allineamento su 
+Business Driver 3
+Livello allineamento su Business 
+Driver 4
+….
+Livello allineamento su 
+Business Driver 5
+Livello allineamento su Business 
+Driver 6
+Analisi dei concorrenti
+n.a. 
+Analisi economico/finanziaria Valore complessivo 
+economico/finanziario VEF
+Allineamento strategico Valore complessivo 
+dell'allineamento strategico VAS
+Risultati e benefici attesi
+I risultati attesi sono:
+1.
+2.
+…
+I benefici attesi sono:
+1.
+2.
+….
+Stima dimensioni del mercato
+n.a.
+
+=== SLIDE 45 ===
+45
+Documenti aziendali di Project Mgmt
+Business Case - esempio
+4
+1,83
+4 2
+5 0
+0 0
+4,92
+Data Firma
+Data Firma
+Documenti collegati
+Documento Codice Link
+Valore complessivo dell'iniziativa (VEF+VAS+VO-VR)
+Iniziativa approvata
+Iniziativa non approvata
+Motivazioni dell'approvazione/non approvazione
+Priorità del progetto
+Livello di rischio su rischio 
+3 (R3) Livello di rischio su rischio 4 (R4)
+Livello di rischio su rischio 
+5 (R5) Livello di rischio su rischio 6 (R6)
+….
+Descrizione …..
+Rischiosità Valore complessivo Rischiosità 
+VR
+Livello di rischio su rischio 
+1 (R1) Livello di rischio su rischio 2 (R2)
+Opportunità Valore complessivo Opportunità 
+VO
+
+=== SLIDE 46 ===
+46
+Documenti aziendali di Project Mgmt
+Piano di gestione dei benefici
+Descrive come e quando saranno forniti i benefici del progetto e i meccanismi da implementare per misurarli
+Di solito contiene:
+• Descrizione e valore economico dei benefici
+• Descrizione dell’allineamento tra benefici e piano strategico aziendale
+• Timeline di raggiungimento dei benefici
+• Responsabile dei benefici, incaricato di seguire, misurare e riportare il raggiungimento dei benefici
+• Metriche di misura dei benefici
+• Eventuali rischi
+
+=== SLIDE 47 ===
+47
+Stakeholders
+Gli stakeholders sono persone ed organizzazioni attivamente coinvolte nel progetto o i cui interessi possono 
+subire conseguenze positive o negative dall’esecuzione, dal completamento o dall’interruzione del progetto.
+Gli stakeholders non solo possono subire condizionamenti dal progetto, ma possono anche influire sui 
+risultati e sugli obiettivi di progetto.
+Gli stakeholders si possono catalogare in:
+• stakeholders interni all’organizzazione
+• stakeholders esterni all’organizzazione
+Altra catalogazione:
+• Stakeholders positivi: vedono positivamente il successo del progetto
+• Stakeholders negativi: vedono negativamente il successo del progetto
+
+=== SLIDE 48 ===
+48
+Stakeholders
+• Clienti/utenti: soggetti o organizzazioni 
+che utilizzeranno il prodotto/servizio 
+risultato del progetto
+• Sponsor: soggetti che mettono a 
+disposizione del progetto le risorse 
+finanziarie necessarie. 
+• Responsabile di Portfolio: 
+responsabile della governance del 
+portfolio in cui è inserito il progetto
+• Comitato di revisione del portfolio: 
+comitato di dirigenti che interviene nella 
+selezione del progetto
+• Comitato decisionale (steering 
+committee): comitato di soggetti con 
+compiti decisionali
+• Comitato di controllo delle 
+modifiche: comitato che approva o 
+rifiuta le richieste di modifica
+
+
+=== SLIDE 49 ===
+49
+Stakeholders
+• Program manager: responsabile del 
+programma in cui è inserito il progetto
+• Project Management Office (PMO)
+• Project Manager: responsabile del 
+progetto
+• Altri PM: responsabili dei progetti 
+correlati al progetto in esame
+• Gruppo di progetto: gruppo di 
+persone guidato dal PM che sviluppa il 
+progetto
+• Manager funzionali: soggetti che 
+possiedono le risorse umane utili allo 
+sviluppo del progetto
+• Responsabili di funzioni operative
+• Fornitori di progetto
+• Partner
+
+
+=== SLIDE 50 ===
+50
+Stakeholders
+PMO (Project Management Office)
+In una organizzazione complessa con portfolio, progetti e programmi, la coerenza fra le singole iniziative non 
+può essere lasciata alla buona volontà e alla capacità di coordinarsi dei project manager. Nasce pertanto 
+l’esigenza di accentrare alcune funzioni in una unità organizzativa specializzata.
+Il Project Management Office è una unità organizzativa che supporta la gestione dei progetti assolvendo ad 
+una delle seguenti missioni:
+• Supporto - Fornire supporto ai project manager mediante regole, metodologie, procedure e modulistica 
+per la gestione dei progetti
+• Controllo - Fornire supporto sulla gestione dei progetti, formazione nel project management e negli 
+strumenti di project management e assistenza su specifici strumenti di project management ma chiedendo 
+di uniformare processi e strumenti alle norme stabilite 
+• Direzione - Fornire i Project Manager per i vari progetti e assumere la responsabilità per i risultati dei 
+progetti
+
+=== SLIDE 51 ===
+51
+Stakeholders
+PMO (Project Management Office)
+Il PMO crea valore mediante Standardizzazione (processi, sistemi), Conoscenza (conservazione, formazione) 
+& Consulenza (progetti, risultati)
+In particolare il PMO potrebbe aiutarci:
+• a trovare le risorse
+• a gestire le relazioni con altri progetti programmi e portfolio
+• a capire se un progetto deve essere terminato
+• a raccogliere le lesson learned per renderle disponibili ad altri progetti
+• con modelli standard di documenti
+• a stabilire la priorità ai progetti
+• a gestire le modifiche partecipando al Change Control Board
+• fornendo supporto al nostro progetto.
+
+=== SLIDE 52 ===
+52
+Strutture Organizzative
+Semplice, naturale: Organizzazione non strutturata di piccole dimensioni come quelle su base familiare – Il 
+project manager lavora a stretto contatto con il titolare con autonomia limitata, il coordinamento è quasi nullo 
+e ogni team member in genere possiede e amministra il suo budget
+
+=== SLIDE 53 ===
+53
+Strutture Organizzative
+Funzionale: organizzazione gerarchica in cui 
+ogni dipendente ha un superiore distinto. Il ruolo 
+di Project Manager non è formalmente 
+riconosciuto ma in alcuni casi esiste un ruolo di 
+“coordinatore”. I progetti sono assegnati in 
+genere al manager dell’unità funzionale più 
+adatta a realizzare quel particolare prodotto o 
+servizio. Se è necessario ottenere informazioni 
+o collaborazioni da altre unità funzionali le 
+richieste vengono inoltrate per via gerarchica. I 
+membri del team di progetto svolgono il lavoro 
+di progetto in aggiunta ai compiti che di solito 
+svolgono all’interno dell’unità funzionale alla 
+quale appartengono.
+
+
+=== SLIDE 54 ===
+54
+Strutture Organizzative
+Funzionale: 
+• Il PM non esiste e se esiste ha un livello di 
+autorità praticamente nullo
+• La responsabilità del progetto è condivisa tra 
+i manager funzionali (che spesso si trovano 
+in conflitto e in sovrapposizione di 
+competenza durante l’esecuzione del 
+progetto)
+• L’obiettivo del progetto è raramente condiviso 
+tra le funzioni, in quanto ciascuna di esse ha 
+obiettivi propri, spesso identificati a livello 
+aziendale
+• Le risorse che lavorano sul progetto non 
+fanno parte di un vero team e raramente 
+sono allocate full time
+• La catena di comando viene rigidamente 
+rispettata
+• Poca comunicazione tra le funzioni
+
+
+=== SLIDE 55 ===
+55
+Strutture Organizzative
+Matrice debole: Le risorse rispondono al loro 
+responsabile, come nella funzionale, ma esiste 
+un Project Coordinator che svolge un ruolo di 
+coordinatore.
+• La figura del PM non esiste, esiste un Project 
+Coordinator che non ha una vera e propria 
+responsabilità sul progetto, ma spesso funge 
+da semplice referente
+• I manager funzionali hanno grosso potere
+• Le persone del team continuano a rispondere 
+principalmente ai loro manager funzionali 
+piuttosto che al coordinatore
+ 
+
+
+=== SLIDE 56 ===
+56
+Strutture Organizzative
+Matrice bilanciata: Viene assegnato un project 
+manager che riporta ad un responsabile 
+funzionale 
+• Ogni risorsa del team risponde sia al PM che 
+al suo manager funzionale
+• È necessaria una forte collaborazione tra PM 
+e manager funzionali
+• Il PM lavora full time sul progetto
+• Una risorsa fa parte del team fino a quando 
+serve al progetto, poi viene rilasciata e 
+riconsegnata al suo manager funzionale
+ 
+
+
+=== SLIDE 57 ===
+57
+Strutture Organizzative
+Matrice forte: Il project manager riporta al 
+manager dei project manager. L’organizzazione 
+è molto orientata al progetto prevedendo un PM 
+e un team di progetto full time. Ogni persona del 
+team può considerarsi «distaccata» dalla sua 
+struttura funzionale per tutto il periodi in cui è 
+impegnata sul progetto.
+• Il PM ha forte autorità
+• Il PM lavora full time sul progetto
+• C’è molta comunicazione e negoziazione tra i 
+PM e i manager funzionali
+ 
+
+
+=== SLIDE 58 ===
+58
+Strutture Organizzative
+Per Progetti: i project manager godono di una 
+certa indipendenza ed autorità in quanto la 
+società è organizzata per progetti. Le risorse 
+sono assegnate ai progetti e quando un 
+progetto finisce sono assegnate ad un altro 
+progetto. Non hanno un reparto nel quale 
+ritornare a fine progetto.
+• Il PM risponde direttamente al top 
+management
+• Il PM ha completa autorità sul progetto
+• La costituzione del team è compito esclusivo 
+del PM
+ 
+
+
+=== SLIDE 59 ===
+59
+Strutture Organizzative
+Virtuale: una rete di persone con caratteristiche simili ad una matrice equilibrata. E’ basata su 
+un’infrastruttura che sostiene e governa il contatto tra i team member, il PM ha autorità moderata ed è di 
+solito allocato full time. La gestione del budget è condivisa tra i PM e i responsabili dei gruppi di lavoro
+Composita o Ibrida: una organizzazione nella quale coesistono esempi delle strutture anzidette.
+
+=== SLIDE 60 ===
+60
+Strutture Organizzative
+
+
+=== SLIDE 61 ===
+61
+Il Project Manager
+
+
+=== SLIDE 62 ===
+62
+Summary
+• Codice etico
+• Caratteristiche del PM
+• Responsabilità del PM
+• Competenze del PM
+
+=== SLIDE 63 ===
+63
+Il Project Manager
+Un errore comune è quello di confondere il ruolo del Project Manager con quello del Manager 
+Funzionale o con il Manager Operativo.
+• Manager Funzionale: gestisce un’area aziendale (p.e. Cloud, SAP , Sanità…)
+• Manager Operativo: responsabile di un aspetto del core business aziendale (p.e. gestione qualità, 
+gestione approvvigionamenti…) e quindi ha la responsabilità di garantire che le attività aziendali 
+siano efficienti
+Il Project Manager è invece la persona incaricata di guidare il gruppo responsabile del raggiungimento 
+degli obiettivi del progetto.
+
+=== SLIDE 64 ===
+64
+Il Project Manager
+• È responsabile di una pianificazione dei tempi di progetto realistica; non dovrebbe ritenere conclusa 
+la pianificazione di costi e tempi se non ha effettuato un’analisi dei rischi
+• Coordina e guida gli impegni necessari alla pianificazione del progetto
+• Assiste il team e gli stakeholders durante tutto il progetto
+• Non è indispensabile che sia un esperto tecnico
+• È responsabile del progetto ma non necessariamente delle risorse che lavorano sul progetto
+• Conosce e rafforza la responsabilità etica e professionale
+• È responsabile (accountable) del fallimento del progetto
+• Identifica i livelli di qualità richiesti e le metriche prima di avviare il progetto
+• Si occupa di capire se sono necessarie azioni correttive, preventive o correzioni di difetti
+• Verifica che i piani redatti per il progetto siano messi in atto
+• Deve avere la responsabilità (accountability) e l’autorità necessaria per il completamento delle attività 
+di project management
+• È l’artefice dell’integrazione di progetto
+• ….
+
+=== SLIDE 65 ===
+65
+Il Project Manager
+Codice Etico (Code of Ethics and Professional Conduct)
+L’obiettivo del codice è quello di fornire linee guida orientate a far sì che ciascuno assuma un 
+comportamento onorevole in ogni momento della propria vita.
+Il codice chiede di:
+• Operare in una completa integrità professionale
+• Applicare le conoscenze professionali acquisite
+• Bilanciare le esigenze dell’organizzazione con quelle degli stakeholders
+• Rispettare le differenze culturali
+
+=== SLIDE 66 ===
+66
+Il Project Manager
+Codice Etico (Code of Ethics and Professional Conduct)
+Il Codice Etico si articola su 4 valori basilari:
+• Responsabilità: il dovere di riconoscere come nostre le decisioni assunte (o non assunte) e le 
+conseguenze scaturite dall’aver preso una decisione (o di non averla presa)
+• Rispetto: il dovere di dimostrare considerazione per noi stessi e per le risorse che ci vengono 
+assegnate (persone, denaro, risorse materiali….)
+• Equità: il dovere di assumere decisioni con imparzialità obiettiva
+• Onestà: il dovere di comprendere la verità e di agire in modo veritiero nelle comunicazioni e nel 
+comportamento
+Per ognuno dei valori il codice prevede 2 categorie di standard:
+• Standard di riferimento: linee guida generali che descrivono la condotta da tenere 
+nell’espletamento delle attività
+• Standard obbligatori: requisiti specifici, alcuni dei quali vietano tassativamente alcuni 
+comportamenti
+
+=== SLIDE 67 ===
+67
+Il Project Manager
+Principali caratteristiche del PM
+• Essere sempre disponibile ad analizzare problematiche e criticità con un approccio proattivo, 
+piuttosto che reattivo
+• Essere un buon negoziatore, cercando nel compromesso e nel consenso la miglior soluzione nei 
+momenti decisionali
+• Gestire i conflitti
+• Conoscere bene le funzioni aziendali e la struttura organizzativa, per individuare le persone che 
+possano aiutarlo a risolvere i problemi più spinosi
+• Saper definire, controllare e migliorare le interfacce di progetto ovvero i canali di comunicazione fra 
+gli stakeholder di progetto, cercando di facilitare il flusso informativo
+• Essere di esempio per il resto del team (vedi Codice Etico)
+
+=== SLIDE 68 ===
+68
+Il Project Manager
+Principali responsabilità del PM
+Le responsabilità del PM dovrebbero essere definite prima dell’avvio del progetto e dovrebbero essere 
+assegnate sulla base della dimensione, rischiosità e complessità del progetto, nonché importanza del 
+cliente, budget…
+• Impostare una corretta pianificazione di progetto, a partire da una definizione più accurata possibile 
+dell’ambito (Scope), definendo cosa si deve fare (in Scope) e cosa non si deve fare (out of Scope), 
+sulla base delle reali esigenze e requisiti del cliente
+• Garantire una completa integrazione tra gli stakeholders di progetto
+• Garantire la congruità tra pianificato e realizzato
+• Organizzare il lavoro e dirigerlo nella maniera più efficace e flessibile possibile
+• Predefinire e seguire un piano di comunicazione di progetto che permetta di ottimizzare le esigenze e 
+soddisfare i requisiti informativi degli stakeholders
+• Controllare l’andamento del progetto, evidenziando tempestivamente scostamenti negativi delle 
+performance di progetto, identificando le cause generali che li hanno generati e proponendo, in 
+accordo con il team di progetto e altri stakeholders, le opportune misure correttive orientate al 
+recupero
+
+=== SLIDE 69 ===
+69
+Il Project Manager
+Sono state individuate le competenze necessarie per 
+i Project Manager utilizzando il Talent Triangle® del 
+PMI. Il triangolo del talento si incentra su tre serie di 
+competenze principali:
+Project management tecnico. Conoscenza, 
+competenze e comportamenti legati a specifici campi 
+del Project, Program e Portfolio Management. Gli 
+aspetti tecnici dello svolgimento del ruolo.
+Leadership. La conoscenza, le competenze e i 
+comportamenti necessari per guidare, motivare e 
+dirigere un gruppo, per aiutare un’organizzazione a 
+raggiungere i suoi obiettivi aziendali.
+Gestione aziendale e strategica. La conoscenza e 
+l’esperienza del settore e dell’organizzazione per 
+migliorare le prestazioni e raggiungere più facilmente 
+i risultati aziendali.
+Competenze del PM
+
+
+=== SLIDE 70 ===
+70
+Il Project Manager
+Sono definite come le competenze per applicare in modo efficace la conoscenza del Project Management 
+per fornire i risultati desiderati per programmi o progetti. A titolo indicativo indichiamo:
+• Concentrarsi sugli elementi tecnici del Project Management per ciascun progetto gestito. Ciò consiste 
+nell’avere disponibili prontamente gli elaborati adatti. In cima all’elenco si trovano:
+• Fattori critici per il successo del progetto;
+• Schedulazione;
+• Report finanziari selezionati;
+• Registro delle questioni.
+• Personalizzare strumenti, tecniche e metodi tradizionali e agili per ciascun progetto.
+• Dedicare del tempo a un’accurata pianificazione e a un’attenta assegnazione delle priorità.
+• Gestire elementi di progetto tra cui, a titolo indicativo, schedulazione, costi, risorse e rischi.
+Capacità Tecniche
+
+=== SLIDE 71 ===
+71
+Il Project Manager
+Riguardano la capacità di vedere una panoramica di alto livello dell’organizzazione e di negoziare in modo 
+efficace e implementare decisioni e azioni che supportano l’allineamento strategico e l’innovazione. Questa 
+capacità può includere una conoscenza pratica di altre funzioni quali finanza, marketing e attività operative.
+Le capacità strategiche e gestionali possono anche includere lo sviluppo e l’applicazione dell’esperienza 
+pertinente per quanto riguarda il prodotto e il settore (conoscenza di dominio).
+I project manager devono essere sufficientemente competenti riguardo all’azienda per essere in grado di:
+• Spiegare agli altri gli aspetti di business essenziali di un progetto;
+• Collaborare con lo sponsor del progetto, il gruppo e gli esperti in materia per sviluppare una strategia di 
+consegna del progetto appropriata;
+• Implementare la strategia in modo da massimizzare il valore del progetto per l’azienda.
+Capacità Strategiche e Gestionali
+
+=== SLIDE 72 ===
+72
+Il Project Manager
+Le capacità strategiche e gestionali aiutano il project manager a determinare i fattori aziendali da prendere 
+in considerazione per il progetto. Il project manager determina in che modo i fattori aziendali e strategici 
+possono influenzare il progetto comprendendo l’interrelazione tra il progetto e l’organizzazione. Questi fattori 
+includono, a titolo indicativo:
+• Rischi e questioni;
+• Implicazioni finanziarie;
+• Analisi costi-benefici (ad es. valore netto attuale, ritorno sull’investimento), tra cui le varie opzioni 
+considerate;
+• Valore per l’azienda;
+• Aspettative e strategie di realizzazione dei benefici;
+• Ambito, budget, schedulazione e qualità.
+Attraverso l’applicazione di questa conoscenza aziendale, un project manager ha la capacità di prendere le 
+decisioni e formulare le raccomandazioni appropriate per un progetto. Man mano che le condizioni 
+cambiano, il project manager deve lavorare continuamente con lo sponsor del progetto per mantenere 
+l’allineamento tra le strategie del progetto e l’azienda.
+Capacità Strategiche e Gestionali
+
+=== SLIDE 73 ===
+73
+Il Project Manager
+Le doti di leadership riguardano la capacità di guidare, motivare e dirigere un gruppo. Queste doti possono 
+comprendere la dimostrazione di capacità essenziali quali negoziazione, resilienza, comunicazione, 
+risoluzione dei problemi, pensiero critico e capacità interpersonali.
+Gran parte del ruolo del project manager riguarda la gestione delle persone. Il project manager deve 
+studiare comportamenti e motivazioni delle persone. Il project manager deve cercare di essere un buon 
+leader poiché la leadership è essenziale per il successo dei progetti nelle organizzazioni. Un project 
+manager applica doti e qualità di leadership quando lavora con tutti gli stakeholder del progetto, incluso il 
+gruppo di progetto, il gruppo direttivo e gli sponsor del progetto.
+Leadership
+
+=== SLIDE 74 ===
+74
+Il Project Manager
+Le qualità e le doti di un leader includono, a titolo indicativo:
+• Essere un visionario (ad es. contribuire a descrivere i prodotti, i traguardi e gli obiettivi del progetto);
+• Ottimismo e positività;
+• Spirito di collaborazione;
+• Capacità di gestire relazioni e conflitti:
+• Costruire fiducia;
+• Rispondere alle preoccupazioni;
+• Cercare consenso;
+• Bilanciare obiettivi in conflitto e in opposizione;
+• Applicare doti di persuasione, negoziazione, compromesso e risoluzione dei conflitti;
+• Sviluppare e alimentare reti personali e professionali;
+• Rendersi conto che a lungo termine le relazioni sono altrettanto importanti del progetto;
+Leadership
+
+=== SLIDE 75 ===
+75
+Il Project Manager
+• Comunicare:
+• Dedicando tempo sufficiente alla comunicazione (le ricerche mostrano che i migliori project manager 
+dedicano circa il 90% del loro tempo su un progetto alla comunicazione);
+• Gestire le aspettative;
+• Accettare positivamente i feedback;
+• Fornire un feedback costruttivo;
+• Chiedere e ascoltare.
+• Essere rispettosi (aiutare gli altri a preservare la propria autonomia), cortesi, cordiali, gentili, onesti, degni 
+di fiducia, leali ed etici;
+• Mostrare integrità ed essere culturalmente sensibili, coraggiosi, in grado di risolvere problemi e prendere 
+decisioni;
+• Dare credito ad altri, se dovuto;
+• Continuare sempre ad apprendere ed essere orientati ai risultati e all’azione;
+Leadership
+
+=== SLIDE 76 ===
+76
+Il Project Manager
+• Concentrarsi sulle cose importanti, tra cui:
+• Assegnare costantemente una priorità al lavoro rivedendola e adeguandola secondo necessità;
+• Individuare e utilizzare un metodo di assegnazione delle priorità che funzioni per sé e per il progetto;
+• Differenziare le priorità strategiche di alto livello, soprattutto quelle legate a fattori di successo critici 
+per il progetto;
+• Prestare costantemente attenzione ai principali vincoli del progetto;
+• Restare flessibili sulle priorità tattiche;
+• Essere in grado di filtrare grandi quantità di dati per ottenere le informazioni più importanti.
+• Avere una visione sistematica del progetto, prendendo in considerazione in egual misura fattori interni ed 
+esterni;
+• Essere in grado di applicare il pensiero critico e identificarsi come agente di cambiamento.
+• Essere in grado di costruire gruppi efficaci, essere orientati al servizio, divertirsi e condividere 
+efficacemente umorismo con i membri del gruppo.
+Leadership
+
+=== SLIDE 77 ===
+77
+Il Project Manager
+L’azione del project manager è un risultato della scelta del giusto tipo di potere per influenzare e negoziare 
+con gli altri.
+L’esercizio del potere comporta anche la responsabilità di essere sensibili e rispettosi verso le altre persone. 
+L’azione efficace del project manager mantiene anche l’autonomia delle persone coinvolte. L’azione del 
+project manager fa sì che le persone giuste svolgano le attività necessarie per soddisfare gli obiettivi del 
+progetto.
+Leadership
+
+=== SLIDE 78 ===
+78
+Il Project Manager
+Vi sono varie forme di potere a disposizione dei project manager. Il potere e il relativo uso possono essere 
+complessi in considerazione della sua natura e dei vari fattori in gioco in un progetto. Varie forme di potere 
+includono:
+• Posizionale (talvolta chiamato formale, autoritario, legittimo) (ad es. posizione formale stabilita 
+nell’organizzazione o nel gruppo di lavoro);
+• Informativo (basato sulla capacità di detenere o distribuire informazione);
+• Referenziale (ad es. rispetto o ammirazione che gli altri nutrono per l’individuo, credibilità conquistata);
+• Situazionale (ad es. acquisito grazie a una situazione unica quale una crisi specifica);
+• Personale o carismatico (ad es. fascino, attrazione);
+• Relazionale (ad es. partecipazione a networking, connessioni e alleanze);
+• Esperto (ad es. doti, informazioni possedute, esperienza, formazione, istruzione, certificazione);
+• Orientamento alla ricompensa (ad es. abilità di fornire lodi, premi in denaro o altri oggetti desiderati);
+• Punitivo o coercitivo (ad es. capacità di invocare conseguenze disciplinari o negative);
+Leadership
+
+=== SLIDE 79 ===
+79
+Il Project Manager
+• Ingraziamento (ad es. uso di lusinghe o altro terreno comune per ottenere favori o collaborazione);
+• Basato sulla pressione (ad es. limitare la libertà di scelta o movimento per ottenere conformità all’azione 
+desiderata, imposizione di limiti);
+• Basato sul senso di colpa (ad es. imposizione di un obbligo o di senso del dovere);
+• Persuasivo (ad es. abilità di fornire argomenti per indurre le persone ad agire come desiderato);
+• Sfuggente (ad es. rifiutare di partecipare).
+Leadership
+
+=== SLIDE 80 ===
+80
+Il Project Manager
+I project manager possono gestire i propri team in molti modi. Lo stile scelto da un project manager può 
+essere frutto di una preferenza personale o il risultato di una combinazione di più fattori associati al progetto. 
+Lo stile utilizzato da un project manager può cambiare nel corso del tempo in base ai fattori in gioco. I 
+principali fattori includono, a titolo indicativo:
+• Caratteristiche del leader (ad es. atteggiamenti, umori, esigenze, valori, etica);
+• Caratteristiche dei membri del gruppo (ad es. atteggiamenti, umori, esigenze, valori, etica);
+• Caratteristiche dell’organizzazione (ad es. scopo, struttura e tipo di lavoro svolto);
+• Caratteristiche ambientali (ad es. situazione sociale, stato economico ed elementi politici).
+Stili di Leadership
+
+=== SLIDE 81 ===
+81
+Il Project Manager
+L’integrazione è una dote critica per i project manager
+Il ruolo del project manager è duplice quando si esegue l’integrazione del progetto:
+• project manager svolgono un ruolo essenziale nel collaborare con lo sponsor del progetto per 
+comprendere gli obiettivi strategici e garantire l’allineamento degli obiettivi di progetto e i risultati con 
+quelli del portfolio, del programma e delle aree aziendali. In questo modo, i project manager 
+contribuiscono all’integrazione e all’esecuzione della strategia.
+• project manager hanno la responsabilità di guidare il gruppo nel lavorare insieme per concentrarsi su ciò 
+che è realmente essenziale a livello di progetto. Ciò si ottiene attraverso l’integrazione di processi, 
+conoscenze e persone.
+Integrazione
+
+=== SLIDE 82 ===
+82
+Il Project Management e le aree di 
+conoscenza
+
+
+=== SLIDE 83 ===
+83
+Summary
+• Gestione dell’integrazione - Project Integration Management
+• Project Charter
+• Lesson Learned
+• Gestione dell'ambito di progetto - Project Scope Management
+• Gestione dei tempi di progetto - Project Time Management
+• Tecniche di sequenzializzazione attività
+• Schedulazione di progetto (Milestone Chart, Gantt)
+• Critical Path e Critical Chain
+• Gestione dei costi di progetto - Project Cost Management
+• Earned Value Analysis
+• Gestione della qualità di progetto - Project Quality Management
+• Gestione delle risorse umane - Project Human Resource Management
+• Gestione della comunicazione - Project Communications Management
+• Gestione dei rischi di progetto - Project Risk Management
+• Gestione dell'approvvigionamento - Project Procurement Management
+• Gestione degli Stakeholder – Project Stakeholder Management
+
+=== SLIDE 84 ===
+84
+Le aree di conoscenza
+Le 10 Aree di Conoscenza sono:
+• Gestione dell’Integrazione (Project Integration Mgmt) 7 – Per garantire l’integrazione di tutti i 
+processi e le attività di Project Management durante tutto il ciclo di vita del progetto, per raggiungere gli 
+obiettivi del progetto. Definisce il Piano di Project Management
+• Gestione dell’Ambito (Project Scope Mgmt) 6 – Per assicurare che il progetto contenga tutto il lavoro 
+necessario per raggiungere gli obiettivi, niente di più e niente di meno.
+• Gestione della Schedulazione (Project Schedule Mgmt) 6 – Per assicurare che il progetto sia 
+realizzato entro le scadenze imposte.
+• Gestione dei Costi (Project Cost Mgmt) 4 – Per garantire che il progetto possa essere completato nel 
+budget approvato.
+• Gestione della Qualità (Project Quality Mgmt) 3 – Per assicurare che il progetto rispetti i requisiti di 
+qualità richiesti dagli stakeholder.
+
+=== SLIDE 85 ===
+85
+Le aree di conoscenza
+• Gestione delle Risorse (Project Resource Mgmt) 6 – Per organizzare, sviluppare e gestire il gruppo 
+di progetto
+• Gestione delle Comunicazioni (Project Communication Mgmt) 3 – Per garantire la gestione delle 
+informazioni di progetto dalla raccolta alla distribuzione fino all’archiviazione
+• Gestione dei rischi (Project Risk Mgmt) 7 – Per aumentare la probabilità (P) e l’Impatto (I) delle 
+opportunità e ridurre la probabilità (P) e l’Impatto (I) delle minacce
+• Gestione degli Approvvigionamenti (Project Procurement Mgmt) 3 – Per garantire che i prodotti e i 
+servizi siano della qualità richiesta e siano acquisiti per essere integrati nel prodotto/servizio finale del 
+progetto
+• Gestione degli Stakeholder (Project Stakeholder Mgmt) 4 – Per identificare e gestire gli stakholder 
+del progetto durante il ciclo di vita del progetto per aumentare le probabilità di successo del progetto.
+
+=== SLIDE 86 ===
+86
+Gestione dell’Integrazione
+
+=== SLIDE 87 ===
+87
+Gestione dell’Integrazione
+«Processi e attività necessari per identificare, definire, combinare, unire, unificare e coordinare i vari 
+processi e le attività di gestione del progetto nell’ambito dei gruppi di processi di Project Management».
+Stiamo parlando in effetti del ruolo del Project Manager che è quello di “mettere insieme” tutti i pezzi del 
+progetto per completare il progetto velocemente ed economicamente, raggiungendo gli obiettivi prefissati. 
+I processi di Project Management non sono infatti indipendenti l’uno dall’altro anche se sono inseriti uno 
+per uno nelle rispettive aree di conoscenza. Aggiungendo, ad esempio, una risorsa al gruppo di progetto 
+dovremo rivedere costi e schedulazione e questo è un esempio di integrazione.
+Insomma l’integrazione costituisce il lavoro di alto livello del Project Manager mentre le attività 
+descritte nelle altre aree di conoscenza possono essere considerate il lavoro di dettaglio
+
+=== SLIDE 88 ===
+88
+Gestione dell’Integrazione
+L’area dell'integrazione comprende i processi più importanti di ciascun gruppo:
+
+
+=== SLIDE 89 ===
+89
+Gestione dell’Integrazione
+Sviluppare il Project Charter
+Il Project Charter è un documento molto importante che fornisce al Project Manager:
+• L’autorizzazione formale del progetto o di una fase
+• Il collegamento delle attività del progetto al lavoro in corso all’interno dell’organizzazione
+• L’autorità di spendere i soldi e di impiegare risorse aziendali
+• I requisiti di alto livello del progetto
+Creare il project charter significa pianificare il progetto ad alto livello per verificare se è fattibile nel rispetto 
+dei vincoli imposti. I piani più dettagliati saranno sviluppati in seguito durante la fase di pianificazione. 
+Durante l'avvio del progetto è importante incontrare i principali stakeholder per definire, ad alto livello, gli 
+obiettivi, i requisiti, l'ambito, i rischi, gli assunti e altri vincoli per verificare che il progetto sia fattibile, sia 
+allineato agli obiettivi strategici dell'organizzazione e possa realisticamente realizzare i risultati attesi.
+
+=== SLIDE 90 ===
+90
+Gestione dell’Integrazione
+Sviluppare il Project Charter
+1. rappresenta il processo in esame (rettangolo con 
+sfondo grigio)
+2. rappresenta un processo collegato al processo in 
+esame con il quale scambia input/output. La freccia 
+tratteggiata (5) stabilisce la direzione del 
+collegamento ovvero se il processo principale 
+alimenta il processo collegato oppure il contrario
+3. Organizzazione che fornisce informazioni al 
+processo oppure le riceve
+4. Documento elaborato dal processo principale (letto, 
+creato o aggiornato)
+5. Collegamento fra il processo principale e un altro 
+processo o un documento
+6. Nome del documento trasmesso dal collegamento 
+(5) 
+
+
+=== SLIDE 91 ===
+91
+Gestione dell’Integrazione
+Sviluppare il Project Charter
+
+
+=== SLIDE 92 ===
+92
+Gestione dell’Integrazione
+Sviluppare il Project Charter
+Il project charter autorizza formalmente il progetto e definisce la responsabilità e l’autorità del project manager.
+Gli input per Sviluppare il Project Charter sono:
+• Accordi – definiscono le intenzioni iniziali del progetto nella forma di contratti, Protocolli di intesa (MoU), 
+Contratti di servizio (SLA). I contratti si sviluppano con clienti esterni.
+• Fattori Ambientali aziendali – cultura e struttura, infrastrutture, risorse umane esistenti, mercato e le sue 
+condizioni, ecc.
+• Asset dei processi organizzativi – politiche dell'organizzazione, linee guida, procedure, piani, approcci o 
+norme per lo svolgimento del lavoro di progetto (Knowlwdge Base aziendale, lesson learned…).
+• Business Case – documenta le informazioni necessarie per determinare se il progetto vale l'investimento.
+
+=== SLIDE 93 ===
+93
+Gestione dell’Integrazione
+Sviluppare il Project Charter
+Il parere di esperti è una delle tecniche usate nella gestione dei progetti per eseguire vari compiti compresa la 
+selezione dei progetti. Si richiede per prendere decisioni in base alla consulenza fornita dalle seguenti fonti:
+• L’alta direzione
+• Una funzione aziendale competente
+• Gli stakeholder di progetto, compresi i clienti e lo sponsor
+• Consulenti
+• Associazioni di tecnici e professionisti
+• Associazioni di settore
+• Esperti in materia, interni o esterni alla performing organization
+• Project Management Office (PMO)
+
+=== SLIDE 94 ===
+94
+Gestione dell’Integrazione
+Sviluppare il Project Charter
+La selezione dei progetti utilizza varie tecniche per scegliere il progetto più adatto tra le alternative disponibili.
+Quelle più comuni riguardano la misurazione dei benefici (approccio comparativo):
+• Modelli di valutazione (o di assegnazione di punteggi) => Economic Models
+• Analisi costi-benefici (Benefit Cost Ratio - BCR) => rapporta i costi necessari per il progetto ai benefici 
+economici (ricavi)
+• Misure finanziarie
+• PV – Present Value
+• NPV - Valore attuale netto
+• ROI - Ritorno sull’investimento
+• IRR - Tasso interno di rendimento
+• PBP - Periodo di recupero
+
+=== SLIDE 95 ===
+95
+Gestione dell’Integrazione
+Sviluppare il Project Charter
+Payback Period (PBP)  - Periodo di Ritorno: è il periodo di tempo necessario per recuperare l’investimento 
+mediante i ricavi futuri. Generalmente gli investimenti e i costi di progetto vengono sostenuti prima di percepire i 
+ricavi, che si manifestano solo successivamente andando ad assottigliare il debito contratto.
+Break even point: momento in cui i ricavi pareggiano i costi
+PBP: tempo necessario per raggiungere il break even point
+Voci Anno 1 Anno 2 Anno 3 Anno 4 Anno 5
+Costi -100€ -400€
+Ricavi 50€ 200€ 500€ 100€
+
+=== SLIDE 96 ===
+96
+Gestione dell’Integrazione
+Sviluppare il Project Charter
+Voci Anno 1 Anno 2 Anno 3 Anno 4 Anno 5
+Costi -100€ -500€ -500€ -500€ -500€
+Ricavi 50€ 250€ 750€ 850€
+Esposizione -100€ -450€ -250€ 250€ 350€
+1. Individuare l’anno in cui l’esposizione cambia segno e considerare l’anno precedente per la parte intera del 
+PBP => 3
+2. Per la parte decimale del PBP prendere il primo anno di esposizione positiva e calcolare il rapporto 
+costi/ricavi => R=500/750=0,66
+3. La parte decimale del PBP è R*12=8
+Il PBP totale è 3 anni e 8 mesi
+Confrontando 2 progetti quello più favorevole ha il PBP minore
+
+=== SLIDE 97 ===
+97
+Gestione dell’Integrazione
+Sviluppare il Project Charter
+Il Present Value (PV) si basa sul concetto che «soldi presi in futuro valgono meno dei soldi presi oggi». 
+Dal punto di vista finanziario corrisponde alla capitalizzazione composta.
+Esempio: se presto 2000€ oggi e me li restituiranno tra 3 anni con un tasso di interesse del 5% annuo, il 
+valore che io presto è:
+FV= 𝑃𝑉 ∗ 1 + 𝑖 𝑛
+FV= valore futuro
+PV= valore presente
+i= tasso di interesse
+N= numero di anni
+Quindi FV=2.315,25€
+PV=FV/ 1 + 𝑖 𝑛
+
+=== SLIDE 98 ===
+98
+Gestione dell’Integrazione
+Sviluppare il Project Charter
+Esercizio:
+Il Progetto A è previsto che realizzi 100.000,00€ alla fine di 2 anni; il progetto B è previsto che 
+realizzi 120.000,00€ alla fine di 3 anni.
+Il tasso di interesse è del 12%
+
+=== SLIDE 99 ===
+99
+Gestione dell’Integrazione
+Sviluppare il Project Charter
+Esercizio:
+PV(A)= 100000/ 1,12 2 = 79.719€
+PV(B)=120000/ 1,12 3 = 85.414€
+Il progetto B è il più favorevole perché ha il PV maggiore
+
+=== SLIDE 100 ===
+100
+Gestione dell’Integrazione
+Sviluppare il Project Charter
+Il Net Present Value (NPV) è la differenza attualizzata tra benefici e costi, quindi se NPV >0 il progetto è 
+redditizio
+𝑁𝑃𝑉 = −𝐼𝐼 + ෍
+𝑡=1
+𝑛
+𝐹𝑉𝑡
+(1 + 𝑖)𝑡
+FV= valore futuro
+i= tasso di interesse
+N= numero di anni
+II = investimento iniziale
+𝐾𝑛 =
+1
+(1+𝑖)𝑡  fattore di sconto
+
+=== SLIDE 101 ===
+101
+Gestione dell’Integrazione
+Sviluppare il Project Charter
+Esempio:
+Sia il progetto A che il progetto B realizzano 30.000€ in 3 anni a fronte di un investimento di 24.000€ con 
+tasso di interesse del 12%
+A realizza 10.000€ il primo anno, 15.000€ il secondo anno e 5.000€ il terzo anno
+B realizza 7.000€ il primo anno, 13.000€ il secondo anno e 10.000€ il terzo anno
+Quale progetto è più redditizio?
+
+=== SLIDE 102 ===
+102
+Gestione dell’Integrazione
+Sviluppare il Project Charter
+Esempio:
+Progetto A:
+PV(1)= 8.929€
+PV(2)= 11.958€
+PV(3)= 3.559€
+Totale PV= 24.446€
+NPV=Totale PV-Investimento= 446€
+Progetto B:
+PV(1)= 6.250€
+PV(2)= 10.363€
+PV(3)= 7.118€
+Totale PV= 23.728€
+NPV=Totale PV-Investimento= -272€
+Il progetto A è più favorevole
+
+=== SLIDE 103 ===
+103
+Gestione dell’Integrazione
+Sviluppare il Project Charter
+L’Internal Rate of Return (IRR) rappresenta il tasso di interesse che determina un NPV nullo. Il metodo 
+presuppone che i ricavi futuri siano reinvestiti al valore di IRR. Il progetto con IRR più alto è più 
+vantaggioso
+𝑁𝑃𝑉 = −𝐼𝐼 + ෍
+𝑡=1
+𝑛
+𝐹𝑉𝑡
+(1 + 𝑖)𝑡
+FV= valore futuro
+i= tasso di interesse
+N= numero di anni
+II = investimento iniziale
+𝐾𝑛 =
+1
+(1+𝑖)𝑡  fattore di sconto
+
+=== SLIDE 104 ===
+104
+Gestione dell’Integrazione
+Sviluppare il Project Charter
+Il Return on Investments (ROI) esprime in % il ritorno avuto, nel periodo considerato, dall’investimento 
+totale ovvero è il tasso di rendimento di un investimento che misura il rendimento rispetto al capitale 
+investito. 
+𝑅𝑂𝐼 = 𝑁𝑃𝑉
+𝐶𝑜𝑠𝑡𝑜 𝑖𝑛𝑖𝑧𝑖𝑎𝑙𝑒∗ 100
+
+=== SLIDE 105 ===
+105
+Gestione dell’Integrazione
+Sviluppare il Project Charter: Output
+Il Project Charter (scheda progetto) è un documento che autorizza formalmente l’esistenza del progetto 
+e attribuisce al Project Manager l’autorità per utilizzare risorse organizzative per le attività previste dal 
+progetto:
+•  gli obiettivi del progetto e la loro giustificazione
+•  i requisiti di alto livello
+•  i deliverable (risultati) che il progetto dovrà produrre
+•  le milestone, viste come risultati intermedi o principali scadenze temporali da rispettare
+•  i presupposti (assunti) e i vincoli contrattuali
+•  il budget
+•  il project manager assegnato, le sue responsabilità e il suo livello di autorità
+•  la definizione preliminare dei principali stakeholder
+•  i principali rischi e le relazioni con l’organizzazione permanente
+•  i criteri di successo del progetto.
+
+=== SLIDE 106 ===
+106
+Gestione dell’Integrazione
+Sviluppare il Project Charter: Output
+Titolo
+Ruolo
+Senior Executive
+Azienda
+Funzione
+Cognome Nome
+Funzione
+Cognome Nome
+Ruolo
+Funzione
+Cognome Nome
+Ruolo
+Descrizione breve
+Programma di 
+appartenenza
+Sponsor
+Azienda
+Cliente
+Azienda
+Peoject Charter Codice Documento
+Anagrafica Progetto
+Codice progetto
+Tipo Cod.
+Ambito
+Time
+Costi
+…
+…
+Milestones principali
+Descrizione Data attesa
+Descrizione
+Deliverables principali
+Requisiti
+Descrizione del progetto
+Giustificazione del progetto
+Nota esplicativa sul 
+budget
+Obiettivi di progetto
+Descrizione Criterio di valutazione
+Budget complessivo
+Budget
+
+=== SLIDE 107 ===
+107
+Gestione dell’Integrazione
+Sviluppare il Project Charter: Output
+Funzioni aziendali coinvolte
+Funzione Tipo di partecipazione
+Cognome Nome Ruolo nel progetto
+Opportunità
+Documenti collegati
+Documento Codice Link
+Rischi principali
+Minacce
+Firma per accettazione 
+incarico
+Funzione
+Responsabilità
+Team di priimo livello
+Cognome Nome
+Livello di autorità
+Project Manager
+
+=== SLIDE 108 ===
+108
+Gestione dell’Integrazione
+Sviluppare il Project Charter: Output
+Il registro degli assunti è il documento di progetto nel quale si registrano sia gli assunti che i vincoli. 
+• vincoli (interni ed esterni all’organizzazione di progetto) costituiscono delle limitazioni alle opzioni a 
+disposizione del team (p.e. budget…)
+• assunti ovvero i presupposti sui quali si fonda il progetto; sono condizioni esterne che dovranno 
+essere sempre verificate affinché un progetto abbia successo
+Si comincia a compilarlo quando vengono sviluppati il business case e il project charter. Inizialmente gli 
+assunti e i vicoli sono identificati ad alto livello ma vengono rifiniti e integrati man mano che il progetto 
+progredisce. Questo documento infatti viene elaborato (input) ed aggiornato (output) da numerosi progetti
+Gli stakeholder potrebbero non essere consapevoli di basare le loro valutazioni su alcuni assunti e 
+potrebbero pertanto non articolarli compiutamente quando comunicano i loro requisiti al project manager. 
+Siccome gli assunti introducono rischi nel progetto, debbono essere identificati e gestiti dal project 
+manager
+
+=== SLIDE 109 ===
+109
+Gestione dell’Integrazione
+Sviluppare il Piano di Project Management
+Questo processo fa parte del gruppo di processi di pianificazione, che costituiscono l’insieme dei processi 
+utilizzati per sviluppare il piano di progetto, nel quale si definiscono le attività e i valori delle variabili 
+(tempi, costi, qualità, ecc.) necessari al raggiungimento degli obiettivi stabiliti.
+Il Piano di Project Management è il documento chiave che contiene l’insieme della pianificazione, del 
+monitoraggio, e delle attività esecutive che realizzano il progetto.
+Input del processo Sviluppare il Piano di Project Management:
+• Project Charter, comprensivo di esigenze di business e degli obiettivi del progetto
+• Output dei processi di pianificazione relativi a costi, ambito, schedulazione, qualità, rischi, 
+approvvigionamenti e risorse.
+• Fattori ambientali aziendali - es. Cultura aziendale
+• Asset dei processi organizzativi - es. Procedure di approvvigionamento
+
+=== SLIDE 110 ===
+110
+Gestione dell’Integrazione
+Sviluppare il Piano di Project Management
+
+
+=== SLIDE 111 ===
+111
+Gestione dell’Integrazione
+Sviluppare il Piano di Project Management
+Il Piano di Project Management è l’integrazione degli output di tutti i principali processi di 
+pianificazione che verranno descritti. Il piano dipende completamente dall'output di un grande numero di 
+altre attività di pianificazione.
+Occorre pensare al Piano di Project Management come l’insieme di altri piani (es: risorse, qualità, ecc.) e 
+baseline che definiscono come gestire i processi e il progetto per ciascun’area di conoscenza. Una volta 
+che questi altri piani sono stati prodotti possono essere integrati fra loro ed uniti per generare il Piano di 
+Project Management.
+
+=== SLIDE 112 ===
+112
+Gestione dell’Integrazione
+Sviluppare il Piano di Project Management
+Il Piano di Project Management è il risultato di una attività di impostazione, integrazione e 
+armonizzazione di numerosi piani in modo che siano coerenti fra loro. Al termine di questa integrazione il 
+Piano di Project Management conterrà:
+• I processi di project management che verranno usati nel progetto e come
+• I piani di gestione delle varie aree di conoscenza (ambito, schedulazione, costi, qualità, risorse, 
+comunicazioni, rischi, approvvigionamenti, stakeholder)
+• Il piano di gestione dei requisiti
+• Le baseline dell’ambito (ambito, WBS e dizionario WBS), della schedulazione (Gantt) e dei costi
+• Il piano di gestione delle modifiche (regole per formalizzare le richieste di modifica e il loro processo 
+approvativo)
+• Il piano di gestione della configurazione (per tener traccia degli elementi di progetto e loro 
+aggiornamenti)
+
+=== SLIDE 113 ===
+113
+Gestione dell’Integrazione
+Sviluppare il Piano di Project Management
+• La baseline di misurazione delle prestazioni (integrazione delle baseline di ambito, costi e 
+schedulazione) 
+• La descrizione del ciclo di vita del progetto
+• L’approccio allo sviluppo (modello predittivo, iterativo, agile…)
+• Le revisioni gestionali (momenti di esame avanzamento progetto per provvedere o meno ad azioni 
+correttive/preventive)
+Baseline: 
+Costituite dalla baseline dell’ambito (Descrizione dell’ambito, WBS e Dizionario della WBS), dalla 
+baseline della schedulazione e dalla baseline dei costi. Servono per misurare le prestazioni del progetto 
+rispetto alle previsioni 
+Piani di gestione ausiliari (piani delle aree di conoscenza): 
+I project manager pianificano prima di agire. Ciascuno di questi piani definisce la strategia per gestire il 
+progetto e i processi di una particolare area di conoscenza 
+
+=== SLIDE 114 ===
+114
+Gestione dell’Integrazione
+Sviluppare il Piano di Project Management
+Piano di gestione delle modifiche: 
+Il piano dovrebbe contenere ad esempio:
+• Le procedure di controllo (come valutare le modifiche e chi deve farlo)
+• I livelli di approvazioni per le modifiche
+• La costituzione del Comitato gestione modifiche
+• Chi deve partecipare alla riunioni relative alle modifiche
+• Lo strumento per tracciare e controllare le modifiche
+Piano di gestione della configurazione: 
+Un progetto produce una grande quantità di documentazione, piani e deliverable sia di project 
+management che di prodotto. Occorre sviluppare un piano per decidere come gestire tutti gli 
+aggiornamenti dei documenti anzidetti e documentare i componenti e le caratteristiche di ciascun 
+deliverable per essere certi che tutti gli stakeholder abbiamo tutte le informazioni necessarie al livello di 
+aggiornamento corretto. Ovvero come costruire o semplicemente utilizzare ai fini del progetto il sistema di 
+gestione della configurazione. 
+
+=== SLIDE 115 ===
+115
+Gestione dell’Integrazione
+Sviluppare il Piano di Project Management
+Piano di gestione dei requisiti: 
+Uno degli obiettivi dei processi di gestione dell’ambito consiste nella raccolta dei requisiti. Il piano di 
+gestione dei requisiti definisce appunto come devono essere identificati, gestiti e controllati. Anche i 
+requisiti infatti potrebbero cambiare nel corso del progetto e comunque vanno verificati ogni volta che 
+intervengono delle modifiche alle caratteristiche del prodotto/servizio del progetto. Ricordiamoci inoltre 
+che è necessario annotare quale stakeholder ha formulato ciascun requisito per poterlo coinvolgere in 
+caso di problemi con un determinato requisito.
+
+=== SLIDE 116 ===
+116
+Gestione dell’Integrazione
+Dirigere e gestire il lavoro del progetto
+Processo utilizzato per eseguire tutto il lavoro definito nel Piano di project management e implementare 
+le modifiche approvate per raggiungere gli obiettivi del progetto.
+Output:
+• Deliverable – sono i principali risultati del processo ovvero ogni componente del prodotto, del risultato 
+o della capacità di erogare un servizio che sia unico e verificabile.
+• Dati sullo stato di avanzamento del lavoro - si raccolgono in questo processo e si comunicano ai 
+processi di controllo applicabili che provvederanno ad analizzarli
+• Registro delle questioni – Durante l’esecuzione si riscontrano problemi, lacune, incoerenze, o 
+conflitti che debbono essere registrati, tracciati e risolti per il bene del progetto
+• Richieste di modifica - sono un output di questo processo – sono di quattro tipi:
+• Azioni correttive: direttive documentate su come eseguire il lavoro di progetto per allineare le 
+prestazioni future del progetto al Piano di Project Management
+• Azioni preventive: direttive documentate per eseguire una attività che possono ridurre la 
+probabilità di risultati negativi.
+• Correzione dei difetti: identificazione di un difetto formalmente documentata con 
+raccomandazioni per riparare o sostituire il componente difettoso
+• Aggiornamenti: modifiche a documentazione controllata formalmente
+
+=== SLIDE 117 ===
+117
+Gestione dell’Integrazione
+Dirigere e gestire il lavoro del progetto
+
+
+=== SLIDE 118 ===
+118
+Gestione dell’Integrazione
+Sistema informativo di Project Management (PMIS) 
+Sono gli strumenti software di cui si dispone per gestire il progetto. Può consistere in software 
+commerciali, strumenti appositamente realizzati dalla tua società o magari di entrambi, non 
+necessariamente integrati perfettamente e con qualche componente manuale,
+Un componente molto importante del PMIS è il sistema di autorizzazione del lavoro che deve essere 
+utilizzato dal project manager per autorizzare l’esecuzione delle attività o dei work package. 
+Il sistema di autorizzazione del lavoro deve essere utilizzato dal project manager per verificare che 
+ciascuna attività sia eseguibile (ovvero tutte le condizioni necessarie alla sua esecuzione sono state 
+rispettate) in modo da poterne autorizzare l’esecuzione. 
+
+=== SLIDE 119 ===
+119
+Gestione dell’Integrazione
+Gestire le conoscenze di progetto
+Processo di utilizzo delle conoscenze esistenti e di creazione di nuove conoscenze per raggiungere gli 
+obiettivi del progetto e contribuire all’apprendimento organizzativo.
+La conoscenza si divide comunemente in
+• “esplicita” (conoscenza che può essere prontamente codificata utilizzando parole, immagini e numeri)
+• “tacita” (conoscenza personale e difficile da esprimere, quali convinzioni, visione, esperienza e “know-
+how”)
+Le conoscenze esplicite sono facili da codificare e da condividere ma essendo prive di contesto non 
+sono sempre comprese o applicate nel modo giusto
+Le conoscenza tacita possiede un contesto implicito ma è difficile da codificare ed è condivisa di solito 
+mediante conversazioni e interazioni fra persone
+La parte più importante della gestione della conoscenza consiste nel creare un clima di fiducia in modo 
+che le persone siano motivate a condividere la loro conoscenza 
+
+=== SLIDE 120 ===
+120
+Gestione dell’Integrazione
+Gestire le conoscenze di progetto
+
+
+=== SLIDE 121 ===
+121
+Gestione dell’Integrazione
+Gestire le conoscenze di progetto
+Gestione della conoscenza (conoscenza tacita)
+• Networking anche sui social
+• Gruppi di interesse, Riunioni
+• Affiancamento e reverse shadowing
+• Eventi (seminari, conferenze), Workshop
+• Storytelling
+• Tecniche di gestione della creatività e delle idee
+• Fiere della conoscenza e Knowledge cafe
+• Formazione che comporti interazione fra i discenti
+Gestione delle informazioni (conoscenze esplicite)
+• sono tecniche utilizzate per creare informazioni e renderle accessibili alle persone. Sono efficaci per 
+condividere conoscenze esplicite semplici, non ambigue e codificate
+
+=== SLIDE 122 ===
+122
+Gestione dell’Integrazione
+Gestire le conoscenze di progetto: Output
+Le lesson learned sono conoscenze acquisite durante un progetto che mostrano come sono stati risolti 
+gli eventi del progetto o come dovrebbero essere risolti in futuro con lo scopo di migliorare le prestazioni. 
+Possono riguardare sfide, problemi, minacce e opportunità che si sono concretizzati
+Il registro delle lesson learned 
+• è utilizzato per registrare le conoscenze acquisite durante un progetto per consentirne l’uso nel 
+progetto attuale e l’inserimento nell’archivio delle lesson learned.
+• può includere la categoria e la descrizione della situazione.
+• può anche includere l’impatto, le raccomandazioni e le azioni proposte associate alla situazione.
+
+
+=== SLIDE 123 ===
+123
+Gestione dell’Integrazione
+Monitorare e controllare il lavoro del progetto 
+Questo processo fa parte del gruppo di processi di monitoraggio e controllo. Il suo obiettivo è quello di 
+misurare le prestazioni del progetto rispetto al piano di Project Management e proporre modifiche, azioni 
+correttive, azioni preventive e correzioni dei difetti.
+Il Gruppo dei processi di monitoraggio e controllo riguarda due aspetti principali della gestione del 
+progetto:
+• Il monitoraggio delle prestazioni di progetto, aggiustandole se necessario, con l'obiettivo finale di 
+mantenere il progetto sul percorso programmato
+• Fornire i controlli e i riscontri necessari per capire come sta andando il progetto.
+Processo di rilevamento, revisione e reporting dell’avanzamento generale del lavoro del progetto, che 
+consente di raggiungere gli obiettivi di prestazione definiti nel piano di Project Management.
+Consente agli stakeholder di:
+• valutare lo stato corrente del progetto,
+• riconoscere le azioni intraprese per gestire eventuali questioni relative alle prestazioni
+• avere visibilità dello stato futuro del progetto con previsioni di costi e di schedulazione
+
+=== SLIDE 124 ===
+124
+Gestione dell’Integrazione
+Monitorare e controllare il lavoro del progetto 
+
+
+=== SLIDE 125 ===
+125
+Gestione dell’Integrazione
+Monitorare e controllare il lavoro del progetto 
+Analisi dello scostamento
+• verifica le differenze (o lo scostamento) tra le prestazioni pianificate e quelle effettive. Ciò può 
+includere stime della durata e dei costi, utilizzo delle risorse, tariffe per le risorse, prestazioni tecniche 
+e altre metriche.
+Analisi delle tendenze
+• prevede le prestazioni future in base ai risultati rilevati
+• avvisa in anticipo il Project Manager che potranno verificarsi problemi di schedulazione qualora 
+persistano le tendenze attuali
+• Tali informazioni sono rese disponibili nelle prime fasi della tempistica del progetto per dare al gruppo 
+di progetto il tempo per analizzare e correggere eventuali anomalie. 
+• I risultati dell’analisi delle tendenze possono essere utilizzati per raccomandare azioni preventive, se 
+necessario.
+
+=== SLIDE 126 ===
+126
+Gestione dell’Integrazione
+Monitorare e controllare il lavoro del progetto: Output 
+Report sullo stato di avanzamento del lavoro
+Misurare le prestazioni del progetto significa mettere a confronto almeno due aspetti del progetto. Ad 
+esempio schedulazione e costi oppure schedulazione e deliverable o anche costi e ricavi (cash flow). 
+Misurare solo l’andamento della schedulazione o solo l’andamento dei costi non è sufficiente per capire 
+veramente le prestazioni del progetto. Le informazioni sullo stato di avanzamento del lavoro sono 
+combinate, registrate e distribuite in forma fisica o elettronica per creare consapevolezza e generare 
+decisioni o azioni.
+I report sullo stato di avanzamento del lavoro sono la rappresentazione fisica o elettronica delle 
+informazioni sullo stato di avanzamento del lavoro. Vengono distribuiti agli stakeholder come definito nel 
+piano di gestione delle comunicazioni di progetto. Possono contenere:
+• grafici e informazioni sull’Earned Value,
+• tendenze e previsioni,
+• grafici di burn-down delle riserve,
+• istogrammi dei difetti,
+• informazioni sulle prestazioni contrattuali
+• riepiloghi dei rischi.
+• Possono essere presentati come dashboard, heat report, grafici a semaforo, ecc
+
+=== SLIDE 127 ===
+127
+Gestione dell’Integrazione
+Monitorare e controllare il lavoro del progetto: Output 
+Richieste di modifica 
+Per quanto si possa pianificare accuratamente un progetto ci saranno comunque delle modifiche. Alcune 
+saranno dovute ad aggiunte, modifiche o riduzioni dell’ambito, altre potranno derivare da modifiche a 
+procedure o politiche utilizzate nel progetto. Altre nasceranno invece durante l’esecuzione del progetto o 
+durante il monitoraggio e controllo confrontando le prestazioni del progetto con le baseline. 
+• Azioni correttive: 
+Qualsiasi azione intrapresa per allineare le prestazioni future del progetto con il piano di project 
+management. Qualsiasi azione correttiva che determina un cambiamento del piano di project 
+management, delle baseline, di procedure o politiche di progetto comporta una richiesta di modifica 
+formale da sottoporre al controllo integrato delle modifiche.
+
+=== SLIDE 128 ===
+128
+Gestione dell’Integrazione
+Monitorare e controllare il lavoro del progetto: Output 
+• Azioni preventive: 
+Mentre le azioni correttive riguardano scostamenti già rilevati, le azioni preventive intendono prevenire 
+possibili scostamenti rispetto alle baseline di progetto. Qualsiasi azione preventiva che determina un 
+cambiamento del piano di project management, delle baseline, di procedure o politiche di progetto 
+comporta una richiesta di modifica formale da sottoporre al controllo integrato delle modifiche
+• Correzione di un difetto: 
+E’ necessaria quando un componente del progetto non corrisponde alle specifiche.
+Anche in questo caso la correzione di un difetto che determina un cambiamento del piano di project 
+management, delle baseline, di procedure o politiche di progetto comporta una richiesta di modifica 
+formale da sottoporre al controllo integrato delle modifiche.
+
+=== SLIDE 129 ===
+129
+Gestione dell’Integrazione
+Eseguire il controllo integrato delle modifiche 
+Questo processo appartiene al gruppo dei processi di monitoraggio e controllo. Qui si analizzano tutte le 
+richieste di modifica, le correzioni dei difetti e le azioni preventive e correttive. La cosa più importante da 
+fare nel valutare una modifica è determinare il suo impatto su tutti i vincoli del progetto (costi, tempi, 
+qualità, rischi, risorse e anche la soddisfazione del cliente). 
+• Consente di prendere in considerazione le modifiche documentate del progetto in modo integrato, 
+gestendo contemporaneamente il rischio generale del progetto, che spesso deriva da modifiche 
+apportate senza considerare gli obiettivi o i piani generali del progetto.
+• Prima di definire le baseline, le modifiche non devono essere oggetto di un controllo formale da parte 
+di questo processo.
+• Ogni richiesta di modifica documentata deve essere approvata, differita o rifiutata da un responsabile 
+(sponsor, Project Manager, o CCB). Il responsabile sarà identificato nel piano di Project Management 
+o dalle procedure organizzative.
+• Il Comitato gestione modifiche (CCB) è un gruppo formalmente costituito con la responsabilità di 
+revisionare, valutare, approvare, differire o rifiutare le modifiche apportate al progetto e di registrare e 
+comunicare tali decisioni.
+
+=== SLIDE 130 ===
+130
+Gestione dell’Integrazione
+Eseguire il controllo integrato delle modifiche 
+
+
+=== SLIDE 131 ===
+131
+Gestione dell’Integrazione
+Eseguire il controllo integrato delle modifiche 
+Procedura di gestione delle modifiche 
+Riepiloghiamo quindi come si gestisce una modifica, anche al di fuori di questo processo, che riguarda in 
+particolare gli aspetti di integrazione.
+• Prevenire le modifiche ovvero cercare di lavorare alla radice del problema per eliminare le cause che 
+le hanno provocate – questa prevenzione però è di carattere generale e non riguarda la singola 
+modifica il cui iter comincia quindi al punto successivo
+• Identificare le modifiche prima possibile per minimizzare il loro impatto. Abbiamo detto infatti che man 
+mano che il progetto avanza il costo delle modifiche aumenta. Che significa identificare? Non tutte le 
+modifiche ci vengono richieste dagli stakeholder. Quelle che derivano da eventuali scostamenti dalla 
+baseline o da condizioni rilevate in esecuzione diverse da quelle pianificate dobbiamo individuarle noi 
+stessi nei processi di monitoraggio e controllo di ciascuna area di competenza. Prima le troviamo e più 
+sarà facile rimediare. Il project manager deve essere proattivo e anticipare le soluzioni ai problemi.
+
+=== SLIDE 132 ===
+132
+Gestione dell’Integrazione
+Eseguire il controllo integrato delle modifiche 
+• Valutare l’impatto all’interno dell’area di conoscenza: se si tratta di una modifica all’ambito quale è 
+l’impatto sul resto dell’ambito del progetto? se è una modifica ai tempi quale è l’impatto sulla 
+schedulazione nel suo complesso?
+• Creare una richiesta di modifica: si possono fare modifiche all’ambito del prodotto, a un componente 
+qualsiasi del piano di project management, al contratto, al project charter, al capitolato, alle politiche, 
+alle procedure, e anche alla baseline di misurazione delle prestazioni se necessario, ma le modifiche 
+devono seguire il piano di gestione delle modifiche.
+• Eseguire il controllo integrato delle modifiche ovvero verificare se la modifica impatta su altri vincoli di 
+progetto. Ed in particolare: 
+• Validare la modifica ovvero verificare che sia compatibile con il project charter altrimenti 
+potrebbe trattarsi addirittura di un altro progetto. Se una modifica non reca beneficio al progetto o 
+non è necessaria non deve essere approvata. Se una modifica riguarda un rischio già identificato 
+e per il quale era stata allocata una riserva deve essere gestito nell’ambito della gestione dei 
+rischi e non deve essere sottoposto al controllo integrato delle modifiche
+
+=== SLIDE 133 ===
+133
+Gestione dell’Integrazione
+Eseguire il controllo integrato delle modifiche 
+• Creare alternative per ridurre le minacce o favorire le opportunità, comprimere la schedulazione, 
+fare il lavoro in un modo diverso, adattare la qualità, ridurre l’ambito per minimizzare l’impatto 
+delle modifiche. 
+• Approvare o rifiutare la modifica come segue:
+• Se la modifica riguarda il project charter, il project manager può suggerire eventuali 
+alternative, ma la decisione spetta allo sponsor
+• Se la modifica altera una baseline bisogna interessare il Comitato di gestione delle modifiche 
+(Change Control Board)
+• Se la modifica può essere effettuata senza alterare il piano la decisione può essere presa dal 
+project manager eventualmente coinvolgendo lo sponsor per farsi aiutare a proteggere il 
+progetto da modifiche. Il ruolo principale dello sponsor è infatti quello di proteggere il progetto 
+da modifiche non necessarie.
+• Aggiornare lo stato della modifica nel registro delle modifiche per informare tutti i soggetti 
+interessati. Se la richiesta viene rifiutata occorre inserire le ragioni del rifiuto.
+• Adattare Piano di project management, baseline e documenti di progetto come necessario
+
+=== SLIDE 134 ===
+134
+Gestione dell’Integrazione
+Eseguire il controllo integrato delle modifiche 
+• Gestire le aspettative degli stakeholder interessati informandoli della modifica
+• Gestire il progetto mediante il piano di project management e i documenti di progetto aggiornati
+
+=== SLIDE 135 ===
+135
+Gestione dell’Integrazione
+Eseguire il controllo integrato delle modifiche 
+Strumenti di controllo delle modifiche 
+Gestire le modifiche e la configurazione a mano non è facile. Ci sono appositi strumenti per farlo che 
+permettono di definire dei workflow per automatizzare e tracciare il percorso delle modifiche all’interno 
+dell’organizzazione dalla richiesta di modifica fino alla sua approvazione ed esecuzione. 
+
+=== SLIDE 136 ===
+136
+Gestione dell’Integrazione
+Chiudere il progetto o una fase
+Il gruppo dei processi di chiusura formalizza l’accettazione dei prodotti, servizi o risultati del progetto e 
+porta il progetto o la fase verso una conclusione ordinata. Questo gruppo di processi è usato per 
+terminare formalmente tutte le attività di un progetto o di una fase, per consegnare il lavoro completato e 
+per concludere ordinatamente o cancellare prematuramente un progetto o una fase.
+Comprende le seguenti attività:
+• Ottenere l’accettazione dei deliverable dal cliente
+• Misurare la soddisfazione del cliente
+• Valutare l’impatto delle personalizzazioni effettuate ai processi
+• Finalizzare le lesson learned
+• Chiudere gli approvvigionamenti
+• Consegnare i deliverable ai gruppi operativi
+
+=== SLIDE 137 ===
+137
+Gestione dell’Integrazione
+Chiudere il progetto o una fase
+Processo di finalizzazione di tutte le attività per il progetto, la fase o il contratto.
+• Provvede all’archiviazione delle informazioni di fase o di progetto, il completamento del lavoro 
+pianificato e il rilascio delle risorse dell’organizzazione che possono dedicarsi a nuove iniziative.
+• Chiudere il progetto comporta:
+• Consegnare i deliverable al cliente
+• Passare la documentazione all’esercizio
+• Chiudere i contratti con i fornitori
+• Rilasciare il personale e le attrezzature
+• Consolidare le lesson learned
+• Informare gli stakeholder della chiusura del progetto
+
+=== SLIDE 138 ===
+138
+Gestione dell’Integrazione
+Chiudere il progetto o una fase
+
+
+=== SLIDE 139 ===
+139
+Gestione dell’Integrazione
+Chiudere il progetto o una fase
+• Un progetto può dirsi effettivamente chiuso, quando:
+• tutti i prodotti/servizi/risultati previsti sono stati realizzati e formalmente accettati dal cliente
+• sono state trasferite ad altri le attività di gestione dei prodotti o servizi realizzati
+• sono stati assolti gli obblighi contrattuali e i relativi adempimenti amministrativi
+• Al compimento dell’iter realizzativo, i principali stakeholder di progetto procedono, all’esame 
+approfondito dei risultati conseguiti, allo scopo di formulare le considerazioni conclusive circa 
+l’andamento del progetto, anche con l’intento di evidenziare i punti di forza e di debolezza che ne 
+hanno caratterizzato la gestione.
+• L’esame viene condotto nel corso di una riunione di fine progetto (close-out meeting) indetta e 
+presieduta dal responsabile di progetto, alla quale partecipano attivamente tutte le strutture (interne ed 
+esterne) che hanno partecipato al progetto

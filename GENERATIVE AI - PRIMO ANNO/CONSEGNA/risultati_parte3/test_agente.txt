@@ -1,0 +1,69 @@
+================================================================
+🧪 TEST ESERCIZIO 2 — Agente di analisi
+================================================================
+
+[Task 1]
+
+================================================================
+🤖 Task: Calcola l'errore di quantizzazione per il valore 3.14159 a 4 bit e a 8 bit. Poi spiegami la differenza.
+================================================================
+Tool 'calcola_errore_quantizzazione' → {'bits': 4, 'valore': 3.14159}
+Tool 'calcola_errore_quantizzazione' → {'bits': 8, 'valore': 3.14159}
+
+💬 Risposta finale:
+L'errore di quantizzazione per il valore 3.14159 a 4 bit è di
+0.20943933, mentre a 8 bit è di 0.01231996. Questo dimostra che
+aumentare il numero di bit riduce l'errore massimo, migliorando la
+precisione della rappresentazione del valore originale. A 4 bit, la
+rappresentazione è approssimativa, mentre a 8 bit la precisione è
+significativamente migliorata.
+
+✅ Task 1 completato
+
+[Task 2]
+
+================================================================
+🤖 Task: Confronta le prestazioni del modello llama3.2 a diversi livelli di quantizzazione. Quale offre il miglior compromesso tra velocità e qualità?
+================================================================
+Tool 'confronta_modelli' → {'modello': 'llama3.2'}
+
+💬 Risposta finale:
+Il confronto delle prestazioni del modello llama3.2 a diversi livelli
+di quantizzazione ha fornito i seguenti risultati:  - Quantizzazione
+q2_K: Velocità di 65 tok/s, qualità di 6.1, memoria di 1.2 GB. -
+Quantizzazione q4_K_M: Velocità di 48 tok/s, qualità di 7.8, memoria
+di 2.0 GB. - Quantizzazione q8_0: Velocità di 28 tok/s, qualità di
+8.9, memoria di 3.8 GB. - Quantizzazione f16: Velocità di 12 tok/s,
+qualità di 9.5, memoria di 6.4 GB.  Il miglior compromesso tra
+velocità e qualità sembra essere offerto dalla quantizzazione q4_K_M,
+con una qualità di 7.8 e una velocità di 48 tok/s, utilizzando 2.0 GB
+di memoria.
+
+✅ Task 2 completato
+
+[Task 3]
+
+================================================================
+🤖 Task: Analizza i benchmark di llama3.2 e mistral, poi salva un report di confronto nel file 'confronto_modelli.txt'.
+================================================================
+Tool 'confronta_modelli' → {'modello': 'llama3.2'}
+Tool 'confronta_modelli' → {'modello': 'mistral'}
+Tool 'salva_report' → {'contenuto': 'Confronto tra i modelli llama3.2 e mistral:\n\nLlama3.2:\nQuantizzazione  Velocità (tok/s)  Qualità (0-10)  Memoria (GB)\n────────────────────────────────────────────────────────────\nq2_K                        65             6.1           1.2\nq4_K_M                      48             7.8           2.0\nq8_0                        28             8.9           3.8\nf16                         12             9.5           6.4\n\nMistral:\nQuantizzazione  Velocità (tok/s)  Qualità (0-10)  Memoria (GB)\n────────────────────────────────────────────────────────────\nq2_K                        55             5.9           2.8\nq4_K_M                      38             7.5           4.1\nq8_0                        18             8.7           7.7\nf16                          8             9.3          14.5', 'nome_file': 'confronto_modelli.txt'}
+
+💬 Risposta finale:
+Il report di confronto tra i modelli llama3.2 e mistral è stato
+salvato nel file 'confronto_modelli.txt'. Ecco i dettagli:
+**Llama3.2:** - q2_K: Velocità 65 tok/s, Qualità 6.1, Memoria 1.2 GB -
+q4_K_M: Velocità 48 tok/s, Qualità 7.8, Memoria 2.0 GB - q8_0:
+Velocità 28 tok/s, Qualità 8.9, Memoria 3.8 GB - f16: Velocità 12
+tok/s, Qualità 9.5, Memoria 6.4 GB  **Mistral:** - q2_K: Velocità 55
+tok/s, Qualità 5.9, Memoria 2.8 GB - q4_K_M: Velocità 38 tok/s,
+Qualità 7.5, Memoria 4.1 GB - q8_0: Velocità 18 tok/s, Qualità 8.7,
+Memoria 7.7 GB - f16: Velocità 8 tok/s, Qualità 9.3, Memoria 14.5 GB
+Il file 'confronto_modelli.txt' contiene queste informazioni.
+
+✅ Task 3 completato
+
+================================================================
+🎉 Esercizio 2 completato con successo!
+================================================================

@@ -1,0 +1,57 @@
+{
+"ORD-2026-001": {
+"employee_id": "E4521",
+"employee_name": "Mario Rossi",
+"product_id": "ACC-DOCK-01",
+"product_name": "Thunderbolt 4 Universal Dock",
+"price_eur": 190,
+"request_date": "2026-10-01",
+"status": "in_transit",
+"note": "Costo <= 200€ e completamente coperto dal budget residuo (1800€).",
+"manager_email": "chiara.bianchi@azienda.it"
+},
+"ORD-2026-002": {
+"employee_id": "E4521",
+"employee_name": "Mario Rossi",
+"product_id": "LAP-DEV-01",
+"product_name": "ThinkPad P16s Gen 2 / MacBook Pro M3",
+"price_eur": 1650,
+"request_date": "2026-10-02",
+"status": "processing",
+"note": "Laptop fascia Developer Pro idoneo per il ruolo Engineering e coperto dal budget residuo.",
+"manager_email": "chiara.bianchi@azienda.it"
+},
+"ORD-2026-003": {
+"employee_id": "E1082",
+"employee_name": "Giulia Verdi",
+"product_id": "MON-4K-01",
+"product_name": "Dell UltraSharp 27 4K (U2723QE)",
+"price_eur": 520,
+"request_date": "2026-10-03",
+"status": "denied",
+"note": "Monitor specialistico > 300€ e spesa superiore al budget residuo (450€). Escalation richiesta al manager per il progetto 'Brand Campaign Q2'.",
+"manager_email": "luca.neri@azienda.it"
+},
+"ORD-2026-004": {
+"employee_id": "E1082",
+"employee_name": "Giulia Verdi",
+"product_id": "LAP-DEV-01",
+"product_name": "ThinkPad P16s Gen 2 / MacBook Pro M3",
+"price_eur": 1650,
+"request_date": "2026-10-04",
+"status": "denied",
+"note": "Richiesta fuori fascia di ruolo (Marketing) e costo (1650€) eccedente il budget residuo (450€) senza giustificazione di progetto valida.",
+"manager_email": "luca.neri@azienda.it"
+},
+"ORD-2026-005": {
+"employee_id": "E9900",
+"employee_name": "Alessandro Corti",
+"product_id": "LAP-STD-02",
+"product_name": "Dell Latitude 5540 / MacBook Air M2",
+"price_eur": 950,
+"request_date": "2026-10-05",
+"status": "processing",
+"note": "Laptop fascia Standard conforme al ruolo Sales e rientrante nel budget residuo (2500€).",
+"manager_email": "elena.gallo@azienda.it"
+}
+}

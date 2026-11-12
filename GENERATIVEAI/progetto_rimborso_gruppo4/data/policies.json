@@ -1,0 +1,45 @@
+[
+  {
+    "expense_type": "travel_train",
+    "max_amount": 250,
+    "receipt_required": true,
+    "allowed_roles": [
+      "Analyst",
+      "Consultant",
+      "Manager"
+    ],
+    "approval_over": 250
+  },
+  {
+    "expense_type": "hotel",
+    "max_amount": 180,
+    "receipt_required": true,
+    "allowed_roles": [
+      "Analyst",
+      "Consultant",
+      "Manager"
+    ],
+    "approval_over": 180
+  },
+  {
+    "expense_type": "meal",
+    "max_amount": 60,
+    "receipt_required": true,
+    "allowed_roles": [
+      "Analyst",
+      "Consultant",
+      "Manager"
+    ],
+    "approval_over": 60
+  },
+  {
+    "expense_type": "client_meal",
+    "max_amount": 120,
+    "receipt_required": true,
+    "allowed_roles": [
+      "Consultant",
+      "Manager"
+    ],
+    "approval_over": 120
+  }
+]

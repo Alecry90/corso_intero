@@ -1,0 +1,58 @@
+================================================================
+🧪 TEST ESERCIZIO 1 — Assistente Pagina & Co.
+================================================================
+
+[Domanda 1] A che ora chiude la libreria il sabato?
+[1] score=0.5171 | Via dei Libri 7, 10122 Torino (TO)
+Aggiornamento: Settembre 2024 SEZIONE 1 - PRO...
+[2] score=0.4555 | ro a bambino per sessione.
+I laboratori sono condotti da Marta Ferretti, educatr...
+[3] score=0.4456 | rma dell'ordine. SEZIONE 5 - EVENTI E ATTIVITÀ Pagina & Co. organizza regolarmen...
+[4] score=0.4136 | gli di lettura
+- Un segnalibro artigianale in omaggio all'iscrizione SEZIONE 4 -...
+
+────────────────────────────────────────────────────────────────
+📌 Risposta
+────────────────────────────────────────────────────────────────
+La libreria Pagina & Co. è aperta dal lunedì al sabato, dalle 9:30
+alle 19:30. Quindi, il sabato la libreria chiuderà alle 19:30.
+
+✅ Risposta ricevuta (129 caratteri)
+
+[Domanda 2] Quanto costa iscriversi al club del libro?
+[1] score=0.6119 | ti.
+Gli autori presenti nel 2024 includono Donatella Di Pietrantonio, Paolo Cogn...
+[2] score=0.5058 | rcati tramite il servizio di ricerca antiquaria, attivo su appuntamento. SEZIONE...
+[3] score=0.4944 | i): sconto fino al 15%
+- Remainders (libri con prezzo di copertina barrato): nes...
+[4] score=0.4738 | ro a bambino per sessione.
+I laboratori sono condotti da Marta Ferretti, educatr...
+
+────────────────────────────────────────────────────────────────
+📌 Risposta
+────────────────────────────────────────────────────────────────
+Il costo per iscriversi al club del libro è di 20 euro, che include 10
+incontri, tè e biscotti offerti dalla libreria.
+
+✅ Risposta ricevuta (118 caratteri)
+
+[Domanda 3] La spedizione è gratuita? Da quale importo?
+[1] score=0.5874 | : 3-5 giorni lavorativi
+- Titoli fuori catalogo o esauriti: tempi variabili, pre...
+[2] score=0.4900 | i): sconto fino al 15%
+- Remainders (libri con prezzo di copertina barrato): nes...
+[3] score=0.4522 | uito, i posti sono limitati a 40 persone (prenotazione consigliata). SEZIONE 6 -...
+[4] score=0.3827 | bri con dediche o evidenziazioni.
+Per i libri acquistati online, il reso è gratu...
+
+────────────────────────────────────────────────────────────────
+📌 Risposta
+────────────────────────────────────────────────────────────────
+Ciao! La spedizione a domicilio è gratuita per ordini pari o superiori
+a 25 euro.
+
+✅ Risposta ricevuta (81 caratteri)
+
+================================================================
+🎉 Esercizio 1 completato con successo! 📚
+================================================================

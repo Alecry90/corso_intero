@@ -1,0 +1,6 @@
+{
+  "provider": "brevo",
+  "enabled": false,
+  "testMode": true,
+  "signupUrl": "https://3136e516.sibforms.com/serve/MUIFABpu4zdmB-XvHrEBDU3q2OrDcj8l0REAI-1KPFfV-bAPgcflEsBkowfOLHmCOWSrEki6uFRpgLc-iUAyVYu7e8qjH496C3KMlErNyqtwzN5-r7kqzT_PqNu36J53jF5Xjr8Q2BzIqnR4JxxVneDAjAaNqR3So-z236xA9unqTeTfeMHytRpg5AwDqZ86DaOMYqqXuyeAa3qUPA=="
+}

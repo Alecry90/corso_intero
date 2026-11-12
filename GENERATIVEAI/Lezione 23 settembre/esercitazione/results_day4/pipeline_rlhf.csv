@@ -1,0 +1,5 @@
+Stage,Input,Obiettivo,Dataset Size,Costo (USD),Tempo
+Pre-training,"Testo raw (web, libri)",Next token prediction,100B-1T token,$1M-10M,Settimane-mesi
+SFT,Esempi instruction-following,Seguire istruzioni,10K-100K esempi,$10K-100K,Ore-giorni
+Reward Model,Coppie preferenze (chosen/rejected),Predire preferenze umane,10K-100K coppie,$50K-500K,Giorni-settimane
+RL Fine-tuning,Prompt + reward model,Massimizzare reward,Generato on-the-fly,$50K-500K,Giorni-settimane

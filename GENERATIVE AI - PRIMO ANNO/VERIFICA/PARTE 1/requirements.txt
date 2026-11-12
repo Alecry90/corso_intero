@@ -1,0 +1,10 @@
+gensim
+numpy
+matplotlib
+nltk
+jupyter
+ipykernel
+tensorflow
+keras
+torch
+transformers

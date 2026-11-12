@@ -1,0 +1,100 @@
+{"prompt": "How do I track my order?", "chosen": "You can track your order by logging into your account. Go to My Orders and enter your order number.", "rejected": "I don't know."}
+{"prompt": "Where is my package?", "chosen": "Your package is on the way. You can check the tracking number in your email confirmation.", "rejected": "Check your email."}
+{"prompt": "When will my order arrive?", "chosen": "Your order will arrive in 3-5 business days. You can track it online with your order number.", "rejected": "Soon."}
+{"prompt": "Can I change my delivery address?", "chosen": "You can change your delivery address before the order ships. Go to My Orders and update the address.", "rejected": "Maybe."}
+{"prompt": "My tracking number isn't working", "chosen": "The tracking number may take 24 hours to activate. Try again later or contact customer service.", "rejected": "Wait longer."}
+{"prompt": "How do I check my order status?", "chosen": "You can check your order status online. Log into your account and go to My Orders.", "rejected": "Check online."}
+{"prompt": "What shipping options do you offer?", "chosen": "We offer standard shipping and express shipping. Standard takes 3-5 days, express takes 1-2 days.", "rejected": "Different options."}
+{"prompt": "How much does shipping cost?", "chosen": "Standard shipping is $4.90 and express shipping is $9.90. Free shipping on orders over $50.", "rejected": "It depends."}
+{"prompt": "My package is delayed", "chosen": "Your package may be delayed due to weather or carrier issues. Check the tracking for updates.", "rejected": "Wait."}
+{"prompt": "Do you ship internationally?", "chosen": "Yes, we ship internationally. International shipping takes 7-14 days and costs vary by location.", "rejected": "Yes."}
+{"prompt": "My package shows delivered but I didn't receive it", "chosen": "If your package shows delivered, check with neighbors or your building manager. Contact us if not found.", "rejected": "Check again."}
+{"prompt": "Can I expedite my shipping?", "chosen": "You can upgrade to express shipping before the order ships. Go to My Orders to change shipping.", "rejected": "Pay more."}
+{"prompt": "What carriers do you use?", "chosen": "We use FedEx, UPS, and USPS for shipping. The carrier depends on your location.", "rejected": "Different ones."}
+{"prompt": "How do I get shipping updates?", "chosen": "You will get email updates when your order ships. You can also track it online.", "rejected": "Check email."}
+{"prompt": "Can I pick up my order?", "chosen": "Yes, you can pick up your order at our stores. Select store pickup at checkout.", "rejected": "Yes, at stores."}
+{"prompt": "My tracking hasn't updated", "chosen": "Tracking may not update for 24-48 hours. Check again later or contact customer service.", "rejected": "Be patient."}
+{"prompt": "What is the estimated delivery date?", "chosen": "The estimated delivery date is shown in your order confirmation. Standard shipping is 3-5 days.", "rejected": "Check your email."}
+{"prompt": "Can I track multiple orders?", "chosen": "Yes, you can track all your orders. Log into your account and go to My Orders.", "rejected": "Yes."}
+{"prompt": "My package is damaged", "chosen": "If your package is damaged, take photos and contact customer service. We will send a replacement.", "rejected": "Return it."}
+{"prompt": "How do I file a shipping claim?", "chosen": "To file a shipping claim, contact customer service with your order number and photos.", "rejected": "Call us."}
+{"prompt": "How do I return a product?", "chosen": "You can return a product within 30 days. Go to My Orders and select Start Return.", "rejected": "Send it back."}
+{"prompt": "What is your return policy?", "chosen": "We accept returns within 30 days. Items must be unused in original packaging.", "rejected": "30 days."}
+{"prompt": "How long does a refund take?", "chosen": "Refunds take 3-5 business days after we receive your return. You will get an email confirmation.", "rejected": "A week."}
+{"prompt": "Can I exchange an item?", "chosen": "Yes, you can exchange items. Go to My Orders and select Exchange instead of Return.", "rejected": "Yes."}
+{"prompt": "I received the wrong item", "chosen": "If you received the wrong item, contact customer service. We will send the correct item.", "rejected": "Return it."}
+{"prompt": "Can I return without a receipt?", "chosen": "You can return items without a receipt if you ordered online. We can look up your order.", "rejected": "You need it."}
+{"prompt": "Do I have to pay return shipping?", "chosen": "Return shipping is free for defective items. For other returns, shipping costs $6.99.", "rejected": "Usually yes."}
+{"prompt": "Can I return a sale item?", "chosen": "Yes, you can return sale items within 30 days. Final sale items cannot be returned.", "rejected": "Depends."}
+{"prompt": "The product is defective", "chosen": "If the product is defective, contact customer service with photos. We will send a replacement.", "rejected": "Return it."}
+{"prompt": "How do I print a return label?", "chosen": "After starting a return, you will get an email with a return label. Print it and attach to package.", "rejected": "Check email."}
+{"prompt": "Can I return to a store?", "chosen": "Yes, you can return items to any store. Bring the item and your order confirmation.", "rejected": "Yes."}
+{"prompt": "My refund amount is wrong", "chosen": "If your refund amount is wrong, contact customer service. We will review your order and fix it.", "rejected": "Call us."}
+{"prompt": "Can I return a gift?", "chosen": "Yes, you can return gifts for store credit. Bring the item to a store or mail it.", "rejected": "Yes."}
+{"prompt": "Can I return after 30 days?", "chosen": "Returns after 30 days are reviewed case by case. Contact customer service to request an exception.", "rejected": "No."}
+{"prompt": "Can I return an opened product?", "chosen": "You can return opened products if they are in good condition. Some items cannot be returned.", "rejected": "Maybe."}
+{"prompt": "Where do I send my return?", "chosen": "The return address is on the return label. You will get it by email after starting a return.", "rejected": "Check the label."}
+{"prompt": "Can I get a refund to a different card?", "chosen": "Refunds go to the original payment method. We cannot refund to a different card.", "rejected": "No."}
+{"prompt": "My return was rejected", "chosen": "If your return was rejected, contact customer service. We will explain the reason and help you.", "rejected": "Call us."}
+{"prompt": "How do I track my return?", "chosen": "You can track your return with the tracking number on your return label. Check online.", "rejected": "Use tracking number."}
+{"prompt": "Can I cancel my return?", "chosen": "You can cancel a return if you haven't shipped it yet. Contact customer service if already shipped.", "rejected": "Maybe."}
+{"prompt": "What items cannot be returned?", "chosen": "Final sale items, opened hygiene products, and personalized items cannot be returned.", "rejected": "Some items."}
+{"prompt": "Do I need original packaging?", "chosen": "Yes, items must be in original packaging for returns. Keep all tags and packaging.", "rejected": "Yes."}
+{"prompt": "Can I return multiple items?", "chosen": "Yes, you can return multiple items. Select all items when starting your return.", "rejected": "Yes."}
+{"prompt": "How do I know my return was received?", "chosen": "You will get an email when we receive your return. Refunds are processed within 3-5 days.", "rejected": "Check email."}
+{"prompt": "Can I return items from different orders?", "chosen": "Each order needs a separate return. Start a return for each order in My Orders.", "rejected": "No."}
+{"prompt": "How do I cancel my order?", "chosen": "You can cancel your order within 24 hours. Go to My Orders and click Cancel Order.", "rejected": "You can't."}
+{"prompt": "Can I cancel part of my order?", "chosen": "Yes, you can cancel individual items. Go to My Orders and select the items to cancel.", "rejected": "Cancel all."}
+{"prompt": "My order already shipped, can I cancel?", "chosen": "You cannot cancel after shipping. You can return the item after you receive it.", "rejected": "No."}
+{"prompt": "Will I get a full refund if I cancel?", "chosen": "Yes, you will get a full refund within 3-5 business days if you cancel within 24 hours.", "rejected": "Yes."}
+{"prompt": "How long does cancellation take?", "chosen": "Cancellations are processed within 1-2 hours. You will get an email confirmation.", "rejected": "A few hours."}
+{"prompt": "I canceled but was still charged", "chosen": "The charge will be refunded within 3-5 business days. Contact us if you don't see it.", "rejected": "Wait."}
+{"prompt": "Can I cancel a custom order?", "chosen": "Custom orders cannot be canceled after production starts. Contact customer service immediately.", "rejected": "No."}
+{"prompt": "I ordered by mistake", "chosen": "You can cancel within 24 hours. Go to My Orders and click Cancel Order.", "rejected": "Cancel it."}
+{"prompt": "Can I modify my order?", "chosen": "You can modify your order within 24 hours. Go to My Orders to make changes.", "rejected": "Maybe."}
+{"prompt": "How do I know cancellation worked?", "chosen": "You will get an email confirmation. Check your email within 1-2 hours.", "rejected": "Check email."}
+{"prompt": "Can I cancel a subscription?", "chosen": "Yes, you can cancel subscriptions. Go to My Subscriptions and click Cancel.", "rejected": "Yes."}
+{"prompt": "What is the cancellation deadline?", "chosen": "You can cancel within 24 hours of ordering. After that, you need to return the item.", "rejected": "24 hours."}
+{"prompt": "Can I cancel if it's being prepared?", "chosen": "If your order is being prepared, contact customer service immediately. We will try to stop it.", "rejected": "Maybe not."}
+{"prompt": "Will I be charged a fee?", "chosen": "No, there are no cancellation fees if you cancel within 24 hours.", "rejected": "No."}
+{"prompt": "Can I cancel and reorder?", "chosen": "Yes, you can cancel and place a new order. Cancel first, then order again.", "rejected": "Yes."}
+{"prompt": "What payment methods do you accept?", "chosen": "We accept Visa, Mastercard, American Express, PayPal, and Apple Pay.", "rejected": "Credit cards."}
+{"prompt": "Is my payment secure?", "chosen": "Yes, we use secure payment processing. Your information is encrypted and protected.", "rejected": "Yes."}
+{"prompt": "My payment was declined", "chosen": "Your payment may be declined due to insufficient funds. Try a different card or contact your bank.", "rejected": "Check your bank."}
+{"prompt": "Can I use multiple payment methods?", "chosen": "No, you can only use one payment method per order.", "rejected": "No."}
+{"prompt": "Do you offer payment plans?", "chosen": "Yes, we offer payment plans for orders over $500 through Affirm and Klarna.", "rejected": "For large orders."}
+{"prompt": "I was charged twice", "chosen": "Double charges are usually temporary holds. They will drop in 3-5 days. Contact us if not.", "rejected": "One will drop."}
+{"prompt": "Can I get an invoice?", "chosen": "Yes, you can download invoices from My Orders. Select your order and click Download Invoice.", "rejected": "Check your account."}
+{"prompt": "Do you charge sales tax?", "chosen": "Yes, we charge sales tax based on your location. The amount is shown at checkout.", "rejected": "Yes."}
+{"prompt": "My discount code isn't working", "chosen": "Make sure the code is entered correctly and not expired. Some codes have minimum purchase requirements.", "rejected": "Check the code."}
+{"prompt": "Can I change payment method?", "chosen": "You can change payment method before the order is processed. Contact customer service quickly.", "rejected": "Maybe."}
+{"prompt": "How do I create an account?", "chosen": "Click Sign Up, enter your email and password. You will get a verification email.", "rejected": "Click sign up."}
+{"prompt": "I forgot my password", "chosen": "Click Forgot Password and enter your email. You will get a reset link.", "rejected": "Reset it."}
+{"prompt": "How do I update my email?", "chosen": "Go to Account Settings and enter your new email. You will need to verify it.", "rejected": "Go to settings."}
+{"prompt": "Can I delete my account?", "chosen": "Yes, you can delete your account in Privacy Settings. Your data will be removed.", "rejected": "Contact support."}
+{"prompt": "How do I update my address?", "chosen": "Go to Address Book in your account. You can add or edit addresses there.", "rejected": "Go to account."}
+{"prompt": "Can I save my payment info?", "chosen": "Yes, you can save payment methods in your account. They are stored securely.", "rejected": "Yes."}
+{"prompt": "How do I view order history?", "chosen": "Log into your account and go to My Orders. You will see all your past orders.", "rejected": "Check your account."}
+{"prompt": "Can I checkout as guest?", "chosen": "Yes, you can checkout as a guest. You don't need an account to order.", "rejected": "Yes."}
+{"prompt": "How do I unsubscribe?", "chosen": "Click Unsubscribe at the bottom of any email. You can also manage preferences in your account.", "rejected": "Click unsubscribe."}
+{"prompt": "Do you have a mobile app?", "chosen": "Yes, we have a mobile app. Download it from the App Store or Google Play.", "rejected": "Yes."}
+{"prompt": "Is this product in stock?", "chosen": "Yes, this product is in stock. It will ship within 1-2 business days.", "rejected": "Yes."}
+{"prompt": "When will this be restocked?", "chosen": "This item is out of stock. Sign up for notifications and we will email you when available.", "rejected": "We don't know."}
+{"prompt": "What are the dimensions?", "chosen": "The dimensions are listed on the product page in the Specifications section.", "rejected": "Check the page."}
+{"prompt": "Does this have a warranty?", "chosen": "Yes, this product has a 1-year warranty. Register it after purchase for coverage.", "rejected": "Yes, 1 year."}
+{"prompt": "Can I see more photos?", "chosen": "More photos are in the product gallery. You can also check customer reviews for photos.", "rejected": "Check the page."}
+{"prompt": "What size should I order?", "chosen": "Check the size chart on the product page. Measure yourself and compare to the chart.", "rejected": "Check size chart."}
+{"prompt": "Does this come in other colors?", "chosen": "Available colors are shown on the product page. Select your color before adding to cart.", "rejected": "See the options."}
+{"prompt": "Can I customize this?", "chosen": "Customization options are shown on the product page. Custom items take 3-5 extra days.", "rejected": "Maybe."}
+{"prompt": "Do you have promotions?", "chosen": "Current promotions are on the homepage. Sign up for emails to get exclusive discounts.", "rejected": "Check homepage."}
+{"prompt": "How does rewards work?", "chosen": "Earn 1 point per dollar. 100 points equals $5 off. Join free in your account.", "rejected": "Spend to earn points."}
+{"prompt": "Can I use multiple codes?", "chosen": "No, only one discount code per order. The system will use the best discount.", "rejected": "No."}
+{"prompt": "Do you price match?", "chosen": "Yes, we price match within 14 days. Contact customer service with proof of lower price.", "rejected": "Sometimes."}
+{"prompt": "How do I redeem points?", "chosen": "At checkout, select Use Points. Choose how many points to redeem for your discount.", "rejected": "At checkout."}
+{"prompt": "Can I get student discount?", "chosen": "Yes, students get 15% off. Verify your student status to get the discount.", "rejected": "Yes, verify status."}
+{"prompt": "Do you sell gift cards?", "chosen": "Yes, we sell gift cards from $25 to $500. Buy them online or in stores.", "rejected": "Yes."}
+{"prompt": "What is the referral program?", "chosen": "Refer friends and you both get $10 off. Share your referral link from your account.", "rejected": "Refer friends."}
+{"prompt": "Are there similar products?", "chosen": "Similar products are shown at the bottom of the product page. Compare features and prices.", "rejected": "Check the page."}
+{"prompt": "Is this authentic?", "chosen": "Yes, all our products are authentic. We source from authorized distributors only.", "rejected": "Yes."}
+{"prompt": "Can I see a video?", "chosen": "Product videos are in the gallery when available. Check our YouTube for more videos.", "rejected": "Maybe on page."}
+{"prompt": "What materials is this?", "chosen": "Materials are listed in Product Details on the product page. Check there for full information.", "rejected": "Check description."}

@@ -1,0 +1,26 @@
+.admin-catalog-safety{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--admin-line)}
+.admin-catalog-safety>h2{margin:0 0 .75rem;font-size:clamp(1.4rem,2.2vw,1.85rem)}
+.admin-catalog-safety>.admin-small{max-width:75ch;margin-bottom:1.4rem}
+.catalog-safety-section{padding:1.2rem 0;border-block-start:1px solid var(--admin-line)}
+.catalog-safety-section>summary{cursor:pointer;font-size:1.08rem;font-weight:600;min-height:44px;align-content:center;display:list-item}
+.catalog-safety-section>.admin-small{max-width:78ch;line-height:1.75;margin:.8rem 0 1.1rem}
+.catalog-safety-section h3{margin:2rem 0 .8rem;font-size:1.1rem}
+.catalog-safety-section>.admin-field{max-width:42rem;margin:1.25rem 0}
+.catalog-safety-section input[type=file]{display:block;width:100%;min-width:0;max-width:100%}
+.catalog-safety-plan{margin:1.3rem 0;padding:1.25rem;border:1px solid var(--admin-line);background:var(--admin-sage)}
+.catalog-safety-plan h4{margin:0 0 .8rem;font-size:1rem}
+.catalog-safety-plan p,.catalog-safety-plan ul{line-height:1.75;overflow-wrap:anywhere}
+.catalog-safety-actions{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem}
+.catalog-safety-trash-list{padding:0;margin:1rem 0;list-style:none}
+.catalog-safety-trash-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;padding:1.1rem 0;border-block-start:1px solid var(--admin-line)}
+.catalog-safety-trash-info{min-width:0;flex:1 1 16rem}
+.catalog-safety-trash-info h4{margin:0 0 .4rem;font-size:1rem;overflow-wrap:anywhere}
+.catalog-safety-trash-info p{margin:0;overflow-wrap:anywhere}
+.catalog-safety-restore-confirm{flex:1 0 100%;padding:1rem;background:var(--admin-sage)}
+.catalog-safety-restore-confirm>p{margin:0 0 .8rem;line-height:1.75}
+.catalog-safety-pages{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;margin-top:1rem}
+.admin-catalog-safety [hidden]{display:none!important}
+.admin-catalog-safety [tabindex="-1"]:focus{outline:2px solid var(--admin-wine,#642c3a);outline-offset:4px}
+.admin-catalog-safety #catalog-safety-status{overflow-wrap:anywhere;line-height:1.75}
+.admin-catalog-safety #catalog-safety-status[data-state=error]{color:var(--admin-error)}
+@media(max-width:600px){.catalog-safety-plan{padding:1rem}.catalog-safety-actions{align-items:stretch;flex-direction:column}.catalog-safety-actions>.admin-button{width:100%}.catalog-safety-trash-row>.admin-button{width:100%}.catalog-safety-pages{justify-content:flex-start}.catalog-safety-pages>span{flex-basis:100%;order:-1}.catalog-safety-section input[type=file]{font-size:.85rem}}

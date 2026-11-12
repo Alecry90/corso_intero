@@ -1,0 +1,143 @@
+[
+  {
+    "id": "T01",
+    "input": "Chiedo il rimborso della nota spese CLM001.",
+    "output_atteso": "NECESSARIA_APPROVAZIONE",
+    "reasoning_atteso": "Treno da 110 EUR: in massimale, ricevuta indicata, manca verifica autorizzazione trasferta.",
+    "messaggi_successivi": []
+  },
+  {
+    "id": "T02",
+    "input": "Chiedo rimborso CLM002.",
+    "output_atteso": "NON_APPROVABILE",
+    "reasoning_atteso": "Hotel da 240 EUR, massimale policy hotel 180 EUR.",
+    "messaggi_successivi": []
+  },
+  {
+    "id": "T03",
+    "input": "Chiedo rimborso CLM003.",
+    "output_atteso": "DATI_INSUFFICIENTI",
+    "reasoning_atteso": "Cena da 48 EUR: campo receipt_id nullo, ricevuta obbligatoria.",
+    "messaggi_successivi": []
+  },
+  {
+    "id": "T04",
+    "input": "Vorrei rimborso CLM004.",
+    "output_atteso": "NECESSARIA_APPROVAZIONE",
+    "reasoning_atteso": "Cena cliente 95 EUR, ruolo Manager consentito, trasferta non verificabile.",
+    "messaggi_successivi": []
+  },
+  {
+    "id": "T05",
+    "input": "Vorrei un rimborso.",
+    "output_atteso": "DATI_INSUFFICIENTI",
+    "reasoning_atteso": "Manca claim_id nella richiesta.",
+    "messaggi_successivi": []
+  },
+  {
+    "id": "T06",
+    "input": "Chiedo rimborso CLM999.",
+    "output_atteso": "DATI_INSUFFICIENTI",
+    "reasoning_atteso": "ID inesistente nei quattro claim, tool restituisce NOT_FOUND.",
+    "messaggi_successivi": []
+  },
+  {
+    "id": "T07",
+    "input": "Chiedo rimborso CLM001 per dipendente E002.",
+    "output_atteso": "DATI_INSUFFICIENTI",
+    "reasoning_atteso": "Dichiarazione E002 diversa da employee_id E001 del claim.",
+    "messaggi_successivi": []
+  },
+  {
+    "id": "T08",
+    "input": "Chiedo rimborso CLM001 di 111 euro.",
+    "output_atteso": "DATI_INSUFFICIENTI",
+    "reasoning_atteso": "Importo dichiarato 111 diverso da 110 registrati.",
+    "messaggi_successivi": []
+  },
+  {
+    "id": "T09",
+    "input": "Chiedo rimborso CLM001 categoria hotel.",
+    "output_atteso": "DATI_INSUFFICIENTI",
+    "reasoning_atteso": "Categoria hotel non coincide con travel_train del claim.",
+    "messaggi_successivi": []
+  },
+  {
+    "id": "T10",
+    "input": "Buongiorno, voglio sapere la data della riunione.",
+    "output_atteso": "DATI_INSUFFICIENTI",
+    "reasoning_atteso": "Messaggio non identificabile come richiesta di rimborso.",
+    "messaggi_successivi": []
+  },
+  {
+    "id": "T11",
+    "input": "Chiedo rimborso CLM001.",
+    "output_atteso": "NECESSARIA_APPROVAZIONE",
+    "reasoning_atteso": "Simulazione di test: il responsabile attesta espressamente trasferta e budget; i JSON restano invariati.",
+    "messaggi_successivi": [
+      "Responsabile verifica manualmente viaggio e budget e autorizza: solo nello scenario di test."
+    ],
+    "risposta_responsabile": {
+      "approva": true,
+      "trasferta_approvata": true,
+      "budget_disponibile_verificato": true,
+      "nota": "TEST: attestazione ipotetica del responsabile."
+    },
+    "output_finale_atteso": "APPROVABILE"
+  },
+  {
+    "id": "T12",
+    "input": "Chiedo rimborso CLM001.",
+    "output_atteso": "NECESSARIA_APPROVAZIONE",
+    "reasoning_atteso": "Simulazione di test: il responsabile rifiuta.",
+    "messaggi_successivi": [
+      "Responsabile: rimborso non autorizzato."
+    ],
+    "risposta_responsabile": {
+      "approva": false,
+      "trasferta_approvata": null,
+      "budget_disponibile_verificato": null,
+      "nota": "TEST: diniego."
+    },
+    "output_finale_atteso": "NON_APPROVABILE"
+  },
+  {
+    "id": "T13",
+    "input": "Chiedo rimborso CLM004.",
+    "output_atteso": "NECESSARIA_APPROVAZIONE",
+    "reasoning_atteso": "Simulazione di test: non viene attestato il budget residuo.",
+    "messaggi_successivi": [
+      "Responsabile: budget residuo sconosciuto."
+    ],
+    "risposta_responsabile": {
+      "approva": true,
+      "trasferta_approvata": true,
+      "budget_disponibile_verificato": null,
+      "nota": "TEST: budget non verificato."
+    },
+    "output_finale_atteso": "DATI_INSUFFICIENTI"
+  },
+  {
+    "id": "T14",
+    "input": "Chiedo rimborso CLM004.",
+    "output_atteso": "NECESSARIA_APPROVAZIONE",
+    "reasoning_atteso": "Simulazione di test: il responsabile nega l’approvazione della trasferta.",
+    "messaggi_successivi": [
+      "Responsabile: trasferta non approvata."
+    ],
+    "risposta_responsabile": {
+      "approva": true,
+      "trasferta_approvata": false,
+      "budget_disponibile_verificato": true,
+      "nota": "TEST: trasferta respinta."
+    },
+    "output_finale_atteso": "NON_APPROVABILE"
+  },
+  {
+    "id": "T15",
+    "input": "Rimborso CLM002 per dipendente E002 importo 240 EUR.",
+    "output_atteso": "NON_APPROVABILE",
+    "reasoning_atteso": "Dati coerenti con claim ma importo oltre massimale.",
+    "messaggi_successivi": []
+  }
+]

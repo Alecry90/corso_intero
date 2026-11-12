@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Setup ambiente - Embeddings</title>
+<style>
+:root{
+  --bg:#f5f7fa;--card:#fff;--ink:#18222d;--muted:#657382;
+  --line:#dce3ea;--blue:#315efb;--soft:#eef3ff;--dark:#111923;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.6;
+}
+.container{max-width:900px;margin:0 auto;padding:28px 18px 45px}
+header{
+  background:linear-gradient(135deg,#111923,#334965);
+  color:white;border-radius:18px;padding:32px 34px;margin-bottom:20px;
+}
+header h1{margin:0 0 7px;font-size:31px;line-height:1.2}
+header p{margin:0;color:#dce5ee}
+.section{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:14px;margin-bottom:16px;overflow:hidden;
+}
+.section-title{
+  background:#edf2f6;border-bottom:1px solid var(--line);
+  padding:12px 17px;font-size:18px;font-weight:700;
+}
+.content{padding:19px 21px}
+.command{
+  background:var(--dark);color:#edf3f8;border-radius:9px;
+  padding:15px 17px;margin:12px 0;overflow:auto;
+}
+.command code,pre code{
+  font-family:Consolas,"Courier New",monospace;font-size:13px;
+}
+.note{
+  background:var(--soft);border-left:4px solid var(--blue);
+  border-radius:7px;padding:12px 14px;margin-top:14px;
+}
+.steps{counter-reset:step}
+.step{
+  display:flex;gap:12px;align-items:flex-start;margin:13px 0;
+}
+.num{
+  flex:0 0 29px;height:29px;border-radius:50%;
+  background:var(--blue);color:white;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+pre{
+  background:var(--dark);color:#edf3f8;border-radius:9px;
+  padding:14px 16px;overflow:auto;
+}
+.footer{
+  margin-top:28px;padding:24px 8px 4px;border-top:1px solid var(--line);
+  text-align:center;color:var(--muted);font-size:13px;
+}
+.footer .name{font-size:15px;color:var(--ink);font-weight:700}
+.footer p{margin:7px 0}
+.footer a{color:#315efb;text-decoration:none}
+.footer a:hover{text-decoration:underline}
+.badges{
+  display:flex;justify-content:center;align-items:center;
+  gap:18px;flex-wrap:wrap;margin-top:14px;
+}
+.badges a{display:inline-flex;align-items:center}
+.badges img{
+  height:58px;width:auto;max-width:190px;object-fit:contain;
+}
+@media(max-width:650px){
+  .container{padding:15px 10px 35px}
+  header{padding:25px 22px}
+  header h1{font-size:27px}
+  .content{padding:17px}
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <h1>Setup dell'ambiente — Embeddings</h1>
+  <p>Prepariamo l'ambiente Python necessario per lavorare con il notebook.</p>
+</header>
+
+<section class="section">
+  <div class="section-title">1. Crea la cartella del progetto</div>
+  <div class="content">
+    <p>Crea una cartella per il progetto e inserisci al suo interno:</p>
+    <ul>
+      <li><code>Embeddings.ipynb</code></li>
+      <li><code>requirements.txt</code></li>
+    </ul>
+    <div class="note">
+      Tutti i comandi successivi devono essere eseguiti dal terminale
+      <strong>aperto nella cartella del progetto</strong>.
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">2. Crea il virtual environment</div>
+  <div class="content">
+    <p>Il virtual environment crea un ambiente Python separato per questo progetto.</p>
+
+    <p><strong>Windows</strong></p>
+    <div class="command"><code>py -m venv venv-embeddings</code></div>
+
+    <p><strong>macOS / Linux</strong></p>
+    <div class="command"><code>python3 -m venv venv-embeddings</code></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">3. Attiva il virtual environment</div>
+  <div class="content">
+
+    <p><strong>Windows — PowerShell</strong></p>
+    <div class="command"><code>venv-embeddings\Scripts\Activate.ps1</code></div>
+
+    <p><strong>Windows — CMD</strong></p>
+    <div class="command"><code>venv-embeddings\Scripts\activate.bat</code></div>
+
+    <p><strong>macOS / Linux</strong></p>
+    <div class="command"><code>source venv-embeddings/bin/activate</code></div>
+
+    <div class="note">
+      Se l'attivazione è andata a buon fine, nel terminale comparirà
+      <strong>(venv-embeddings)</strong>.
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">4. Installa i requisiti</div>
+  <div class="content">
+
+    <p>Il file <code>requirements.txt</code> contiene tutte le librerie necessarie.</p>
+
+    <p>Con il virtual environment attivo, esegui:</p>
+
+    <div class="command"><code>python -m pip install --upgrade pip</code></div>
+
+    <p>Poi installa tutte le dipendenze:</p>
+
+    <div class="command"><code>python -m pip install -r requirements.txt</code></div>
+
+    <div class="note">
+      <strong>Questo è l'ultimo passaggio del setup.</strong><br>
+      Una volta terminata l'installazione, l'ambiente Python è pronto
+      per proseguire con il notebook.
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">5. In sintesi</div>
+  <div class="content">
+    <div class="steps">
+
+      <div class="step">
+        <div class="num">1</div>
+        <div>Crea il virtual environment.</div>
+      </div>
+
+      <div class="step">
+        <div class="num">2</div>
+        <div>Attiva il virtual environment.</div>
+      </div>
+
+      <div class="step">
+        <div class="num">3</div>
+        <div>Installa le librerie con <code>requirements.txt</code>.</div>
+      </div>
+
+    </div>
+
+    <div class="note">
+      <strong>Ora possiamo iniziare con Embeddings.ipynb.</strong>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+
+  <div class="name">Giuseppina Corsini</div>
+  <div>IBM Consulting FutureNow Center Italy</div>
+  <div>Junior Practitioner · Data Engineer · Business Intelligence</div>
+
+  <p>
+    <strong>Phone:</strong> 3420427639
+    &nbsp;·&nbsp;
+    <strong>E-mail:</strong>
+    <a href="mailto:Giuseppina.Corsini-CIC@ibm.com">
+      Giuseppina.Corsini-CIC@ibm.com
+    </a>
+  </p>
+
+  <div class="badges">
+    <a href="https://credentials.databricks.com/0e4b5b23-b514-48fb-a217-c2647703b76c#acc.TJ95vxjY"
+       title="Databricks Credential">
+      <img src="https://credentials.databricks.com/0e4b5b23-b514-48fb-a217-c2647703b76c#acc.TJ95vxjY"
+           alt="Databricks Credential">
+    </a>
+
+    <a href="https://learn.microsoft.com/en-us/users/giuseppinacorsini-6494/credentials/certification/data-analyst-associate?tab=credentials-tab"
+       title="Microsoft Data Analyst Associate">
+      <img src="https://learn.microsoft.com/en-us/users/giuseppinacorsini-6494/credentials/certification/data-analyst-associate?tab=credentials-tab"
+           alt="Microsoft Data Analyst Associate">
+    </a>
+
+    <a href="https://learn.microsoft.com/en-us/users/giuseppinacorsini-6494/credentials/certification/azure-data-fundamentals?tab=credentials-tab"
+       title="Microsoft Azure Data Fundamentals">
+      <img src="https://learn.microsoft.com/en-us/users/giuseppinacorsini-6494/credentials/certification/azure-data-fundamentals?tab=credentials-tab"
+           alt="Microsoft Azure Data Fundamentals">
+    </a>
+
+    <a href="https://www.credly.com/badges/1e18ec18-9358-4c3e-a18a-b553ff36fe78"
+       title="Credly Badge">
+      <img src="https://www.credly.com/badges/1e18ec18-9358-4c3e-a18a-b553ff36fe78"
+           alt="Credly Badge">
+    </a>
+  </div>
+
+</footer>
+
+</div>
+</body>
+</html>

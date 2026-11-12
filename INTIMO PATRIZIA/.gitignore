@@ -1,0 +1,17 @@
+node_modules/
+functions/node_modules/
+dist/
+.firebase/
+.taste-skill/
+.env
+.env.local
+.env.*.local
+*-debug.log
+*.log
+service-account*.json
+*serviceAccount*.json
+test-results/
+playwright-report/
+output/
+tmp/
+.DS_Store

@@ -1,0 +1,335 @@
+[
+  {
+    "cell": 26,
+    "title": "Provare le regole sulle quattro spese",
+    "purpose": "Controllare la funzione verifica_regole con i dati dei file JSON, senza chiedere al modello di decidere e senza avviare tutto il workflow.",
+    "steps": [
+      "Il for esterno prende un claim alla volta da CLAIMS_DB. dipendente e policy ripartono da None per evitare di riutilizzare i dati della spesa precedente.",
+      "Un for cerca in EMPLOYEES_DB la persona con employee_id uguale a quello del claim; un altro cerca in POLICIES_DB la policy con expense_type uguale alla categoria del claim. Ogni break interrompe soltanto il ciclo di ricerca in cui si trova.",
+      "stato_test: ExpenseState crea il dizionario con employee_data, expense_data e policy_data. L'annotazione descrive il tipo; non avvia il grafo. {'status': 'OK', **dipendente} unisce status ai campi del dipendente; lo stesso avviene per claim e policy.",
+      "Il test presume che le corrispondenze esistano: con None, l'espansione ** provocherebbe un errore. Nei dati presenti esistono tutte.",
+      "verifica_regole(stato_test) chiama direttamente le regole. print legge deterministic_result e deterministic_reason nel dizionario restituito e li mostra accanto al claim_id."
+    ],
+    "result": "Gli output salvati mostrano: CLM001 APPROVABILE; CLM002 NON_APPROVABILE perché 240 EUR superano il massimo di 180 EUR; CLM003 NON_APPROVABILE perché receipt_id è null; CLM004 APPROVABILE. Nessuna delle quattro prove produce NECESSARIA_APPROVAZIONE.",
+    "remember": "Questa è una prova delle sole regole. Nei JSON approval_over coincide sempre con max_amount: oltre quella cifra la funzione rifiuta già la spesa. Perciò, con queste policy, il ramo che richiede approvazione umana non è raggiungibile."
+  },
+  {
+    "cell": 27,
+    "title": "Introduzione al Reviewer Agent",
+    "purpose": "Spiegare il ruolo del quarto agente: controllare che l'esito delle regole e la sua motivazione siano coerenti con i dati.",
+    "steps": [
+      "Il Reviewer deve restituire JSON con un giudizio di coerenza e una spiegazione. Non deve riscrivere le regole né concedere un'autorizzazione umana.",
+      "Agent-as-Tool significa che un agente intero viene racchiuso in un tool. Qui review_reimbursement_case rende richiamabile il Reviewer e reviewer_node collega quel tool al grafo principale."
+    ],
+    "result": "Prepara alla lettura delle celle 28-31, che costruiscono l'agente, il suo prompt, il tool e il nodo.",
+    "remember": "Il Reviewer controlla il ragionamento; il responsabile umano è un passaggio distinto."
+  },
+  {
+    "cell": 28,
+    "title": "Costruire la classe ReviewerAgent",
+    "purpose": "Definire la struttura riutilizzabile dell'agente che legge un caso e restituisce il messaggio del modello.",
+    "steps": [
+      "class ReviewerAgent definisce il progetto dell'agente; la docstring tra triple virgolette descrive il compito.",
+      "__init__(self, model, system='', checkpointer=None) costruisce l'oggetto: riceve il modello, istruzioni facoltative e un eventuale salvataggio dello stato. self indica l'oggetto; self.model e self.system conservano i valori.",
+      "La classe interna ReviewerState(TypedDict) descrive lo stato: messages è una lista di messaggi. Annotated[list[AnyMessage], operator.add] dice a LangGraph di sommare le liste, aggiungendo i nuovi messaggi alla cronologia.",
+      "StateGraph(ReviewerState) crea il grafo. add_node('llm', self.call_llm) registra il nodo senza eseguirlo; add_edge collega START → llm → END. compile(checkpointer=checkpointer) prepara il grafo eseguibile in self.graph. Il checkpointer predefinito è None.",
+      "call_llm(self, state) legge state['messages']. Se self.system non è vuoto, mette un SystemMessage davanti ai messaggi; altrimenti usa la lista ricevuta. self.model.invoke(messages) chiama il modello.",
+      "return {'messages': [response]} restituisce l'aggiornamento; operator.add aggiunge la risposta alla cronologia. Il print conferma la definizione della classe, non l'analisi di un caso."
+    ],
+    "result": "È disponibile una classe con due metodi: __init__ costruisce il piccolo grafo; call_llm effettua la chiamata al modello quando il grafo viene avviato.",
+    "remember": "Definire una classe è preparare lo strumento; creare l'oggetto e invocare il grafo sono operazioni successive."
+  },
+  {
+    "cell": 29,
+    "title": "Dare istruzioni al Reviewer e creare l'oggetto",
+    "purpose": "Stabilire cosa deve controllare il Reviewer e quale formato deve avere la sua risposta.",
+    "steps": [
+      "reviewer_system è una stringa su più righe. È il system prompt: il testo che dice al modello quale ruolo seguire.",
+      "Il prompt annuncia gli input: dipendente, claim, policy, esito e motivazione delle regole. Chiede di verificare se esito e motivazione corrispondano a quei dati e di segnalare incongruenze o informazioni mancanti.",
+      "Il prompt vieta al Reviewer di cambiare l'esito, inventare regole nuove o approvare il rimborso. Chiede solo un oggetto JSON con coerente, booleano true o false, e osservazioni, una breve stringa. Vietando testo fuori dal JSON cerca di rendere la risposta leggibile automaticamente.",
+      "ReviewerAgent(model=llm, system=reviewer_system) crea un oggetto concreto della classe della cella 28. Chiama quindi __init__, passa il modello già creato prima e passa il prompt. Il risultato viene conservato nella variabile reviewer_agent.",
+      "Non viene passato checkpointer, quindi resta None. print conferma che l'oggetto è stato creato."
+    ],
+    "result": "reviewer_agent contiene un piccolo grafo pronto per esaminare casi. In questa cella il modello non riceve ancora un caso.",
+    "remember": "Un prompt è un'istruzione al modello, non una garanzia assoluta. Le celle successive controllano la forma della risposta; gli output mostrano che il giudizio può comunque essere sbagliato."
+  },
+  {
+    "cell": 30,
+    "title": "Esporre il Reviewer come tool",
+    "purpose": "Trasformare l'agente Reviewer in un'operazione richiamabile con un unico argomento JSON.",
+    "steps": [
+      "@tool è un decoratore: trasforma la funzione seguente in un tool di LangChain, con nome, descrizione e argomenti. La docstring spiega il tool e indica input e output.",
+      "review_reimbursement_case(case_json: str) -> str riceve una stringa che contiene il caso in formato JSON e promette di restituire una stringa. Le annotazioni str descrivono i tipi; qui non decodificano da sole il JSON.",
+      "HumanMessage(content=case_json) crea il messaggio da inviare all'agente. HumanMessage è il tipo del messaggio, anche se in questo punto il contenuto viene preparato dal codice.",
+      "reviewer_agent.graph.invoke({'messages': [HumanMessage(...)]}) avvia il grafo interno: esegue call_llm, aggiunge la risposta e termina. La variabile risultato contiene lo stato finale di quel piccolo grafo.",
+      "risultato['messages'][-1] seleziona l'ultimo messaggio della lista: -1 in Python indica l'ultimo elemento. .content legge il suo contenuto; str(...) lo trasforma in stringa e return lo restituisce.",
+      "Il tool non esegue json.loads e non verifica ancora che il testo del modello sia JSON corretto. Questo controllo verrà fatto da reviewer_node. print conferma la disponibilità del tool."
+    ],
+    "result": "review_reimbursement_case può essere richiamato con .invoke({'case_json': ...}). Dietro la singola chiamata al tool viene eseguito il Reviewer Agent.",
+    "remember": "Agent-as-Tool non significa che l'agente diventa umano: significa che un agente viene incapsulato dentro un tool."
+  },
+  {
+    "cell": 31,
+    "title": "Collegare la revisione allo stato principale",
+    "purpose": "Inviare al Reviewer i dati del workflow, controllare la risposta e salvare giudizio, osservazioni o errore.",
+    "steps": [
+      "reviewer_node(state: ExpenseState) -> dict riceve lo stato principale e restituisce i campi da aggiornare. Il dizionario caso raccoglie dipendente, spesa, policy, risultato e motivazione delle regole. state.get(...) restituisce None se il campo manca.",
+      "Nel try, json.dumps(caso, ensure_ascii=False) converte il caso in testo JSON con accenti leggibili. review_reimbursement_case.invoke({'case_json': ...}) chiama il tool e riceve il testo del Reviewer.",
+      "json.loads(risposta) converte il testo in oggetto Python. JSON malformato, testo aggiuntivo o recinzioni Markdown possono causare un errore.",
+      "Tre isinstance verificano che l'oggetto sia dict, coerente sia bool e osservazioni sia str. In caso contrario raise ValueError segnala l'errore. JSON true/false diventano True/False; la stringa 'true' è invalida. Questi controlli verificano il formato, non la correttezza del giudizio.",
+      "Se i controlli passano, return salva reviewer_coerente e reviewer_output. Anche False è formalmente valido: significa incoerenza dichiarata.",
+      "except Exception as errore gestisce gli errori del try: salva reviewer_coerente = None, un messaggio con l'eccezione e errori aggiornati. state.get('errori', []) + [nuovo_errore] conserva i precedenti e aggiunge il nuovo. Il print conferma la definizione."
+    ],
+    "result": "Il nodo produce una revisione utilizzabile dal routing oppure registra che la revisione non è disponibile.",
+    "remember": "False significa giudizio di incoerenza; None significa revisione non disponibile. Entrambi impediscono l'approvazione finale, perché quel nodo richiede esattamente True."
+  },
+  {
+    "cell": 32,
+    "title": "Introduzione alla domanda di chiarimento",
+    "purpose": "Spiegare come il workflow reagisce quando il Request Agent non ha estratto tutti i dati necessari.",
+    "steps": [
+      "Il nodo usa nomi leggibili per l'utente, mette il grafo in pausa con interrupt() e attende una risposta.",
+      "Alla ripresa aggiunge la risposta alla richiesta originale e torna al Request Agent, che deve reinterpretare il testo completo."
+    ],
+    "result": "Introduce chiarimento_node nella cella 33.",
+    "remember": "Il chiarimento raccoglie informazioni sulla richiesta; non decide se rimborsare la spesa."
+  },
+  {
+    "cell": 33,
+    "title": "Mettere in pausa e chiedere i dati mancanti",
+    "purpose": "Costruire una domanda comprensibile e aggiornare la richiesta quando arriva la risposta dell'utente.",
+    "steps": [
+      "chiarimento_node legge missing_info con .get(..., []); etichette traduce le chiavi interne in frasi comprensibili: employee_id, claim_id, expense_date e intent_rimborso.",
+      "La list comprehension percorre i campi mancanti e usa etichette.get(campo, campo): se manca una traduzione mantiene la chiave. ', '.join(...) unisce le frasi nella domanda.",
+      "interrupt riceve tipo = 'chiarimento', domanda e campi_mancanti. Sospende il grafo; non legge da input(). Il checkpointer conserva la richiesta finché arriva Command(resume=...) sullo stesso thread.",
+      "Alla ripresa, interrupt restituisce il valore resume. str(risposta).strip() lo converte in testo eliminando spazi esterni; non controlla il tipo, quindi anche un dizionario diventa testo.",
+      "richiesta_completa aggiunge a input_originale una nuova riga, 'Chiarimento dell'utente:' e la risposta. Il nodo non inserisce direttamente ID o data: il Request Agent li dovrà estrarre.",
+      "return aggiorna input_originale, svuota missing_info e imposta awaiting_clarification a False. Il grafo torna a request; un dato ancora mancante può produrre un altro chiarimento."
+    ],
+    "result": "Prima della risposta si ottiene una pausa; dopo la ripresa si ottiene un testo completo da reinterpretare. Se mancano ancora dati, il Request Agent può chiedere un altro chiarimento.",
+    "remember": "Command(resume=...) deve usare lo stesso thread_id della richiesta in pausa. Una ripresa viene consegnata al nodo effettivamente sospeso, non al nodo che ci si aspettava di raggiungere."
+  },
+  {
+    "cell": 34,
+    "title": "Introduzione all'approvazione umana",
+    "purpose": "Descrivere il passaggio in cui un responsabile può accettare o rifiutare una spesa che le regole richiedono di valutare manualmente.",
+    "steps": [
+      "Il passaggio è destinato ai casi con deterministic_result = NECESSARIA_APPROVAZIONE e revisione coerente.",
+      "Alla ripresa viene richiesto un vero booleano True o False nel campo approvato; una risposta con formato diverso viene indicata come NON_VALIDA."
+    ],
+    "result": "Introduce il nodo della cella 35.",
+    "remember": "L'esistenza del nodo non garantisce che i dati attuali lo raggiungano. Nei JSON del notebook, soglia di approvazione e massimo coincidono."
+  },
+  {
+    "cell": 35,
+    "title": "Raccogliere la decisione del responsabile",
+    "purpose": "Sospendere il workflow per una decisione umana e salvare la risposta in un formato uniforme.",
+    "steps": [
+      "approvazione_umana_node recupera expense_data con .get(..., {}). Passa a interrupt tipo, domanda, claim_id, importo, valuta, esito preliminare, motivazione e revisione. I .get restituiscono None se un campo manca.",
+      "La pausa attende Command(resume={'approvato': True/False, 'nota': ...}) sullo stesso thread. Alla ripresa quel valore diventa risposta.",
+      "Il controllo richiede un dict e un bool nel campo approvato. Con or, se il primo controllo fallisce il secondo non viene valutato. Stringhe come 'False', numeri o campo assente non sono validi.",
+      "Una risposta invalida restituisce human_decision = NON_VALIDA e una spiegazione; il router farà ripetere la domanda.",
+      "str(risposta.get('nota') or '').strip() normalizza la nota facoltativa; or None rende None una nota vuota.",
+      "'APPROVATO' if risposta['approvato'] else 'RIFIUTATO' sceglie il testo in base al booleano. return salva human_decision e human_note; la risposta finale viene costruita da un altro nodo."
+    ],
+    "result": "Il nodo restituisce APPROVATO, RIFIUTATO oppure NON_VALIDA, con una nota eventuale.",
+    "remember": "La decisione del responsabile viene presa soltanto se l'esecuzione arriva davvero a questo nodo. Un dizionario con approvato non basta, da solo, a dimostrare che il nodo sia stato eseguito."
+  },
+  {
+    "cell": 36,
+    "title": "Introduzione alla risposta conclusiva",
+    "purpose": "Spiegare come il workflow riunisce regole, revisione ed eventuale decisione umana in una risposta leggibile.",
+    "steps": [
+      "Il nodo deve gestire dati insufficienti, approvazione automatica, rifiuto ed eventuale decisione del responsabile.",
+      "Scrive tre campi nello stato: esito, motivazione e risposta_finale."
+    ],
+    "result": "Prepara la lettura dei rami della funzione nella cella 37.",
+    "remember": "L'esito finale può essere diverso dal risultato preliminare delle regole, perché viene controllata anche la revisione."
+  },
+  {
+    "cell": 37,
+    "title": "Scegliere l'esito finale e scrivere la motivazione",
+    "purpose": "Trasformare lo stato del caso in una risposta motivata, rispettando un ordine preciso di controlli.",
+    "steps": [
+      "risposta_finale_node legge risultato delle regole, giudizio del Reviewer, decisione umana e motivazione. .get(..., '') usa una motivazione vuota se manca; claim_id or 'non indicato' fornisce un identificativo leggibile.",
+      "La catena if/elif/else esegue solo il primo ramo vero, quindi l'ordine conta. Se risultato è DATI_INSUFFICIENTI, conserva esito e motivazione delle regole.",
+      "Se risultato non è APPROVABILE, NON_APPROVABILE o NECESSARIA_APPROVAZIONE, produce DATI_INSUFFICIENTI con la motivazione già nello stato o un testo di ripiego. Include il caso di risultato None.",
+      "Se revisione_ok is not True, produce DATI_INSUFFICIENTI e aggiunge reviewer_output. Richiede esattamente True: False e None bloccano anche un rifiuto corretto delle regole.",
+      "Con revisione confermata, NON_APPROVABILE mantiene il rifiuto; APPROVABILE mantiene l'approvazione e aggiunge la frase sull'approvazione automatica.",
+      "Resta il caso NECESSARIA_APPROVAZIONE: human_decision APPROVATO produce APPROVABILE; RIFIUTATO produce NON_APPROVABILE. Altrimenti resta NECESSARIA_APPROVAZIONE, in attesa di una decisione valida.",
+      "L'if separato aggiunge human_note solo quando risultato era NECESSARIA_APPROVAZIONE, decisione è APPROVATO/RIFIUTATO e nota non è vuota. Le tre condizioni and devono valere insieme.",
+      "return salva esito, motivazione e risposta_finale. Una f-string li unisce con claim_id; la frase è costruita dal codice, senza una nuova chiamata al modello."
+    ],
+    "result": "Si ottiene una risposta finale determinata dai campi già presenti nello stato. Negli output, CLM003 passa da NON_APPROVABILE nelle regole a DATI_INSUFFICIENTI nel finale proprio perché reviewer_coerente è False.",
+    "remember": "Prima si verifica che i dati e la revisione consentano una conclusione; solo dopo si applicano approvazione automatica, rifiuto o decisione umana."
+  },
+  {
+    "cell": 38,
+    "title": "Introduzione alle scelte di percorso",
+    "purpose": "Spiegare che il workflow può scegliere il prossimo nodo in base ai valori dello stato.",
+    "steps": [
+      "Le funzioni leggono lo stato dopo Request, Regole, Reviewer e approvazione umana, quindi restituiscono il nome del passo successivo.",
+      "Permettono di chiedere un chiarimento, concludere quando mancano dati, chiedere la decisione del responsabile o ripetere una risposta umana invalida."
+    ],
+    "result": "Introduce le funzioni della cella 39.",
+    "remember": "Un router è un cartello che indica il prossimo nodo; non esegue da solo quel nodo."
+  },
+  {
+    "cell": 39,
+    "title": "Definire i quattro router",
+    "purpose": "Restituire il nome del nodo successivo, senza chiamare modelli e senza cambiare direttamente i dati della richiesta.",
+    "steps": [
+      "Le quattro funzioni ricevono ExpenseState e restituiscono il nome del prossimo nodo, come indica -> str. Non modificano lo stato e non eseguono quel nodo.",
+      "dopo_request: awaiting_clarification vero → chiarimento; altrimenti esito DATI_INSUFFICIENTI → risposta_finale; negli altri casi → employee. Il chiarimento ha precedenza se entrambe le condizioni fossero vere.",
+      "dopo_regole: risultato APPROVABILE, NON_APPROVABILE o NECESSARIA_APPROVAZIONE → reviewer. Ogni altro valore, incluso None o DATI_INSUFFICIENTI, → risposta_finale. Anche i rifiuti vengono revisionati.",
+      "dopo_reviewer: reviewer_coerente is True e risultato NECESSARIA_APPROVAZIONE → approvazione_umana. Altrimenti → risposta_finale. L'insieme con un solo elemento equivale qui a controllare quel risultato.",
+      "dopo_approvazione: human_decision NON_VALIDA → approvazione_umana, per ripetere la domanda; ogni altro valore → risposta_finale. Il nodo finale gestirà anche la decisione mancante.",
+      "I .get permettono di leggere stati incompleti senza KeyError. Il print conferma la definizione dei router."
+    ],
+    "result": "Sono disponibili quattro funzioni che sceglierebbero correttamente i percorsi sulla base dei valori ricevuti.",
+    "remember": "Un router può funzionare correttamente anche se i dati prodotti dal modello sono sbagliati: seguirà comunque i valori effettivamente scritti nello stato."
+  },
+  {
+    "cell": 40,
+    "title": "Provare le scelte di percorso con stati preparati",
+    "purpose": "Verificare i router con dieci esempi controllati, senza eseguire il workflow completo.",
+    "steps": [
+      "prove_routing contiene tuple con nome del test, funzione, piccolo stato preparato e nodo atteso. La funzione viene conservata come oggetto, poi chiamata nel ciclo.",
+      "Tre casi provano Request: dati mancanti → chiarimento, errore → finale, dati completi → employee. Due provano Regole: risultato valido → reviewer, dati insufficienti → finale.",
+      "Tre casi provano Reviewer: revisione True e approvazione richiesta → umano; rifiuto coerente → finale; revisione False → finale. Due provano la decisione umana: NON_VALIDA → ripetizione, APPROVATO → finale.",
+      "Il for scompone ogni tupla; funzione(stato) produce ottenuto. L'espressione condizionale sceglie il segno di successo se ottenuto == atteso, altrimenti quello di errore. print mostra il confronto.",
+      "Non c'è assert: una differenza sarebbe stampata ma non bloccherebbe il notebook. Non vengono chiamati modelli né eseguite vere pause."
+    ],
+    "result": "Tutte e dieci le prove salvate mostrano il segno di successo e il nodo ottenuto coincide con quello atteso.",
+    "remember": "Queste prove verificano le scelte sui dizionari preparati. Non dimostrano che CLM002 raggiunga davvero il percorso di approvazione umana nel workflow completo."
+  },
+  {
+    "cell": 41,
+    "title": "Introduzione al grafo principale",
+    "purpose": "Spiegare come agenti, regole, domande e risposta finale vengono collegati in un unico processo.",
+    "steps": [
+      "I collegamenti fissi impongono una sequenza; quelli condizionali scelgono un percorso leggendo lo stato.",
+      "MemorySaver conserva lo stato durante le pause, così una richiesta può riprendere dal proprio thread. La cella successiva costruisce il grafo e quella dopo lo mostra."
+    ],
+    "result": "Introduce le celle 42 e 43.",
+    "remember": "Il grafo principale coordina i passi. I piccoli grafi degli agenti svolgono i singoli compiti."
+  },
+  {
+    "cell": 42,
+    "title": "Collegare tutti i nodi e compilare il workflow",
+    "purpose": "Costruire l'intero processo di valutazione del rimborso.",
+    "steps": [
+      "StateGraph(ExpenseState) crea la descrizione del grafo principale.",
+      "Gli add_node registrano nome e funzione: request/interpreta_richiesta, chiarimento/chiarimento_node, employee/employee_node, claims/claims_node, regole/verifica_regole, reviewer/reviewer_node, approvazione_umana/approvazione_umana_node, risposta_finale/risposta_finale_node. Non le eseguono subito.",
+      "add_edge(START, 'request') stabilisce il punto iniziale. add_conditional_edges dopo request usa dopo_request e una mappa nome → nodo per scegliere chiarimento, employee o finale.",
+      "add_edge('chiarimento', 'request') fa reinterpretare il testo aggiornato dopo la ripresa. Gli archi fissi employee → claims → regole impongono recupero dati e controlli.",
+      "Le conditional edges dopo regole usano dopo_regole per scegliere reviewer/finale; dopo reviewer usano dopo_reviewer per scegliere umano/finale; dopo approvazione usano dopo_approvazione per ripetere la domanda o concludere.",
+      "add_edge('risposta_finale', END) termina il processo. compile(checkpointer=MemorySaver()) prepara expense_graph eseguibile, senza valutare un claim.",
+      "MemorySaver conserva in memoria lo stato delle pause associate a thread_id. Consente la ripresa ma non è un archivio permanente su disco."
+    ],
+    "result": "expense_graph può essere avviato con .invoke(stato_iniziale, config=...) e ripreso con .invoke(Command(resume=...), config=...).",
+    "remember": "Il percorso tipico è request → employee → claims → regole → reviewer → risposta_finale. Chiarimenti e approvazione aggiungono pause o ritorni quando i router li selezionano."
+  },
+  {
+    "cell": 43,
+    "title": "Mostrare il diagramma del workflow",
+    "purpose": "Visualizzare i nodi e i collegamenti del grafo per vedere l'organizzazione del processo.",
+    "steps": [
+      "from IPython.display import Image, display importa gli strumenti con cui un notebook può mostrare un'immagine.",
+      "expense_graph.get_graph() recupera una rappresentazione visualizzabile del grafo già compilato.",
+      ".draw_mermaid_png() genera un'immagine PNG del diagramma descritto con Mermaid. Image(...) prepara quell'immagine per il notebook e display(...) la mostra nell'output.",
+      "Questa operazione disegna la struttura. Non avvia una richiesta di rimborso e non modifica gli esiti."
+    ],
+    "result": "Il notebook contiene l'output immagine del diagramma. Il testo salvato '<IPython.core.display.Image object>' identifica l'oggetto immagine e non è un errore del rimborso.",
+    "remember": "Il diagramma mostra tutti i percorsi previsti, anche quelli che i dati attuali non riescono a raggiungere."
+  },
+  {
+    "cell": 44,
+    "title": "Introduzione ai test completi e alle pause",
+    "purpose": "Annunciare i casi che si vorrebbero verificare avviando l'intero workflow.",
+    "steps": [
+      "Descrive CLM001 per approvazione automatica, CLM003 per rifiuto senza ricevuta, CLM002 per una presunta approvazione umana poi negata e una richiesta senza data per il chiarimento.",
+      "Spiega che ogni nuova prova usa un thread_id differente, mentre una ripresa deve riutilizzare il thread_id della prova sospesa.",
+      "Va distinta l'intenzione dal risultato: negli output CLM003 termina con DATI_INSUFFICIENTI e CLM002 si ferma prima in chiarimento. Inoltre le policy correnti non permettono a CLM002 di richiedere approvazione umana."
+    ],
+    "result": "Introduce le celle 45-49, che mostrano il comportamento effettivo salvato nel notebook.",
+    "remember": "Per sapere cosa è successo, bisogna leggere stato e output, non soltanto il titolo o il commento del test."
+  },
+  {
+    "cell": 45,
+    "title": "Eseguire i casi CLM001 e CLM003 dall'inizio alla fine",
+    "purpose": "Controllare come i diversi nodi lavorano insieme su una spesa conforme e su una spesa senza ricevuta.",
+    "steps": [
+      "casi_test contiene due tuple con claim_id e richiesta italiana per CLM001/CLM003. Le stringhe adiacenti sono unite da Python; entrambe indicano E001 e la data 2026-10-08.",
+      "Il for prepara config_test con configurable.thread_id. uuid4() genera un identificativo casuale; .hex lo rende testo esadecimale. Ogni prova ha uno stato indipendente.",
+      "expense_graph.invoke({'input_originale': richiesta, 'errori': []}, config=config_test) avvia tutto il workflow, inclusi i modelli. I nodi aggiungono gli altri campi.",
+      "I print mostrano claim, risultato delle regole e booleano del Reviewer. .get restituisce None se manca un campo.",
+      "Se __interrupt__ esiste, [0].value legge il contenuto della prima pausa; altrimenti stampa risposta_finale. Non c'è assert: vengono mostrati gli esiti effettivi."
+    ],
+    "result": "CLM001: regole APPROVABILE, Reviewer True, finale APPROVABILE con approvazione automatica. CLM003: regole NON_APPROVABILE, Reviewer False, finale DATI_INSUFFICIENTI. Nelle osservazioni di CLM003 il Reviewer scrive però che la ricevuta mancante rende il rifiuto coerente: quel testo contraddice il suo booleano False.",
+    "remember": "Il codice crede al campo booleano del Reviewer. Per questo CLM003 non termina con il rifiuto previsto dal commento, pur avendo regole e spiegazione coerenti. È una debolezza emersa nel test, non qualcosa che devi far tornare a forza nella tua testa."
+  },
+  {
+    "cell": 46,
+    "title": "Avviare CLM002 e osservare la pausa effettiva",
+    "purpose": "Avviare una richiesta per l'hotel di Sara Rossi e conservare la configurazione per riprenderla dopo una pausa.",
+    "steps": [
+      "richiesta_clm002 indica E002, CLM002, hotel da 240 EUR e data 2026-10-08. config_clm002 crea un nuovo thread_id con uuid4().hex, da riutilizzare nella cella 47.",
+      "expense_graph.invoke avvia la richiesta con errori vuota. I print leggono risultato, motivazione e giudizio del Reviewer.",
+      "if __interrupt__ controlla qualunque pausa. La frase fissa 'Workflow in pausa per approvazione:' non verifica il tipo dell'interruzione.",
+      "json.dumps del payload usa indent=2 per i rientri e ensure_ascii=False per gli accenti. Il ramo else stamperebbe risposta finale ed errori se non ci fosse pausa."
+    ],
+    "result": "L'output salvato mostra deterministic_result = None, deterministic_reason = None e reviewer_coerente = None. Il payload ha tipo = 'chiarimento' e chiede l'ID della spesa. Quindi il workflow è fermo prima delle regole e non sta attendendo approvazione umana, anche se il print lo chiama così. La richiesta contiene già CLM002, ma il Request Agent non lo ha estratto correttamente in questa esecuzione.",
+    "remember": "CLM002 costa 240 EUR e il massimo hotel è 180 EUR: anche con estrazione corretta, le regole attuali lo rifiuterebbero. Per ottenere un caso di approvazione umana serve una soglia più bassa del massimo e un importo tra le due cifre."
+  },
+  {
+    "cell": 47,
+    "title": "Riprendere CLM002: il rifiuto inviato non diventa decisione umana",
+    "purpose": "Tentare di riprendere la richiesta sospesa usando un dizionario di rifiuto del responsabile e verificare cosa succede realmente.",
+    "steps": [
+      "Command(resume={'approvato': False, 'nota': ...}) prepara una risposta alla pausa attiva. invoke usa config_clm002, quindi riprende il medesimo thread.",
+      "La pausa della cella 46 è nel chiarimento: il dizionario arriva a chiarimento_node, che lo trasforma in testo e lo aggiunge alla richiesta. Il Request Agent rilegge tutto. Non arriva al nodo di approvazione umana.",
+      "I print leggono human_decision, esito e risposta_finale; .get mostra None se un campo non è presente.",
+      "Il codice non controlla prima che tipo dell'interruzione sia approvazione_umana: l'atteso del test e il nodo realmente sospeso non coincidono."
+    ],
+    "result": "Negli output human_decision è None: nessuna decisione umana è stata registrata. Il finale è DATI_INSUFFICIENTI. Le osservazioni del Reviewer dicono che il NON_APPROVABILE è coerente perché 240 > 180, ma la revisione non ha confermato la coerenza. Il finale indica che il booleano non era True; questo print non mostra direttamente quale valore preciso abbia avuto.",
+    "remember": "Command(resume=...) non sceglie il nodo a cui inviare una risposta. Risponde alla pausa già attiva. Questo test non dimostra un'approvazione umana poi rifiutata."
+  },
+  {
+    "cell": 48,
+    "title": "Provare una richiesta senza data",
+    "purpose": "Verificare che la mancanza di un dato richiesto produca una domanda invece di una conclusione frettolosa.",
+    "steps": [
+      "config_chiarimento crea un altro thread_id indipendente con uuid4().hex. Questa configurazione verrà riutilizzata nella cella 49.",
+      "La richiesta iniziale indica E001, CLM001, treno e 110 EUR, ma omette la data. expense_graph.invoke avvia il workflow con quel testo e errori vuota.",
+      "print mostra missing_info. Se __interrupt__ esiste, il programma stampa il payload della prima pausa usando json.dumps con indentazione e caratteri leggibili.",
+      "Nel ramo else, che qui non viene eseguito nell'output salvato, stamperebbe risposta finale ed errori."
+    ],
+    "result": "L'output mostra missing_info = ['expense_date']. Il payload ha tipo = 'chiarimento' e domanda = 'Per valutare il rimborso, indica: la data della spesa.'. Questo è il comportamento previsto dal test.",
+    "remember": "La data viene richiesta perché è obbligatoria per l'interpretazione della richiesta. I file claims.json non contengono un campo data e verifica_regole non applica una regola temporale alla data estratta."
+  },
+  {
+    "cell": 49,
+    "title": "Fornire la data e completare il rimborso",
+    "purpose": "Riprendere il chiarimento della cella 48 con la data mancante e verificare che la richiesta venga reinterpretata.",
+    "steps": [
+      "Command(resume='La spesa è del 2026-10-08.') prepara la risposta testuale alla domanda di chiarimento.",
+      "expense_graph.invoke(..., config=config_chiarimento) riprende lo stesso thread. chiarimento_node aggiunge la frase a input_originale; l'arco chiarimento → request porta di nuovo al Request Agent.",
+      "Il Request Agent estrae la data dal testo aggiornato. Poi il grafo recupera dipendente, spesa e policy, applica le regole e passa dalla revisione fino al finale.",
+      "I print mostrano expense_date, deterministic_result e risposta_finale. L'ultimo if stamperebbe una nuova pausa se il grafo fosse ancora interrotto. Nell'output salvato non appare una nuova pausa."
+    ],
+    "result": "Data interpretata: 2026-10-08. Esito delle regole: APPROVABILE. Risposta finale: CLM001 APPROVABILE con approvazione automatica secondo la policy. La ripresa del chiarimento funziona in questa prova.",
+    "remember": "La risposta all'utente viene prima aggiunta al testo e poi interpretata dal Request Agent: non è la cella 49 a scrivere direttamente expense_date nello stato."
+  },
+  {
+    "cell": 50,
+    "title": "Cella finale vuota",
+    "purpose": "Non svolge alcuna operazione: è una cella di codice senza istruzioni.",
+    "steps": [
+      "La cella è presente nel notebook ma il suo campo source è vuoto.",
+      "Eseguirla non definisce funzioni, non cambia lo stato e non produce risultati."
+    ],
+    "result": "Nessun output e nessun effetto sul workflow.",
+    "remember": "Non c'è altro codice da decifrare in questa cella."
+  }
+]

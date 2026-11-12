@@ -1,0 +1,42 @@
+.admin-bulk-products{margin:2rem 0;min-width:0}
+.bulk-products-section{border-block:1px solid var(--admin-line);padding:1.4rem 0}
+.bulk-products-section>summary{cursor:pointer;font-size:1.1rem;font-weight:600;min-height:44px;display:list-item;align-content:center}
+.bulk-products-intro{max-width:82ch;margin:.8rem 0 1.5rem}
+.bulk-products-step{margin:1.7rem 0;min-width:0}
+.bulk-products-step h3,.bulk-products-plan h3{font-size:1rem;margin:0 0 .75rem;line-height:1.5}
+.bulk-products-step>.admin-small{max-width:82ch;margin:.6rem 0 1rem}
+.bulk-products-file-field{max-width:46rem;margin:.75rem 0 1rem}
+.bulk-products-file-field input[type=file]{display:block;width:100%;max-width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere}
+.bulk-products-file-field input[type=file]::file-selector-button{min-height:44px;padding:.5rem .75rem;margin-right:.65rem;border:1px solid var(--admin-line);background:var(--admin-white);color:var(--admin-ink);font:inherit;cursor:pointer}
+.bulk-products-plan{border:1px solid var(--admin-line);padding:clamp(1rem,2.5vw,1.5rem);margin:1.5rem 0;background:var(--admin-white);min-width:0}
+.bulk-products-counts{font-weight:600;font-size:.95rem;line-height:1.7;margin:.5rem 0}
+.bulk-products-plan>.admin-small{margin:.65rem 0;max-width:82ch}
+.bulk-products-items{padding-left:1.5rem;margin:1.3rem 0;line-height:1.65;overflow-wrap:anywhere}
+.bulk-products-item{padding:1rem 0 1.2rem;border-top:1px solid var(--admin-line)}
+.bulk-products-item::marker{font-weight:600;color:var(--admin-burgundy)}
+.bulk-products-item-title{font-weight:600;line-height:1.6;margin:0 0 .85rem}
+.bulk-products-item-id{margin:-.45rem 0 .85rem}
+.bulk-products-changes{margin:0;font-size:.9rem}
+.bulk-products-change+.bulk-products-change{margin-top:1rem}
+.bulk-products-change dt{font-weight:600;margin:0 0 .3rem}
+.bulk-products-change dd{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:.8rem;align-items:start;margin:0}
+.bulk-products-value{display:block;min-width:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.bulk-products-value-label{font-size:.8rem;color:var(--admin-muted)}
+.bulk-products-arrow{color:var(--admin-burgundy);font-size:1rem;line-height:1.5}
+.bulk-products-row-error{color:var(--admin-error);font-size:.9rem;line-height:1.7;margin:0}
+.bulk-products-item[data-state=error]::marker{color:var(--admin-error)}
+.bulk-products-confirm{background:var(--admin-sage);padding:1rem!important;margin:1rem 0;min-width:0}
+.bulk-products-confirm input{margin-top:.15rem}
+.bulk-products-confirm span{min-width:0;overflow-wrap:anywhere}
+.bulk-products-actions{display:flex;align-items:center;flex-wrap:wrap;gap:.8rem;margin:.8rem 0}
+.bulk-products-guide{margin:1.5rem 0}
+.bulk-products-guide>summary{display:list-item;min-height:44px;align-content:center;cursor:pointer;font-weight:600;font-size:.9rem}
+.bulk-products-guide ul{padding-left:1.4rem;margin:.5rem 0 1rem;max-width:84ch}
+.bulk-products-guide li+li{margin-top:.7rem}
+.bulk-products-guide code{font-size:.95em;overflow-wrap:anywhere}
+.admin-bulk-products .admin-form-feedback{margin:.8rem 0;max-width:90ch}
+.admin-bulk-products #bulk-products-error{color:var(--admin-error);font-weight:500}
+.admin-bulk-products [hidden]{display:none!important}
+.admin-bulk-products :is(button,input,summary,[tabindex="-1"]):focus-visible,.admin-bulk-products #bulk-products-error:focus{outline:3px solid var(--admin-burgundy);outline-offset:4px}
+.admin-bulk-products :is(button,input){touch-action:manipulation}
+@media(max-width:600px){.bulk-products-change dd{grid-template-columns:minmax(0,1fr);gap:.3rem}.bulk-products-arrow{display:none}.bulk-products-value-label{display:inline-block;min-width:3.2rem}.bulk-products-actions{align-items:stretch;flex-direction:column}.bulk-products-actions>.admin-button,.bulk-products-step>.admin-button{width:100%}.bulk-products-file-field input[type=file]{font-size:.85rem;padding:.65rem}.bulk-products-file-field input[type=file]::file-selector-button{display:block;margin-bottom:.6rem}.bulk-products-plan{padding:1rem .85rem}.bulk-products-items{padding-left:1.3rem}.bulk-products-confirm{padding:.85rem!important}}

@@ -1,0 +1,380 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Spark schema. Only the verified owner writes; browsing needs no account.
+    // categories/{id}: name,slug,description,order,published,image,
+    //   productCount<=5000,lastProductId (counter marker),updatedAt.
+    //   Published category fields, including these technical markers, are public.
+    // products/{id}: name,categoryId,description,price(nullable EUR),sizes,colors,
+    //   material,image,imageAlt,available,published,isDemo,order,updatedAt,
+    //   optional variantAvailability: map of size|colour to bool (max 100).
+    // productImages/{id}: base64,mime=image/webp,bytes<=307200,width,height,hash,updatedAt.
+    //   Photo content is never listable. Published real product + category required.
+    // categorySlugs/{slug}: categoryId. Private unique reservation.
+    // catalogMeta/inventory: categoryCount<=50,productCount<=5000,
+    //   lastCategoryId,lastProductId,updatedAt. Private counters and mutation markers.
+    // catalogMeta/revision: version(UUIDv4). Public, no counts or identity.
+    // catalogAccess/manager: owner-only get permission probe; never writable.
+    // customerProfiles/{uid}: private opt-in displayName, interests,
+    //   favoriteProductIds<=200, updatedAt. No collection queries or manager access.
+    // customerPersonalization/{uid}: optional session-personalization consent, enabled,
+    //   policyVersion,updatedAt. No navigation events or customer listings.
+    // Other collections and nested paths are denied.
+    function isManager() {
+      return request.auth != null
+        && request.auth.token.get('email_verified', false) == true
+        && request.auth.token.get('email', '') is string
+        && request.auth.token.email.trim().lower() == 'alessandroferrara01@libero.it';
+    }
+    function validId(value) {
+      return value is string && value.size() <= 80 && value.matches('[A-Za-z0-9_-]+');
+    }
+    function validMarker(value) { return value == '' || validId(value); }
+    function text(value, minimum, maximum) {
+      return value is string && value.size() >= minimum && value.size() <= maximum;
+    }
+    function uuid(value) {
+      return value is string && value.matches('[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}');
+    }
+    function fresh(data) { return data.updatedAt is timestamp && data.updatedAt == request.time; }
+    function boundedInteger(value, maximum) { return value is int && value >= 0 && value <= maximum; }
+    function validList(values) {
+      return values is list && values.size() <= 20
+        // Round-trip equality rejects non-string values and embedded separators.
+        // One expression validates all entries, keeping atomic writes under budget.
+        && (values.size() == 0 || (values.join('|').split('[|]') == values
+          && values.join('|').matches('[^|]{1,50}([|][^|]{1,50}){0,19}')));
+    }
+    function asset(value) {
+      return value is string && value.size() <= 250
+        && (value == '' || value.matches('/assets/[A-Za-z0-9_-]+(/[A-Za-z0-9_-]+)*[.](png|jpe?g|webp|avif|svg)'));
+    }
+    function categoryPath(id) { return /databases/$(database)/documents/categories/$(id); }
+    function productPath(id) { return /databases/$(database)/documents/products/$(id); }
+    function imagePath(id) { return /databases/$(database)/documents/productImages/$(id); }
+    function galleryPath(id, slot) {
+      let key = id + (slot == 1 ? '__1' : '__2');
+      return /databases/$(database)/documents/productGalleryImages/$(key);
+    }
+    function validGallerySlots(slots) {
+      return slots is list && slots.size() <= 2 && slots.toSet().size() == slots.size() && slots.hasOnly([1,2]);
+    }
+    function managedVariantLabels(values) {
+      return values.toSet().size() == values.size()
+        && (values.size() == 0 || (values.join('~').split('~') == values
+          && values.join('~').matches('[^|~]{1,50}(~[^|~]{1,50}){0,19}')));
+    }
+    function validVariantAvailability(data) {
+      let variants = data.get('variantAvailability', {});
+      let keyPattern = data.sizes.size() == 0 ? '[|][^|~]{1,50}'
+        : (data.colors.size() == 0 ? '[^|~]{1,50}[|]' : '[^|~]{1,50}[|][^|~]{1,50}');
+      // Map values and joined keys validate the whole bounded map without
+      // per-variant documents or rule reads. SDK validation additionally checks
+      // exact membership and accent/case-equivalent label duplicates.
+      return variants is map && variants.size() <= 100
+        && variants.values().hasOnly([true, false])
+        && (variants.size() == 0 || ((data.sizes.size() > 0 || data.colors.size() > 0)
+          && managedVariantLabels(data.sizes) && managedVariantLabels(data.colors)
+          && variants.keys().join('~').split('~') == variants.keys()
+          && variants.keys().join('~').matches('(' + keyPattern + ')(~(' + keyPattern + ')){0,99}')));
+    }
+    function slugPath(slug) { return /databases/$(database)/documents/categorySlugs/$(slug); }
+    function inventoryPath() { return /databases/$(database)/documents/catalogMeta/inventory; }
+    function revisionPath() { return /databases/$(database)/documents/catalogMeta/revision; }
+    function beforeCount(field) {
+      return exists(inventoryPath()) ? get(inventoryPath()).data.get(field, 0) : 0;
+    }
+    function revisionAdvanced() {
+      let path = revisionPath();
+      let next = getAfter(path).data;
+      let previous = exists(path) ? get(path).data : {};
+      // Missing documents still fail on the required version field. Cache the
+      // snapshots so gallery + variant + category moves fit the rule budget.
+      return uuid(next.version) && next.version != previous.get('version', 'initial');
+    }
+    function inventoryDelta(categoryDelta, productDelta) {
+      let path = inventoryPath();
+      let previous = exists(path) ? get(path).data : {};
+      let next = getAfter(path).data;
+      return next.categoryCount == previous.get('categoryCount', 0) + categoryDelta
+        && next.productCount == previous.get('productCount', 0) + productDelta
+        && next.updatedAt == request.time;
+    }
+    function publicCategory(id) {
+      return exists(categoryPath(id)) && get(categoryPath(id)).data.published == true;
+    }
+    function publicProduct(data) {
+      return data.published == true && data.isDemo == false && publicCategory(data.categoryId);
+    }
+    function validCategory(data) {
+      return data.keys().hasOnly(['name','slug','description','order','published','image','productCount','lastProductId','updatedAt'])
+        && text(data.name, 1, 100) && text(data.slug, 1, 100) && data.slug.matches('[a-z0-9]+(-[a-z0-9]+)*')
+        && text(data.description, 0, 1500) && boundedInteger(data.order, 9999)
+        && data.published is bool && asset(data.image) && boundedInteger(data.productCount, 5000)
+        && validMarker(data.lastProductId) && fresh(data);
+    }
+    function reservedSlug(slug, categoryId) {
+      return existsAfter(slugPath(slug)) && getAfter(slugPath(slug)).data.categoryId == categoryId;
+    }
+    function categoryCounterChange(id, data) {
+      let previousCount = resource.data.get('productCount', 0);
+      let marker = data.lastProductId;
+      return (data.productCount == previousCount && marker == resource.data.get('lastProductId', ''))
+        || (validId(marker) && data.productCount == previousCount + 1
+          && existsAfter(productPath(marker)) && getAfter(productPath(marker)).data.categoryId == id
+          && (!exists(productPath(marker)) || get(productPath(marker)).data.categoryId != id))
+        || (validId(marker) && data.productCount == previousCount - 1
+          && exists(productPath(marker)) && get(productPath(marker)).data.categoryId == id
+          && (!existsAfter(productPath(marker)) || getAfter(productPath(marker)).data.categoryId != id));
+    }
+    function parentCountChange(categoryId, productId, delta) {
+      let path = categoryPath(categoryId);
+      let previous = get(path).data;
+      let next = getAfter(path).data;
+      // Required fields on both snapshots retain the existing-parent check.
+      return next.productCount == previous.get('productCount', 0) + delta
+        && next.lastProductId == productId;
+    }
+    function validProduct(data, productId, previousSlots) {
+      return data.keys().hasOnly(['name','categoryId','description','price','sizes','colors','material','image','imageAlt','available','published','isDemo','order','updatedAt','sku','brand','featured','newArrival','gallerySlots','archived','archivedAt','variantAvailability'])
+        && text(data.name, 1, 160) && validId(data.categoryId) && text(data.description, 0, 3000)
+        && (data.price == null || (data.price is number && data.price >= 0 && data.price <= 100000 && math.abs(data.price * 100 - math.round(data.price * 100)) < 0.000001))
+        && validList(data.sizes) && validList(data.colors) && validVariantAvailability(data) && text(data.material, 0, 200)
+        && (asset(data.image) || (data.image == '/api/images/' + productId && existsAfter(imagePath(productId))))
+        && text(data.imageAlt, data.image == '' ? 0 : 1, 250)
+        && data.available is bool && data.published is bool && data.isDemo is bool
+        && data.get('archived', false) is bool
+        && (data.get('archived', false)
+          ? (data.published == false && data.get('archivedAt', null) is timestamp)
+          : data.get('archivedAt', null) == null)
+        && text(data.get('sku',''), 0, 80) && text(data.get('brand',''), 0, 80)
+        && data.get('featured', false) is bool && data.get('newArrival', false) is bool
+        && validGallerySlots(data.get('gallerySlots', []))
+        && (!(1 in data.get('gallerySlots', []) || 1 in previousSlots) || ((1 in data.get('gallerySlots', [])) == existsAfter(galleryPath(productId, 1))))
+        && (!(2 in data.get('gallerySlots', []) || 2 in previousSlots) || ((2 in data.get('gallerySlots', [])) == existsAfter(galleryPath(productId, 2))))
+        && boundedInteger(data.order, 9999) && fresh(data) && existsAfter(categoryPath(data.categoryId));
+    }
+    function validImageContent(data) {
+      return data.base64 is string && data.base64.size() > 0 && data.base64.size() <= 409600
+        && data.base64.size() % 4 == 0 && data.base64.matches('[A-Za-z0-9+/]+={0,2}')
+        && data.mime == 'image/webp' && data.bytes is int && data.bytes > 0 && data.bytes <= 307200
+        && data.base64.size() == ((data.bytes - data.bytes % 3) / 3 + (data.bytes % 3 == 0 ? 0 : 1)) * 4
+        && data.width is int && data.width >= 16 && data.width <= 4096
+        && data.height is int && data.height >= 16 && data.height <= 4096
+        && data.hash is string && data.hash.matches('[a-f0-9]{64}') && fresh(data);
+    }
+    function validImage(data) {
+      return data.keys().hasOnly(['base64','mime','bytes','width','height','hash','updatedAt']) && validImageContent(data);
+    }
+    function validGalleryImage(data, imageId) {
+      return data.keys().hasOnly(['base64','mime','bytes','width','height','hash','updatedAt','productId','slot','alt'])
+        && validImageContent(data) && validId(data.productId) && data.slot is int && data.slot in [1,2]
+        && imageId == data.productId + (data.slot == 1 ? '__1' : '__2') && text(data.alt, 1, 250);
+    }
+    function hour(value) {
+      return value is string && value.size() <= 40
+        && value.matches('(|Chiuso|([01][0-9]|2[0-3]):[0-5][0-9]-([01][0-9]|2[0-3]):[0-5][0-9](, ([01][0-9]|2[0-3]):[0-5][0-9]-([01][0-9]|2[0-3]):[0-5][0-9])?)');
+    }
+    function validShopSettings(data) {
+      return data.keys().hasAll(['legalName','streetNumber','street','postalCode','city','province','country','phoneDisplay','phoneHref','email','whatsappNumber','seoTitle','seoDescription','hours','updatedAt'])
+        && data.keys().hasOnly(['legalName','streetNumber','street','postalCode','city','province','country','phoneDisplay','phoneHref','email','whatsappNumber','seoTitle','seoDescription','hours','updatedAt'])
+        && text(data.legalName,0,160) && text(data.streetNumber,0,20) && text(data.street,0,160)
+        && text(data.postalCode,0,12) && text(data.city,0,80) && text(data.province,0,30)
+        && (data.country == '' || (data.country is string && data.country.matches('[A-Z]{2}')))
+        && text(data.phoneDisplay,0,40) && (data.phoneHref == '' || (data.phoneHref is string && data.phoneHref.matches('tel:[+][0-9]{8,15}')))
+        && text(data.email,0,254) && (data.email == '' || data.email.matches('[^ @]+@[^ @]+[.][^ @]+'))
+        && (data.whatsappNumber == '' || (data.whatsappNumber is string && data.whatsappNumber.matches('[0-9]{8,15}')))
+        && text(data.seoTitle,0,80) && text(data.seoDescription,0,200)
+        && data.hours is list && data.hours.size() == 7
+        && hour(data.hours[0]) && hour(data.hours[1]) && hour(data.hours[2]) && hour(data.hours[3])
+        && hour(data.hours[4]) && hour(data.hours[5]) && hour(data.hours[6]) && fresh(data);
+    }
+    function campaignIds(values) {
+      return values is list && values.size() <= 12 && values.toSet().size() == values.size()
+        && (values.size() == 0 || (values.join('|').split('[|]') == values
+          && values.join('|').matches('[A-Za-z0-9_-]{1,80}([|][A-Za-z0-9_-]{1,80}){0,11}')));
+    }
+    function campaignDate(value) {
+      return value == null || (value is timestamp && value >= timestamp.date(2000,1,1) && value < timestamp.date(2101,1,1));
+    }
+    function campaignLink(data) {
+      return (data.ctaLabel == '' && data.ctaPath == '')
+        || (text(data.ctaLabel,1,80) && text(data.ctaPath,1,300)
+          && data.ctaPath.matches('/(index|catalogo|contatti|chi-siamo|gallery)[.]html([?][A-Za-z0-9_=%&.,+-]*)?(#[A-Za-z0-9_-]*)?')
+          && !data.ctaPath.lower().matches('.*%(0[0-9a-f]|1[0-9a-f]|7f|2f|5c).*'));
+    }
+    function validCampaign(data) {
+      return data.keys().hasAll(['kind','title','body','startAt','endAt','categoryId','productIds','ctaLabel','ctaPath','image','imageAlt','published','updatedAt'])
+        && data.keys().hasOnly(['kind','title','body','startAt','endAt','categoryId','productIds','ctaLabel','ctaPath','image','imageAlt','published','updatedAt'])
+        && data.kind in ['promotion','event','collection'] && text(data.title,1,120) && text(data.body,1,3000)
+        && campaignDate(data.startAt) && campaignDate(data.endAt) && (data.kind != 'event' || data.startAt is timestamp)
+        && (data.startAt == null || data.endAt == null || data.endAt > data.startAt)
+        && (data.categoryId == '' || validId(data.categoryId)) && campaignIds(data.productIds)
+        && campaignLink(data) && asset(data.image) && text(data.imageAlt,data.image == '' ? 0 : 1,250)
+        && data.published is bool && fresh(data);
+    }
+    function validInventory(data) {
+      return data.keys().hasOnly(['categoryCount','productCount','lastCategoryId','lastProductId','updatedAt'])
+        && boundedInteger(data.categoryCount, 50) && boundedInteger(data.productCount, 5000)
+        && validMarker(data.lastCategoryId) && validMarker(data.lastProductId) && fresh(data);
+    }
+    function isCustomer(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+    function validCustomerInterests(values) {
+      return values is list && values.size() <= 6 && values.toSet().size() == values.size()
+        && values.hasOnly(['intimo', 'pigiami-e-relax', 'biancheria-casa', 'bebe-e-maternita', 'stagioni-e-occasioni', 'profumi']);
+    }
+    function validCustomerFavorites(values) {
+      return values is list && values.size() <= 200 && values.toSet().size() == values.size()
+        // Validate every entry without an unbounded per-element evaluation.
+        // The round trip rejects non-strings and embedded separators.
+        && (values.size() == 0 || (values.join('|').split('[|]') == values
+          && values.join('|').matches('[A-Za-z0-9_-]{1,80}([|][A-Za-z0-9_-]{1,80}){0,199}')));
+    }
+    function validCustomerProfile(data) {
+      return data.keys().hasAll(['displayName', 'interests', 'favoriteProductIds', 'updatedAt'])
+        && data.keys().hasOnly(['displayName', 'interests', 'favoriteProductIds', 'updatedAt'])
+        && text(data.displayName, 0, 60) && validCustomerInterests(data.interests)
+        && validCustomerFavorites(data.favoriteProductIds) && fresh(data);
+    }
+    function inventoryCategoryChange(data) {
+      let delta = data.categoryCount - beforeCount('categoryCount');
+      let marker = data.lastCategoryId;
+      return delta == 0 || (validId(marker) && (
+        (delta == 1 && !exists(categoryPath(marker)) && existsAfter(categoryPath(marker)))
+        || (delta == -1 && exists(categoryPath(marker)) && !existsAfter(categoryPath(marker)))));
+    }
+    function inventoryProductChange(data) {
+      let delta = data.productCount - beforeCount('productCount');
+      let marker = data.lastProductId;
+      return delta == 0 || (validId(marker) && (
+        (delta == 1 && !exists(productPath(marker)) && existsAfter(productPath(marker)))
+        || (delta == -1 && exists(productPath(marker)) && !existsAfter(productPath(marker)))));
+    }
+    function validPersonalization(data) {
+      return data.keys().hasAll(['enabled', 'policyVersion', 'updatedAt'])
+        && data.keys().hasOnly(['enabled', 'policyVersion', 'updatedAt'])
+        && data.enabled is bool && data.policyVersion == '2026-10-20-session-v1'
+        && fresh(data);
+    }
+    match /customerPersonalization/{uid} {
+      allow get, delete: if isCustomer(uid);
+      allow list: if false;
+      allow create, update: if isCustomer(uid) && validPersonalization(request.resource.data);
+    }
+    // Public settings contain only explicitly editable business information.
+    // Private owner identities and customer data are forbidden by the schema.
+    match /storeSettings/public {
+      allow get: if true;
+      allow list, delete: if false;
+      allow create, update: if isManager() && validShopSettings(request.resource.data);
+    }
+    match /storeCampaigns/{campaignId} {
+      allow get: if isManager() || resource.data.published == true;
+      allow list: if request.query.limit != null && request.query.limit <= 50 && (isManager() || resource.data.published == true);
+      allow create, update: if isManager() && validId(campaignId) && validCampaign(request.resource.data);
+      allow delete: if isManager();
+    }
+    match /customerProfiles/{uid} {
+      allow get, delete: if isCustomer(uid);
+      allow list: if false;
+      allow create, update: if isCustomer(uid) && validCustomerProfile(request.resource.data);
+    }
+    match /catalogAccess/manager {
+      allow get: if isManager();
+      allow list, create, update, delete: if false;
+    }
+    match /catalogMeta/revision {
+      allow get: if true;
+      allow list, delete: if false;
+      allow create, update: if isManager() && request.resource.data.keys().hasOnly(['version'])
+        && uuid(request.resource.data.version)
+        && (!exists(revisionPath()) || request.resource.data.version != resource.data.get('version', 'initial'));
+    }
+    match /catalogMeta/inventory {
+      allow get: if isManager();
+      allow list, delete: if false;
+      allow create, update: if isManager() && validInventory(request.resource.data)
+        && inventoryCategoryChange(request.resource.data) && inventoryProductChange(request.resource.data) && revisionAdvanced();
+    }
+    match /categorySlugs/{slug} {
+      allow get: if isManager();
+      allow list: if false;
+      allow create, update: if isManager() && text(slug, 1, 100) && slug.matches('[a-z0-9]+(-[a-z0-9]+)*')
+        && request.resource.data.keys().hasOnly(['categoryId']) && validId(request.resource.data.categoryId)
+        && (!exists(slugPath(slug)) || request.resource.data.categoryId == resource.data.categoryId)
+        && existsAfter(categoryPath(request.resource.data.categoryId))
+        && getAfter(categoryPath(request.resource.data.categoryId)).data.slug == slug && revisionAdvanced();
+      allow delete: if isManager() && revisionAdvanced()
+        && (!exists(slugPath(slug)) || !existsAfter(categoryPath(resource.data.categoryId))
+          || getAfter(categoryPath(resource.data.categoryId)).data.slug != slug);
+    }
+    match /categories/{categoryId} {
+      allow get: if isManager() || resource.data.published == true;
+      allow list: if request.query.limit != null && request.query.limit <= 50 && (isManager() || resource.data.published == true);
+      allow create: if isManager() && validId(categoryId) && validCategory(request.resource.data)
+        && request.resource.data.productCount == 0 && request.resource.data.lastProductId == ''
+        && reservedSlug(request.resource.data.slug, categoryId) && inventoryDelta(1, 0)
+        && getAfter(inventoryPath()).data.lastCategoryId == categoryId && revisionAdvanced();
+      allow update: if isManager() && validId(categoryId) && validCategory(request.resource.data)
+        && categoryCounterChange(categoryId, request.resource.data)
+        && (request.resource.data.slug == resource.data.slug || (reservedSlug(request.resource.data.slug, categoryId) && !existsAfter(slugPath(resource.data.slug))))
+        && getAfter(inventoryPath()).data.categoryCount == beforeCount('categoryCount')
+        && getAfter(inventoryPath()).data.updatedAt == request.time && revisionAdvanced();
+      allow delete: if isManager() && resource.data.productCount == 0
+        && !existsAfter(slugPath(resource.data.slug)) && inventoryDelta(-1, 0)
+        && getAfter(inventoryPath()).data.lastCategoryId == categoryId && revisionAdvanced();
+    }
+    match /products/{productId} {
+      allow get: if isManager() || publicProduct(resource.data);
+      // Retain the old client's 200-item request ceiling during upgrades;
+      // current pagers request at most 100 and never fetch the entire inventory.
+      allow list: if request.query.limit != null && request.query.limit <= 200 && (isManager() || publicProduct(resource.data));
+      // Fresh inventory is mandatory for every product mutation; its own rule
+      // enforces revisionAdvanced. Reuse that proof to stay within read budgets.
+      allow create: if isManager() && validId(productId) && validProduct(request.resource.data, productId, [])
+        && request.resource.data.get('archived', false) == false
+        && parentCountChange(request.resource.data.categoryId, productId, 1) && inventoryDelta(0, 1)
+        && getAfter(inventoryPath()).data.lastProductId == productId;
+      allow update: if isManager() && validId(productId) && validProduct(request.resource.data, productId, resource.data.get('gallerySlots', []))
+        // Full-document writes from older open clients cannot erase a managed
+        // map by omitting it. Sending an explicit empty map still clears it.
+        && (!('variantAvailability' in resource.data) || ('variantAvailability' in request.resource.data))
+        && (resource.data.get('archived', false) == false || (
+          request.resource.data.get('archived', null) == false && request.resource.data.published == false
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['archived','archivedAt','published','updatedAt'])))
+        && (request.resource.data.categoryId == resource.data.categoryId || (
+          parentCountChange(resource.data.categoryId, productId, -1)
+          && parentCountChange(request.resource.data.categoryId, productId, 1)))
+        && (request.resource.data.image == '/api/images/' + productId || !existsAfter(imagePath(productId)))
+        && inventoryDelta(0, 0);
+      // Every client, including older open admin pages, must use recoverable
+      // archiving. Administrative recovery tooling is outside these client rules.
+      allow delete: if false;
+    }
+    match /productImages/{productId} {
+      allow get: if isManager() || (exists(productPath(productId)) && publicProduct(get(productPath(productId)).data)
+        && get(productPath(productId)).data.image == '/api/images/' + productId);
+      allow list: if false;
+      allow create, update: if isManager() && validId(productId) && validImage(request.resource.data)
+        && existsAfter(productPath(productId)) && getAfter(productPath(productId)).data.image == '/api/images/' + productId && revisionAdvanced();
+      allow delete: if isManager() && revisionAdvanced()
+        && (!existsAfter(productPath(productId)) || getAfter(productPath(productId)).data.image != '/api/images/' + productId);
+    }
+    match /productGalleryImages/{imageId} {
+      allow get: if isManager() || (exists(productPath(resource.data.productId))
+        && publicProduct(get(productPath(resource.data.productId)).data)
+        && resource.data.slot in get(productPath(resource.data.productId)).data.get('gallerySlots', []));
+      allow list: if false;
+      allow create, update: if isManager() && validGalleryImage(request.resource.data, imageId)
+        && existsAfter(productPath(request.resource.data.productId))
+        && request.resource.data.slot in getAfter(productPath(request.resource.data.productId)).data.get('gallerySlots', [])
+        && getAfter(productPath(request.resource.data.productId)).data.updatedAt == request.time && revisionAdvanced();
+      allow delete: if isManager() && revisionAdvanced()
+        && (!existsAfter(productPath(resource.data.productId))
+          || !(resource.data.slot in getAfter(productPath(resource.data.productId)).data.get('gallerySlots', [])));
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}

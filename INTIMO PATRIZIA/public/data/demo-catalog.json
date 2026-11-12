@@ -1,0 +1,302 @@
+{
+  "demo": true,
+  "categories": [
+    {
+      "id": "intimo",
+      "name": "Intimo",
+      "slug": "intimo",
+      "description": "Le basi da indossare ogni giorno.",
+      "order": 0,
+      "published": true,
+      "image": "/assets/intimo.svg"
+    },
+    {
+      "id": "pigiameria",
+      "name": "Pigiameria",
+      "slug": "pigiameria",
+      "description": "Piccoli rituali, morbide sere.",
+      "order": 1,
+      "published": true,
+      "image": "/assets/pigiama.svg"
+    },
+    {
+      "id": "biancheria-casa",
+      "name": "Biancheria casa",
+      "slug": "biancheria-casa",
+      "description": "Tessuti e colori da abitare.",
+      "order": 2,
+      "published": true,
+      "image": "/assets/biancheria.svg"
+    },
+    {
+      "id": "neonato",
+      "name": "Neonato",
+      "slug": "neonato",
+      "description": "Un pensiero per i piccoli inizi.",
+      "order": 3,
+      "published": true,
+      "image": "/assets/bimbo.svg"
+    }
+  ],
+  "products": [
+    {
+      "id": "intimo-1",
+      "name": "Canotta quotidiana",
+      "categoryId": "intimo",
+      "description": "Canotta dalla linea essenziale. Un esempio di capo base per il catalogo.",
+      "price": 14.9,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Avorio"
+      ],
+      "material": "Cotone (dato dimostrativo)",
+      "image": "/assets/intimo.svg",
+      "imageAlt": "Illustrazione dimostrativa di canotta quotidiana, non fotografia di un articolo reale",
+      "available": true,
+      "published": true,
+      "isDemo": true,
+      "order": 0
+    },
+    {
+      "id": "intimo-2",
+      "name": "Slip comfort",
+      "categoryId": "intimo",
+      "description": "Slip dalla linea semplice, pensato come articolo dimostrativo.",
+      "price": 9.9,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Salvia"
+      ],
+      "material": "Cotone elasticizzato (dato dimostrativo)",
+      "image": "/assets/intimo-2.svg",
+      "imageAlt": "Illustrazione dimostrativa di slip comfort, non fotografia di un articolo reale",
+      "available": true,
+      "published": true,
+      "isDemo": true,
+      "order": 1
+    },
+    {
+      "id": "intimo-3",
+      "name": "Maglia essenziale",
+      "categoryId": "intimo",
+      "description": "Una maglia da indossare sotto i capi di ogni giorno. Scheda di esempio.",
+      "price": 24.9,
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "Rosa cipria"
+      ],
+      "material": "Cotone (dato dimostrativo)",
+      "image": "/assets/intimo-3.svg",
+      "imageAlt": "Illustrazione dimostrativa di maglia essenziale, non fotografia di un articolo reale",
+      "available": true,
+      "published": true,
+      "isDemo": true,
+      "order": 2
+    },
+    {
+      "id": "pigiameria-1",
+      "name": "Pigiama sera",
+      "categoryId": "pigiameria",
+      "description": "Pigiama due pezzi con linea comoda. Esempio per la sezione pigiameria.",
+      "price": 34.9,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Avorio"
+      ],
+      "material": "Jersey (dato dimostrativo)",
+      "image": "/assets/pigiama.svg",
+      "imageAlt": "Illustrazione dimostrativa di pigiama sera, non fotografia di un articolo reale",
+      "available": true,
+      "published": true,
+      "isDemo": true,
+      "order": 3
+    },
+    {
+      "id": "pigiameria-2",
+      "name": "Pigiama domenica",
+      "categoryId": "pigiameria",
+      "description": "Una proposta dimostrativa per le giornate e le serate in casa.",
+      "price": 39.9,
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "Salvia"
+      ],
+      "material": "Cotone (dato dimostrativo)",
+      "image": "/assets/pigiama-2.svg",
+      "imageAlt": "Illustrazione dimostrativa di pigiama domenica, non fotografia di un articolo reale",
+      "available": true,
+      "published": true,
+      "isDemo": true,
+      "order": 4
+    },
+    {
+      "id": "pigiameria-3",
+      "name": "Completo casa",
+      "categoryId": "pigiameria",
+      "description": "Completo coordinato per il tempo in casa. Articolo di esempio.",
+      "price": 44.9,
+      "sizes": [
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Rosa cipria"
+      ],
+      "material": "Felpa leggera (dato dimostrativo)",
+      "image": "/assets/pigiama-3.svg",
+      "imageAlt": "Illustrazione dimostrativa di completo casa, non fotografia di un articolo reale",
+      "available": true,
+      "published": true,
+      "isDemo": true,
+      "order": 5
+    },
+    {
+      "id": "biancheria-casa-1",
+      "name": "Set asciugamani",
+      "categoryId": "biancheria-casa",
+      "description": "Coppia viso e ospite. Una scheda dimostrativa per la biancheria bagno.",
+      "price": 22.9,
+      "sizes": [
+        "Viso + ospite"
+      ],
+      "colors": [
+        "Avorio"
+      ],
+      "material": "Spugna di cotone (dato dimostrativo)",
+      "image": "/assets/biancheria.svg",
+      "imageAlt": "Illustrazione dimostrativa di set asciugamani, non fotografia di un articolo reale",
+      "available": true,
+      "published": true,
+      "isDemo": true,
+      "order": 6
+    },
+    {
+      "id": "biancheria-casa-2",
+      "name": "Completo letto",
+      "categoryId": "biancheria-casa",
+      "description": "Completo letto con lenzuola e federe. Dati inseriti a titolo di esempio.",
+      "price": 59.9,
+      "sizes": [
+        "Singolo",
+        "Matrimoniale"
+      ],
+      "colors": [
+        "Salvia"
+      ],
+      "material": "Cotone (dato dimostrativo)",
+      "image": "/assets/biancheria-2.svg",
+      "imageAlt": "Illustrazione dimostrativa di completo letto, non fotografia di un articolo reale",
+      "available": true,
+      "published": true,
+      "isDemo": true,
+      "order": 7
+    },
+    {
+      "id": "biancheria-casa-3",
+      "name": "Plaid casa",
+      "categoryId": "biancheria-casa",
+      "description": "Un plaid per il divano o il fondo del letto. Articolo dimostrativo.",
+      "price": 29.9,
+      "sizes": [
+        "130 × 170 cm"
+      ],
+      "colors": [
+        "Rosa cipria"
+      ],
+      "material": "Tessuto misto (dato dimostrativo)",
+      "image": "/assets/biancheria-3.svg",
+      "imageAlt": "Illustrazione dimostrativa di plaid casa, non fotografia di un articolo reale",
+      "available": true,
+      "published": true,
+      "isDemo": true,
+      "order": 8
+    },
+    {
+      "id": "neonato-1",
+      "name": "Body primi giorni",
+      "categoryId": "neonato",
+      "description": "Body neonato dalla forma semplice. Prodotto fittizio per mostrare il catalogo.",
+      "price": 12.9,
+      "sizes": [
+        "0–1 mese",
+        "1–3 mesi",
+        "3–6 mesi"
+      ],
+      "colors": [
+        "Avorio"
+      ],
+      "material": "Cotone (dato dimostrativo)",
+      "image": "/assets/bimbo.svg",
+      "imageAlt": "Illustrazione dimostrativa di body primi giorni, non fotografia di un articolo reale",
+      "available": true,
+      "published": true,
+      "isDemo": true,
+      "order": 9
+    },
+    {
+      "id": "neonato-2",
+      "name": "Tutina piccola",
+      "categoryId": "neonato",
+      "description": "Una tutina per la sezione dedicata ai più piccoli. Scheda di esempio.",
+      "price": 26.9,
+      "sizes": [
+        "0–1 mese",
+        "1–3 mesi"
+      ],
+      "colors": [
+        "Salvia"
+      ],
+      "material": "Cotone (dato dimostrativo)",
+      "image": "/assets/bimbo-2.svg",
+      "imageAlt": "Illustrazione dimostrativa di tutina piccola, non fotografia di un articolo reale",
+      "available": true,
+      "published": true,
+      "isDemo": true,
+      "order": 10
+    },
+    {
+      "id": "neonato-3",
+      "name": "Set nascita",
+      "categoryId": "neonato",
+      "description": "Un coordinato dimostrativo per raccontare la categoria neonato.",
+      "price": 32.9,
+      "sizes": [
+        "Prima misura"
+      ],
+      "colors": [
+        "Rosa cipria"
+      ],
+      "material": "Cotone (dato dimostrativo)",
+      "image": "/assets/bimbo-3.svg",
+      "imageAlt": "Illustrazione dimostrativa di set nascita, non fotografia di un articolo reale",
+      "available": true,
+      "published": true,
+      "isDemo": true,
+      "order": 11
+    }
+  ]
+}

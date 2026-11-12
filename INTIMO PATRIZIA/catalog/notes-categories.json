@@ -1,0 +1,155 @@
+{
+  "source": "Note iCloud / Catalogo prodotti",
+  "acquiredOn": "2026-10-19",
+  "sourceStructure": "21 note nella cartella Catalogo prodotti; nessuna sottocartella separata osservata",
+  "productImport": false,
+  "categories": [
+    {
+      "id": "estate",
+      "sourceTitle": "Summer",
+      "name": "Estate",
+      "slug": "estate",
+      "order": 180
+    },
+    {
+      "id": "profumi",
+      "sourceTitle": "Profumi",
+      "name": "Profumi",
+      "slug": "profumi",
+      "order": 210
+    },
+    {
+      "id": "biancheria-bagno",
+      "sourceTitle": "Biancheria bagno",
+      "name": "Biancheria da bagno",
+      "slug": "biancheria-bagno",
+      "order": 130
+    },
+    {
+      "id": "biancheria-cucina",
+      "sourceTitle": "Biancheria da cucina",
+      "name": "Biancheria da cucina",
+      "slug": "biancheria-cucina",
+      "order": 140
+    },
+    {
+      "id": "ritorno-scuola",
+      "sourceTitle": "Back to school",
+      "name": "Ritorno a scuola",
+      "slug": "ritorno-scuola",
+      "order": 190
+    },
+    {
+      "id": "accessori-bebe",
+      "sourceTitle": "Accessori baby",
+      "name": "Accessori per bebè",
+      "slug": "accessori-bebe",
+      "order": 160
+    },
+    {
+      "id": "natale",
+      "sourceTitle": "Natale",
+      "name": "Natale",
+      "slug": "natale",
+      "order": 200
+    },
+    {
+      "id": "valigia-parto",
+      "sourceTitle": "Prepara la valigia parto",
+      "name": "Valigia per il parto",
+      "slug": "valigia-parto",
+      "order": 170
+    },
+    {
+      "id": "biancheria-letto",
+      "sourceTitle": "Biancheria da letto",
+      "name": "Biancheria da letto",
+      "slug": "biancheria-letto",
+      "order": 120
+    },
+    {
+      "id": "vestaglie-bambini",
+      "sourceTitle": "Vestaglie bimbo/bimba",
+      "name": "Vestaglie bambino e bambina",
+      "slug": "vestaglie-bambini",
+      "order": 90
+    },
+    {
+      "id": "vestaglie-adulti",
+      "sourceTitle": "Vestaglie uomo/donna",
+      "name": "Vestaglie uomo e donna",
+      "slug": "vestaglie-adulti",
+      "order": 80
+    },
+    {
+      "id": "tute-bambini",
+      "sourceTitle": "Tute bimbo/bimba",
+      "name": "Tute bambino e bambina",
+      "slug": "tute-bambini",
+      "order": 110
+    },
+    {
+      "id": "tute-adulti",
+      "sourceTitle": "Tute uomo/donna",
+      "name": "Tute uomo e donna",
+      "slug": "tute-adulti",
+      "order": 100
+    },
+    {
+      "id": "giacche-camera",
+      "sourceTitle": "Giacche da camera",
+      "name": "Giacche da camera",
+      "slug": "giacche-camera",
+      "order": 115
+    },
+    {
+      "id": "pigiami-bambini",
+      "sourceTitle": "Pigiami bimbo/bimba",
+      "name": "Pigiami bambino e bambina",
+      "slug": "pigiami-bambini",
+      "order": 70
+    },
+    {
+      "id": "pigiami-donna",
+      "sourceTitle": "Pigiami donna",
+      "name": "Pigiami donna",
+      "slug": "pigiami-donna",
+      "order": 50
+    },
+    {
+      "id": "pigiami-uomo",
+      "sourceTitle": "Pigiami uomo",
+      "name": "Pigiami uomo",
+      "slug": "pigiami-uomo",
+      "order": 60
+    },
+    {
+      "id": "intimo-neonato",
+      "sourceTitle": "Intimo neonato",
+      "name": "Intimo neonato",
+      "slug": "intimo-neonato",
+      "order": 40
+    },
+    {
+      "id": "intimo-bambini",
+      "sourceTitle": "Intimo bimbo/bimba",
+      "name": "Intimo bambino e bambina",
+      "slug": "intimo-bambini",
+      "order": 30
+    },
+    {
+      "id": "intimo-donna",
+      "sourceTitle": "Intimo donna",
+      "name": "Intimo donna",
+      "slug": "intimo-donna",
+      "order": 10
+    },
+    {
+      "id": "intimo-uomo",
+      "sourceTitle": "Intimo uomo",
+      "name": "Intimo uomo",
+      "slug": "intimo-uomo",
+      "order": 20
+    }
+  ]
+}

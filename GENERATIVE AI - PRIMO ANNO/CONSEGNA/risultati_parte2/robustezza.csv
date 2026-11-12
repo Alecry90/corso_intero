@@ -1,0 +1,4 @@
+Modello,Macro-F1 (pulito),Macro-F1 (rumoroso),Δ Macro-F1,Accuracy (pulito),Accuracy (rumoroso)
+Base,1.0,1.0,0.0,1.0,1.0
+SFT,1.0,1.0,0.0,1.0,1.0
+RLHF,1.0,1.0,0.0,1.0,1.0

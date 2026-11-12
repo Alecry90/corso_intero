@@ -1,0 +1,33 @@
+{
+  "name": "Intimo Patrizia",
+  "address": {
+    "street": "Via Ettore Fieramosca",
+    "streetNumber": "94",
+    "postalCode": "70123",
+    "city": "Bari",
+    "province": "BA",
+    "country": "IT"
+  },
+  "phoneDisplay": "080 579 4644",
+  "phoneHref": "tel:+390805794644",
+  "email": "intimopatrizia@libero.it",
+  "facebook": "https://www.facebook.com/Intimo-Patrizia-137910562985509/",
+  "instagram": "https://www.instagram.com/explore/locations/1018520555/intimo-patrizia/",
+  "tiktok": "https://www.tiktok.com/@nicolaferrara998",
+  "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Intimo%20Patrizia%2C%20Via%20Ettore%20Fieramosca%2094%2C%20Bari",
+  "sources": [
+    "https://www.tuttiaffari.com/intimo-patrizia-080-579-4644",
+    "https://www.oraridiapertura24.it/filiale/Bari-Intimo%2520Patrizia-1235867T.html",
+    "https://aziende.virgilio.it/abbigliamento-intimo/bari-ba/intimo-patrizia-di-colonna-patrizia",
+    "https://www.findglocal.com/IT/Bari/137910562985509/Intimo-Patrizia"
+  ],
+  "hours": [
+    "09:00-13:30, 17:00-20:30",
+    "09:00-13:30, 17:00-20:30",
+    "09:00-13:30, 17:00-20:30",
+    "09:00-13:30, 17:00-20:30",
+    "09:00-13:30, 17:00-20:30",
+    "09:00-13:30, 17:00-20:30",
+    "Chiuso"
+  ]
+}

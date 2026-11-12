@@ -1,0 +1,29 @@
+{
+  "E4521": {
+    "name": "Mario Rossi",
+    "department": "Engineering",
+    "role": "Senior Developer",
+    "budget_residuo": 1800,
+    "valuta": "EUR",
+    "active_project": "Project Delta",
+    "manager_email": "chiara.bianchi@azienda.it"
+  },
+  "E1082": {
+    "name": "Giulia Verdi",
+    "department": "Marketing",
+    "role": "Content Specialist",
+    "budget_residuo": 450,
+    "valuta": "EUR",
+    "active_project": "Brand Campaign Q2",
+    "manager_email": "luca.neri@azienda.it"
+  },
+  "E9900": {
+    "name": "Alessandro Corti",
+    "department": "Sales",
+    "role": "Account Executive",
+    "budget_residuo": 2500,
+    "valuta": "EUR",
+    "active_project": "Global Expansion",
+    "manager_email": "elena.gallo@azienda.it"
+  }
+}

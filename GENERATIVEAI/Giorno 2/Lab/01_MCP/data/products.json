@@ -1,0 +1,34 @@
+{
+  "LAP-DEV-01": {
+    "name": "ThinkPad P16s Gen 2 / MacBook Pro M3",
+    "category": "laptop",
+    "target_roles": ["Engineering", "Data Science"],
+    "price_eur": "1650",
+    "specs": "32GB RAM, 1TB SSD, 16-inch display, GPU integrata/dedicata",
+    "in_stock": true
+  },
+  "LAP-STD-02": {
+    "name": "Dell Latitude 5540 / MacBook Air M2",
+    "category": "laptop",
+    "target_roles": ["Marketing", "Sales", "HR", "General"],
+    "price_eur": "950",
+    "specs": "16GB RAM, 512GB SSD, 15-inch display",
+    "in_stock": true
+  },
+  "MON-4K-01": {
+    "name": "Dell UltraSharp 27 4K (U2723QE)",
+    "category": "monitor",
+    "target_roles": ["All"],
+    "price_eur": "520",
+    "specs": "27-inch 4K IPS, USB-C Hub 90W power delivery",
+    "in_stock": true
+  },
+  "ACC-DOCK-01": {
+    "name": "Thunderbolt 4 Universal Dock",
+    "category": "accessory",
+    "target_roles": ["All"],
+    "price_eur": "190",
+    "specs": "Dual 4K output, 100W PD, Gigabit Ethernet",
+    "in_stock": true
+  }
+}

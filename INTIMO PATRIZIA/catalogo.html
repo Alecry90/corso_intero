@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#dce1d3">
+  <meta name="description" content="Il catalogo prodotti di Intimo Patrizia a Bari. Esplora i reparti e gli articoli pubblicati dal negozio.">
+  <title>Catalogo prodotti · Intimo Patrizia</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="catalog">
+  <header data-site-header class="site-header"></header>
+  <main id="main" tabindex="-1">
+    <div class="container page-heading">
+      <nav class="breadcrumb" aria-label="Percorso"><a href="/index.html">Home</a><span aria-hidden="true">/</span><span>Catalogo</span></nav>
+      <h1 data-reveal>Catalogo prodotti.</h1>
+      <p data-reveal>Scegli un reparto e scopri gli articoli pubblicati dal negozio.</p>
+    </div>
+    <section class="container catalog-section" aria-label="Esplora il catalogo">
+      <div id="catalog-demo" class="catalog-demo" hidden><strong>Un’anteprima da immaginare.</strong><p>Questo è un catalogo fittizio di esempio. Articoli, illustrazioni e prezzi sono dimostrativi e non costituiscono un’offerta di vendita.</p></div>
+      <form class="catalog-tools" role="search" id="catalog-search-form">
+        <div class="catalog-search"><label for="catalog-search">Cerca un articolo</label><input id="catalog-search" type="search" name="cerca" placeholder="Nome, colore o tessuto…" autocomplete="off" maxlength="150"></div>
+        <div class="catalog-sort"><label for="catalog-sort">Ordina per</label><select id="catalog-sort" name="ordine"><option value="recommended">Ordine del catalogo</option><option value="price-asc">Prezzo crescente</option><option value="price-desc">Prezzo decrescente</option><option value="name">Nome dell’articolo</option></select></div>
+        <fieldset class="catalog-attributes" aria-describedby="catalog-filters-help"><legend>Affina la ricerca</legend><div class="catalog-attribute-fields">
+          <div><label for="catalog-size">Taglia</label><input id="catalog-size" name="taglia" type="text" maxlength="50" list="catalog-size-values" placeholder="Es. M" autocomplete="off"><datalist id="catalog-size-values"></datalist></div>
+          <div><label for="catalog-color">Colore</label><input id="catalog-color" name="colore" type="text" maxlength="50" list="catalog-color-values" placeholder="Es. bianco" autocomplete="off"><datalist id="catalog-color-values"></datalist></div>
+          <div><label for="catalog-material">Tessuto</label><input id="catalog-material" name="tessuto" type="text" maxlength="100" list="catalog-material-values" placeholder="Es. cotone" autocomplete="off"><datalist id="catalog-material-values"></datalist></div>
+          <div><label for="catalog-price-min">Prezzo minimo (€)</label><input id="catalog-price-min" name="prezzo-min" type="number" min="0" max="999999" step="0.01" inputmode="decimal" placeholder="Da"></div>
+          <div><label for="catalog-price-max">Prezzo massimo (€)</label><input id="catalog-price-max" name="prezzo-max" type="number" min="0" max="999999" step="0.01" inputmode="decimal" placeholder="A"></div>
+        </div><p id="catalog-filters-help">I filtri cercano in tutto il reparto selezionato. Puoi digitare anche una taglia, un colore o un tessuto non presenti nei suggerimenti.</p><p id="catalog-price-error" class="catalog-filter-error" role="status" hidden>Il prezzo massimo deve essere uguale o superiore al minimo.</p></fieldset>
+      </form>
+      <div id="catalog-departments" class="catalog-departments" hidden>
+        <p class="catalog-filter-label" id="catalog-groups-label">Scegli un reparto</p>
+        <div id="catalog-groups" class="catalog-categories catalog-groups" role="group" aria-labelledby="catalog-groups-label"></div>
+      </div>
+      <div id="catalog-subdepartments" class="catalog-subdepartments">
+        <p id="catalog-categories-label" class="catalog-filter-label" hidden>Esplora il reparto</p>
+        <div id="catalog-categories" class="catalog-categories" role="group" aria-label="Filtra per reparto"></div>
+      </div>
+      <div class="catalog-account">
+        <p id="catalog-account-copy">Accedi per salvare i preferiti. Puoi esplorare tutto il catalogo anche senza account.</p>
+        <div class="catalog-account-actions"><a id="catalog-account-link" class="text-button" href="/accedi.html?ritorno=%2Fcatalogo.html">Accedi</a><button id="catalog-favorites-filter" class="catalog-favorites-filter" type="button" aria-pressed="false">I miei preferiti</button></div>
+      </div>
+      <p id="catalog-favorites-status" class="catalog-favorites-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+      <div class="catalog-result-row"><p id="catalog-count" role="status" aria-live="polite" aria-atomic="true">Caricamento del catalogo…</p><button id="catalog-reset" class="text-button" type="button" hidden>Azzera i filtri</button></div>
+      <p id="catalog-sync-status" class="catalog-sync-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+      <p id="catalog-product-status" class="catalog-sync-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+      <div id="catalog-error" class="status-message" role="alert" hidden><p id="catalog-error-text"></p><button class="button" type="button" id="catalog-retry">Riprova</button></div>
+      <div id="catalog-empty" class="catalog-empty" hidden><h2 id="catalog-empty-title">Nessun prodotto pubblicato.</h2><p id="catalog-empty-text">I prodotti compariranno qui quando verranno pubblicati dal negozio.</p></div>
+      <div id="catalog-products" class="product-grid" aria-busy="true"></div>
+      <nav id="catalog-pagination" class="catalog-pagination" aria-label="Pagine del catalogo" hidden><button id="catalog-page-previous" class="button button-outline" type="button" disabled>Pagina precedente</button><p id="catalog-page-status" role="status" aria-live="polite" aria-atomic="true">Pagina 1</p><button id="catalog-page-next" class="button button-outline" type="button" disabled>Pagina successiva</button></nav>
+      <p class="catalog-footnote">Il catalogo è una vetrina informativa. Per taglie, colori e disponibilità aggiornate, contatta il negozio. Non è previsto l’acquisto online.</p>
+    </section>
+    <dialog id="product-dialog" class="product-dialog" aria-labelledby="product-title"><div class="product-dialog-head"><span>Intimo Patrizia</span><button class="icon-button" type="button" id="product-close" aria-label="Chiudi dettaglio prodotto"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.5"/></svg></button></div><div id="product-detail"></div></dialog>
+  </main>
+  <footer data-site-footer class="site-footer"></footer>
+  <script type="module" src="/src/catalog.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+Metrica,Valore,Interpretazione
+Perplessità (WikiText-2),109.89,Bassa = migliore
+BLEU (vs reference),Vedi Day 4,Alta = migliore (0-1)
+ROUGE-1 (vs reference),Vedi Day 4,Alta = migliore (0-1)
+SQuAD EM,0.00%,Alta = migliore (0-100%)
+SQuAD F1,6.56%,Alta = migliore (0-100%)
+Valutazione Umana (media),3.49/5,Alta = migliore (1-5)

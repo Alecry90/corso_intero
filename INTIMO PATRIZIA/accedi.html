@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#dce1d3">
+  <meta name="description" content="Accedi al tuo account Intimo Patrizia. Il catalogo è sempre consultabile anche senza registrazione.">
+  <title>Il tuo account · Intimo Patrizia</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="account">
+  <header data-site-header class="site-header"></header>
+  <main id="main" tabindex="-1">
+    <div class="container page-heading account-heading">
+      <nav class="breadcrumb" aria-label="Percorso"><a href="/index.html">Home</a><span aria-hidden="true">/</span><span>Account</span></nav>
+      <h1>Il tuo account.</h1>
+      <p>Preferiti e reparti d’interesse, da ritrovare nel tuo account. Il catalogo è sempre aperto a tutti.</p>
+    </div>
+    <section class="container account-layout" aria-label="Accesso all’account">
+      <div class="account-intro">
+        <h2>Ritrova le<br> tue scelte.</h2>
+        <p>Con l’account puoi salvare i prodotti preferiti, scegliere i reparti d’interesse e aggiungere un nome facoltativo. Puoi modificare o cancellare queste preferenze dall’account.</p>
+        <p>L’accesso è facoltativo. Puoi scoprire tutti i reparti e i prodotti anche senza registrarti.</p>
+        <a class="text-link account-catalog-link" href="/catalogo.html">Esplora il catalogo <span aria-hidden="true">↗</span></a>
+        <p class="account-privacy">Usiamo email e dati di accesso per gestire l’account. Nome facoltativo, reparti e preferiti vengono salvati solo quando li scegli. Leggi l’<a href="/privacy.html">informativa privacy</a> prima di continuare.</p>
+        <aside id="newsletter" class="account-newsletter" data-newsletter aria-labelledby="newsletter-title" hidden>
+          <h3 id="newsletter-title">Le novità, in posta.</h3>
+          <p>Promozioni, eventi e messaggi dal negozio. Scegli tu se riceverli: l’iscrizione è separata dall’account e puoi disiscriverti in ogni momento.</p>
+          <a class="text-link" data-newsletter-link href="#newsletter">Scegli di ricevere le novità <span aria-hidden="true">↗</span></a>
+          <p class="account-help">Si apre il modulo Brevo. Conferma poi l’iscrizione dall’email che ricevi.</p>
+        </aside>
+      </div>
+      <div id="account-content" class="account-content" aria-busy="true">
+        <p id="account-status" class="account-status" role="status" aria-live="polite" aria-atomic="true">Verifica del servizio di accesso…</p>
+        <div id="account-unavailable" class="account-notice" hidden>
+          <h2>Puoi continuare a esplorare.</h2>
+          <p>L’accesso non è ancora disponibile. Il catalogo resta consultabile senza account.</p>
+          <a class="button" href="/catalogo.html">Continua al catalogo</a>
+        </div>
+        <div id="account-access" hidden>
+          <h2 class="account-section-title">Accedi al tuo account</h2>
+          <fieldset id="account-fields" class="account-fields" disabled>
+            <legend class="account-visually-hidden">Accesso e registrazione</legend>
+            <button id="google-login" class="button button-outline account-wide" type="button" data-auth-action>Continua con Google</button>
+            <p class="account-divider">oppure con email</p>
+            <form id="login-form" class="account-form" novalidate>
+              <div id="login-errors" class="account-error-summary" role="alert" tabindex="-1" hidden></div>
+              <div class="account-field">
+                <label for="login-email">Email</label>
+                <input id="login-email" name="email" type="email" autocomplete="username" inputmode="email" maxlength="254" required aria-describedby="login-email-error">
+                <p id="login-email-error" class="account-field-error" hidden></p>
+              </div>
+              <div class="account-field">
+                <label for="login-password">Password</label>
+                <div class="account-password">
+                  <input id="login-password" name="password" type="password" autocomplete="current-password" maxlength="4096" required aria-describedby="login-password-help login-password-error">
+                  <button class="account-password-toggle" type="button" data-password-toggle="login-password" aria-controls="login-password" aria-pressed="false">Mostra</button>
+                </div>
+                <p id="login-password-error" class="account-field-error" hidden></p>
+              </div>
+              <button id="login-submit" class="button account-wide" type="submit" data-auth-action>Accedi</button>
+              <button id="password-reset" class="text-button account-text-button" type="button" data-auth-action>Hai dimenticato la password?</button>
+              <p class="account-help">Per recuperarla, inserisci la tua email nel campo qui sopra.</p>
+              <p id="login-password-help" class="account-help">Hai già un account? Mantieni la stessa email. Se la vecchia password non ha almeno 8 caratteri e una maiuscola (A–Z), usa “Hai dimenticato la password?” per aggiornarla. Se usi Google, continua con Google.</p>
+            </form>
+            <details id="account-registration" class="account-registration">
+              <summary>Crea un account con email e password</summary>
+              <p class="account-help">La registrazione è facoltativa. Bastano la tua email e una password.</p>
+              <form id="signup-form" class="account-form" novalidate>
+                <div id="signup-errors" class="account-error-summary" role="alert" tabindex="-1" hidden></div>
+                <div class="account-field">
+                  <label for="signup-email">La tua email</label>
+                  <input id="signup-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required aria-describedby="signup-email-error">
+                  <p id="signup-email-error" class="account-field-error" hidden></p>
+                </div>
+                <div class="account-field">
+                  <label for="signup-password">Scegli una password</label>
+                  <div class="account-password">
+                    <input id="signup-password" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="4096" required aria-describedby="signup-password-help signup-password-error">
+                    <button class="account-password-toggle" type="button" data-password-toggle="signup-password signup-confirm" aria-controls="signup-password signup-confirm" aria-pressed="false">Mostra</button>
+                  </div>
+                  <p id="signup-password-help" class="account-help">Almeno 8 caratteri e una lettera maiuscola (A–Z). Puoi usare un gestore di password e incollare la password.</p>
+                  <p id="signup-password-error" class="account-field-error" hidden></p>
+                </div>
+                <div class="account-field">
+                  <label for="signup-confirm">Conferma la password</label>
+                  <input id="signup-confirm" name="password-confirmation" type="password" autocomplete="new-password" minlength="8" maxlength="4096" required aria-describedby="signup-confirm-error">
+                  <p id="signup-confirm-error" class="account-field-error" hidden></p>
+                </div>
+                <p class="account-help">Creando un account richiedi il servizio di accesso descritto nell’<a href="/privacy.html">informativa privacy</a>.</p>
+                <button id="signup-submit" class="button account-wide" type="submit" data-auth-action>Crea account</button>
+              </form>
+            </details>
+          </fieldset>
+        </div>
+        <div id="account-signed-in" hidden>
+          <h2 id="account-title" class="account-section-title" tabindex="-1">Il tuo account</h2>
+          <p id="account-email" class="account-email"></p>
+          <p id="account-description">Accesso effettuato. Puoi consultare il catalogo.</p>
+          <div class="account-actions">
+            <a id="account-continue" class="button" href="/catalogo.html">Continua al catalogo</a>
+            <a id="manage-catalog" class="button button-outline" href="/admin.html" hidden>Gestisci prodotti</a>
+          </div>
+          <button id="session-retry" class="text-button account-text-button" type="button" data-auth-action hidden>Riprova la verifica dell’accesso</button>
+          <div id="account-verification" class="account-verification" hidden>
+            <h3>Verifica la tua email</h3>
+            <p>Conferma che l’indirizzo email appartiene a te. Puoi consultare il catalogo anche prima di verificarlo.</p>
+            <div class="account-actions">
+              <button id="send-verification" class="button button-outline" type="button" data-auth-action>Invia email di verifica</button>
+              <button id="refresh-verification" class="text-button account-text-button" type="button" data-auth-action>Ho verificato l’email</button>
+            </div>
+          </div>
+          <section id="customer-preferences" class="customer-preferences" aria-labelledby="customer-preferences-title" hidden>
+            <p id="customer-greeting" class="customer-greeting">Ciao!</p>
+            <h3 id="customer-preferences-title">Le tue preferenze</h3>
+            <p id="customer-profile-status" class="customer-profile-status" role="status" aria-live="polite" aria-atomic="true">Caricamento delle preferenze…</p>
+            <button id="customer-profile-retry" class="text-button account-text-button" type="button" hidden>Riprova a caricare le preferenze</button>
+            <div id="customer-saved-choices" class="customer-saved-choices" hidden>
+              <a id="customer-favorites-link" class="text-link" href="/catalogo.html?preferiti=1">I miei preferiti (0)</a>
+              <p class="customer-interest-heading">I tuoi reparti</p>
+              <ul id="customer-interest-links" class="customer-interest-links"></ul>
+              <p id="customer-no-interests" class="account-help">Non hai ancora scelto un reparto.</p>
+            </div>
+            <form id="customer-preferences-form" class="account-form" hidden>
+              <fieldset id="customer-preferences-fields" class="account-fields customer-preferences-fields" disabled>
+                <legend class="account-visually-hidden">Modifica le preferenze del tuo account</legend>
+                <div class="account-field">
+                  <label for="customer-name">Come vuoi essere chiamato? <span class="customer-optional">Facoltativo</span></label>
+                  <input id="customer-name" name="displayName" type="text" autocomplete="given-name" maxlength="60" aria-describedby="customer-name-help">
+                  <p id="customer-name-help" class="account-help">Puoi lasciare questo campo vuoto. Massimo 60 caratteri.</p>
+                </div>
+                <fieldset class="customer-interest-fields" aria-describedby="customer-interest-help">
+                  <legend>Quali reparti ti interessano?</legend>
+                  <p id="customer-interest-help" class="account-help">Scegline quanti vuoi, oppure nessuno.</p>
+                  <div id="customer-interest-options" class="customer-interest-options"></div>
+                </fieldset>
+                <button id="customer-preferences-save" class="button" type="submit">Salva preferenze</button>
+              </fieldset>
+            </form>
+            <div id="customer-preferences-removal" class="customer-preferences-removal" hidden>
+              <p class="account-help">Puoi cancellare il nome salvato, i reparti scelti e tutti i preferiti. Il tuo account di accesso resterà attivo.</p>
+              <button id="customer-preferences-delete" class="text-button account-text-button" type="button">Cancella preferenze e preferiti</button>
+              <div id="customer-delete-confirmation" class="customer-delete-confirmation" hidden>
+                <p>Vuoi cancellare tutte queste preferenze e i preferiti salvati?</p>
+                <div class="account-actions">
+                  <button id="customer-delete-confirm" class="button" type="button">Sì, cancella</button>
+                  <button id="customer-delete-cancel" class="text-button account-text-button" type="button">Annulla</button>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="customer-personalization" class="customer-preferences customer-personalization" aria-labelledby="personalization-title" hidden>
+            <h3 id="personalization-title">Consigli dalla navigazione</h3>
+            <p class="account-help">Scegli se usare i prodotti che consulti e i reparti cercati per rendere più attinenti i consigli della Home. Questi segnali restano nella sessione di questa scheda del browser: non salviamo nel database la cronologia o le frasi delle ricerche.</p>
+            <form id="personalization-form" class="account-form">
+              <fieldset id="personalization-fields" class="account-fields" disabled>
+                <legend class="account-visually-hidden">La tua scelta per i consigli dalla navigazione</legend>
+                <label class="customer-interest-option" for="personalization-enabled"><input id="personalization-enabled" type="checkbox" aria-describedby="personalization-help"><span>Consento la personalizzazione in base alla mia navigazione</span></label>
+                <p id="personalization-help" class="account-help">Facoltativo. Puoi disattivarla o cancellare la scelta in ogni momento: i segnali di questa scheda verranno eliminati. Preferiti e iscrizione alle email sono scelte separate. <a href="/privacy.html">Informativa privacy</a>.</p>
+                <button id="personalization-save" class="button" type="submit">Salva la scelta</button>
+              </fieldset>
+            </form>
+            <p id="personalization-status" class="customer-profile-status" role="status" aria-live="polite" aria-atomic="true">Caricamento della tua scelta…</p>
+            <button id="personalization-retry" class="text-button account-text-button" type="button" hidden>Riprova a caricare la scelta</button>
+            <button id="personalization-delete" class="text-button account-text-button" type="button" disabled>Cancella questa scelta</button>
+          </section>
+          <button id="account-logout" class="text-button account-text-button account-logout" type="button" data-auth-action>Esci dall’account</button>
+        </div>
+        <noscript><p class="account-notice">Per accedere occorre attivare JavaScript. Puoi comunque <a href="/catalogo.html">aprire il catalogo</a>.</p></noscript>
+      </div>
+    </section>
+  </main>
+  <footer data-site-footer class="site-footer"></footer>
+  <script type="module" src="/src/account.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="Area riservata alla gestione del catalogo Intimo Patrizia." />
+    <meta name="theme-color" content="#dce1d3" />
+    <title>Gestione catalogo · Intimo Patrizia</title>
+  </head>
+  <body class="admin-page">
+    <div id="site-header"></div>
+    <main id="main-content" class="admin-main" tabindex="-1">
+      <header class="admin-heading">
+        <p class="admin-eyebrow">Area riservata</p>
+        <div class="admin-heading-row">
+          <div><h1>Il tuo catalogo,<br /><em>con cura.</em></h1><p>Aggiungi i prodotti nei reparti e scegli quali pubblicare sul sito.</p></div>
+          <a class="admin-button admin-button-quiet" href="/catalogo.html">Guarda il catalogo <span aria-hidden="true">↗</span></a>
+        </div>
+      </header>
+
+      <p id="admin-status" class="admin-status" role="status" aria-live="polite" aria-atomic="true">Preparazione dell’area riservata…</p>
+
+      <section id="admin-setup" class="admin-notice" aria-labelledby="setup-title" hidden>
+        <span class="admin-notice-mark" aria-hidden="true">i</span>
+        <div><h2 id="setup-title">Catalogo in sola lettura</h2><p>La gestione dei prodotti richiede il collegamento al servizio e l’accesso con l’account gestore autorizzato.</p><p class="admin-small">Finché l’accesso non è attivo, le modifiche sono disabilitate.</p></div>
+      </section>
+
+      <section id="admin-access" class="admin-access" aria-labelledby="access-title" hidden>
+        <div class="admin-access-intro"><p class="admin-eyebrow">Bentornata, Patrizia</p><h2 id="access-title">Un piccolo spazio<br />per le tue novità.</h2><p>Accedi con l’account del negozio per gestire prodotti e categorie.</p><p class="admin-small">L’accesso è riservato ai gestori autorizzati. Non è prevista una registrazione pubblica.</p></div>
+        <form id="login-form" class="admin-login-form" novalidate>
+          <div id="login-errors" class="admin-error-summary" tabindex="-1" role="alert" hidden></div>
+          <div id="google-signin-option" class="admin-google-option" hidden>
+            <button type="button" class="admin-button admin-button-quiet" id="login-google" aria-describedby="google-login-help">Accedi con Google</button>
+            <p id="google-login-help" class="admin-small">Scegli l’account Google autorizzato del negozio.</p>
+            <p class="admin-auth-divider">Oppure con email e password</p>
+          </div>
+          <div class="admin-field"><label for="login-email">Email del gestore</label><input id="login-email" name="email" type="email" autocomplete="username" inputmode="email" required maxlength="254" /><p class="admin-field-error" id="login-email-error" hidden></p></div>
+          <div class="admin-field"><label for="login-password">Password</label><div class="admin-password"><input id="login-password" name="password" type="password" autocomplete="current-password" required maxlength="4096" /><button class="admin-password-toggle" type="button" id="password-toggle" aria-controls="login-password" aria-pressed="false">Mostra</button></div><p class="admin-field-error" id="login-password-error" hidden></p></div>
+          <button type="submit" class="admin-button admin-button-primary" id="login-submit">Accedi al catalogo <span aria-hidden="true">→</span></button>
+          <button type="button" class="admin-text-button" id="password-reset">Hai dimenticato la password?</button>
+          <p id="login-feedback" class="admin-form-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <div id="admin-account" class="admin-account" hidden><p><span class="admin-dot" aria-hidden="true"></span><span id="account-label"></span></p><button type="button" id="logout" class="admin-button admin-button-quiet">Esci</button></div>
+
+      <section id="admin-email-verification" class="admin-access" aria-labelledby="verification-title" hidden>
+        <div><h2 id="verification-title">Verifica la tua email</h2><p>Per gestire i prodotti devi confermare l’indirizzo del tuo account. Apri il link nell’email di verifica, poi torna qui.</p></div>
+        <div><button type="button" id="send-verification" class="admin-button admin-button-primary">Invia email di verifica</button><button type="button" id="check-verification" class="admin-button admin-button-quiet">Ho verificato l’email</button><p id="verification-feedback" class="admin-form-feedback" role="status" aria-live="polite"></p></div>
+      </section>
+
+      <section id="admin-dashboard" class="admin-dashboard" aria-labelledby="dashboard-title" hidden>
+        <div class="admin-dashboard-heading"><div><p class="admin-eyebrow" id="catalog-mode">Catalogo del negozio</p><h2 id="dashboard-title">Tutti i tuoi prodotti</h2></div><p id="catalog-counts" class="admin-counts"></p></div>
+        <p id="readonly-explanation" class="admin-readonly-note">Anteprima in sola lettura · i prodotti e i prezzi sono fittizi.</p>
+        <div class="admin-workspace-nav" aria-label="Sezione del catalogo"><button id="show-products" type="button" class="admin-section-button" aria-pressed="true" aria-controls="products-panel">Prodotti <span id="products-count">0</span></button><button id="show-categories" type="button" class="admin-section-button" aria-pressed="false" aria-controls="categories-panel">Categorie <span id="categories-count">0</span></button></div>
+
+        <section id="products-panel" aria-label="Gestione prodotti">
+          <div class="admin-toolbar"><div class="admin-filters"><div class="admin-field"><label for="product-search">Cerca un prodotto</label><input id="product-search" type="search" placeholder="Nome o descrizione" autocomplete="off" /></div><div class="admin-field"><label for="category-filter">Categoria</label><select id="category-filter"><option value="">Tutte le categorie</option></select></div></div><button id="new-product" type="button" class="admin-button admin-button-primary" disabled><span aria-hidden="true">＋</span> Aggiungi prodotto</button></div>
+          <p id="product-results" class="admin-results" role="status" aria-live="polite" aria-atomic="true"></p>
+          <ul id="product-list" class="admin-product-list"></ul><div id="products-empty" class="admin-empty" hidden><h3 id="admin-products-empty-title">Nessun prodotto</h3><p id="admin-products-empty-text">I prodotti aggiunti dal gestore compariranno qui.</p></div>
+          <nav id="admin-pagination" class="admin-pagination" aria-label="Pagine dei prodotti" hidden><button id="admin-page-previous" type="button" class="admin-button admin-button-quiet" disabled>Pagina precedente</button><p id="admin-page-status" role="status" aria-live="polite">Pagina 1</p><button id="admin-page-next" type="button" class="admin-button admin-button-quiet" disabled>Pagina successiva</button></nav>
+        </section>
+
+        <section id="categories-panel" aria-label="Gestione categorie" hidden>
+          <div class="admin-toolbar"><p class="admin-toolbar-text">Organizza il catalogo in modo semplice.<br /><span class="admin-small">Una categoria con prodotti può essere eliminata dopo averli spostati o rimossi.</span></p><button id="new-category" type="button" class="admin-button admin-button-primary" disabled><span aria-hidden="true">＋</span> Aggiungi categoria</button></div>
+          <ul id="category-list" class="admin-category-list"></ul><div id="categories-empty" class="admin-empty" hidden><h3>Inizia da una categoria</h3><p>Le categorie aiutano chi visita il sito a trovare ciò che cerca.</p></div>
+        </section>
+
+        <div id="admin-product-tools"></div><div id="admin-bulk-products"></div><section id="admin-catalog-safety" hidden inert></section><div id="admin-shop-content"></div><section id="admin-communications" class="admin-communications" aria-labelledby="communications-title" hidden inert>
+          <div class="admin-dashboard-heading"><div><p class="admin-eyebrow">Prepara una novità</p><h2 id="communications-title">Comunicazioni clienti</h2></div><span class="admin-badge admin-badge-draft">Preparazione dei modelli</span></div>
+          <p class="admin-communications-notice">Brevo è collegato in modalità prova: modulo con consenso e conferma via email verificati. Prepara qui il modello e invialo da Brevo. Le iscrizioni pubbliche saranno attivate dopo aver sostituito il mittente di prova con l’email del negozio.</p>
+          <p><a id="communication-test-signup" class="admin-button admin-button-quiet" href="#admin-communications" target="_blank" rel="noopener noreferrer" hidden>Prova il modulo di iscrizione</a></p><p class="admin-small admin-communications-sender">Mittente previsto solo per le prove: <strong id="communication-test-sender">Account del gestore</strong>. Sarà sostituito prima dell’uso con i clienti.</p>
+          <div class="admin-communications-layout">
+            <form id="communications-form" autocomplete="off" novalidate>
+              <fieldset id="communications-fields" class="admin-communications-fields" disabled>
+                <legend class="admin-communications-legend">Componi il modello</legend>
+                <p class="admin-small">I campi con * sono obbligatori. I contenuti restano in questa pagina e si perdono quando la chiudi o esci dall’account.</p>
+                <div class="admin-field"><label for="communication-type">Tipo di comunicazione *</label><select id="communication-type" name="type" required><option value="promotion">Promozione</option><option value="event">Evento</option><option value="message">Messaggio del negozio</option></select></div>
+                <div class="admin-field"><label for="communication-title">Titolo e oggetto dell’email *</label><input id="communication-title" name="title" maxlength="120" required aria-describedby="communication-title-help" /><p id="communication-title-help" class="admin-field-help">Massimo 120 caratteri.</p></div>
+                <div class="admin-field"><label for="communication-body">Messaggio *</label><textarea id="communication-body" name="body" rows="7" maxlength="6000" required aria-describedby="communication-body-help"></textarea><p id="communication-body-help" class="admin-field-help">Massimo 6.000 caratteri. Scrivi solo informazioni reali e confermate.</p></div>
+                <div id="communication-promotion-fields" class="admin-communications-optional">
+                  <div class="admin-field"><label for="communication-promotion-details">Dettagli della promozione <span class="admin-communications-optional-label">(facoltativo)</span></label><textarea id="communication-promotion-details" name="promotionDetails" rows="3" maxlength="2000"></textarea></div>
+                  <div class="admin-field"><label for="communication-promotion-conditions">Validità e condizioni <span class="admin-communications-optional-label">(facoltativo)</span></label><textarea id="communication-promotion-conditions" name="promotionConditions" rows="3" maxlength="2000" aria-describedby="communication-conditions-help"></textarea><p id="communication-conditions-help" class="admin-field-help">Indica durata, articoli interessati ed eventuali limitazioni prima dell’invio.</p></div>
+                </div>
+                <div id="communication-event-fields" class="admin-communications-optional" hidden>
+                  <div class="admin-field"><label for="communication-event-date">Data e orario <span class="admin-communications-optional-label">(facoltativo)</span></label><input id="communication-event-date" name="eventDate" maxlength="80" disabled /></div>
+                  <div class="admin-field"><label for="communication-event-location">Luogo dell’evento <span class="admin-communications-optional-label">(facoltativo)</span></label><input id="communication-event-location" name="eventLocation" maxlength="200" disabled /></div>
+                </div>
+                <div class="admin-field"><label for="communication-cta-label">Testo del pulsante <span class="admin-communications-optional-label">(facoltativo)</span></label><input id="communication-cta-label" name="ctaLabel" maxlength="80" aria-describedby="communication-cta-help" /></div>
+                <div class="admin-field"><label for="communication-cta-url">Link del pulsante <span class="admin-communications-optional-label">(facoltativo)</span></label><input id="communication-cta-url" name="ctaUrl" type="text" inputmode="url" maxlength="2048" aria-describedby="communication-cta-help" /><p id="communication-cta-help" class="admin-field-help">Compila entrambi i campi del pulsante. Usa una pagina di https://intimopatrizia-bari.web.app oppure un percorso interno, per esempio /catalogo.html.</p></div>
+                <div class="admin-field"><label for="communication-recipient-name">Nome nell’anteprima <span class="admin-communications-optional-label">(facoltativo)</span></label><input id="communication-recipient-name" name="recipientName" maxlength="60" aria-describedby="communication-recipient-help" /><p id="communication-recipient-help" class="admin-field-help">Usa un nome di prova. Nell’esportazione Brevo verrà inserita la personalizzazione del contatto; qui non si scelgono destinatari.</p></div>
+                <p id="communications-validation" class="admin-form-feedback" role="status" aria-live="polite" aria-atomic="true">Compila titolo e messaggio per scaricare il modello.</p>
+                <div class="admin-communications-actions"><button id="communication-download-html" type="button" class="admin-button admin-button-primary" disabled aria-describedby="communication-test-link-help">Scarica modello per Brevo</button><button id="communication-download-text" type="button" class="admin-button admin-button-quiet" disabled>Scarica testo</button></div>
+                <p id="communication-test-link-help" class="admin-communications-notice">Con Brevo Free, i link delle email inviate con “Invia prova” possono scadere dopo circa 30 minuti. Per una comunicazione da consultare anche in seguito, scegli i destinatari della campagna e usa “Programma → Invia ora”. Il modello include anche l’indirizzo del pulsante in chiaro, da copiare nel browser. <a href="https://help.brevo.com/hc/it/articles/4741964626066" target="_blank" rel="noopener noreferrer">Come funzionano le email di prova</a>.</p>
+                <button id="communication-open-brevo" type="button" class="admin-button admin-button-quiet" disabled aria-describedby="communication-brevo-help">Apri Brevo <span aria-hidden="true">↗</span></button>
+                <p id="communication-brevo-help" class="admin-field-help">Si apre in una nuova scheda. Prima di inviare, controlla consenso dei contatti, mittente, dati dell’attività e disiscrizione in Brevo.</p>
+              </fieldset>
+            </form>
+            <div class="admin-communications-preview" aria-labelledby="communication-preview-title">
+              <h3 id="communication-preview-title">Anteprima dell’email</h3>
+              <p id="communication-preview-note" class="admin-small">Anteprima illustrativa riservata: completa i campi per vedere i tuoi contenuti. I link nell’anteprima sono disattivati.</p>
+              <p class="admin-communications-subject"><strong>Oggetto:</strong> <span id="communication-preview-subject"></span></p>
+              <iframe id="communication-preview" title="Anteprima illustrativa del modello email" sandbox="" referrerpolicy="no-referrer"></iframe>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+    <div id="site-footer"></div>
+
+    <dialog id="product-dialog" class="admin-dialog" aria-labelledby="product-dialog-title">
+      <div class="admin-dialog-heading"><div><p class="admin-eyebrow">Catalogo del negozio</p><h2 id="product-dialog-title">Nuovo prodotto</h2></div><button type="button" class="admin-close" data-close-dialog="product-dialog" aria-label="Chiudi il modulo prodotto">×</button></div>
+      <form id="product-form" class="admin-editor" novalidate>
+        <div id="product-errors" class="admin-error-summary" tabindex="-1" role="alert" hidden></div>
+        <p class="admin-small">I campi contrassegnati con * sono obbligatori.</p>
+        <div class="admin-form-grid"><div class="admin-field"><label for="product-sku">Codice articolo</label><input id="product-sku" name="sku" maxlength="80"><p class="admin-field-help">Consigliato: identifica il prodotto e abbina il foglio alle foto.</p></div><div class="admin-field"><label for="product-brand">Marca</label><input id="product-brand" name="brand" maxlength="80"></div><div class="admin-field admin-full"><label for="product-name">Nome prodotto *</label><input id="product-name" name="name" required maxlength="120" /><p class="admin-field-error" id="product-name-error" hidden></p></div><div class="admin-field"><label for="product-category">Categoria *</label><select id="product-category" name="categoryId" required></select><p class="admin-field-error" id="product-category-error" hidden></p></div><div class="admin-field"><label for="product-price">Prezzo in euro</label><input id="product-price" name="price" type="number" min="0" max="100000" step="0.01" inputmode="decimal" aria-describedby="product-price-help" /><p id="product-price-help" class="admin-field-help">Lascia vuoto per “Prezzo in negozio”.</p><p class="admin-field-error" id="product-price-error" hidden></p></div><div class="admin-field admin-full"><label for="product-description">Descrizione</label><textarea id="product-description" name="description" rows="4" maxlength="3000"></textarea><p class="admin-field-error" id="product-description-error" hidden></p></div><div class="admin-field"><label for="product-sizes">Taglie</label><input id="product-sizes" name="sizes" maxlength="300" aria-describedby="product-sizes-help" /><p id="product-sizes-help" class="admin-field-help">Separa le voci con una virgola: S, M, L.</p><p class="admin-field-error" id="product-sizes-error" hidden></p></div><div class="admin-field"><label for="product-colors">Colori</label><input id="product-colors" name="colors" maxlength="300" aria-describedby="product-colors-help" /><p id="product-colors-help" class="admin-field-help">Separa i colori con una virgola.</p><p class="admin-field-error" id="product-colors-error" hidden></p></div><div class="admin-field"><label for="product-material">Materiale</label><input id="product-material" name="material" maxlength="200" /><p class="admin-field-error" id="product-material-error" hidden></p></div><div class="admin-field"><label for="product-order">Ordine di visualizzazione</label><input id="product-order" name="order" type="number" min="0" max="9999" step="1" value="0" required /><p class="admin-field-error" id="product-order-error" hidden></p></div></div>
+        <div id="product-variant-editor"></div>
+        <fieldset class="admin-image-field"><legend>Fotografia del prodotto</legend><div class="admin-image-upload"><div id="product-image-preview" class="admin-image-preview"><span>Nessuna fotografia</span></div><div class="admin-image-controls"><label for="product-image" class="admin-file-label">Scegli una fotografia</label><input id="product-image" name="imageFile" type="file" accept="image/jpeg,image/png,image/webp,image/avif" aria-describedby="product-image-help product-image-feedback" /><p id="product-image-help" class="admin-field-help">JPG, PNG, WebP o AVIF, fino a 12 MB. La foto viene ridotta e compressa automaticamente, poi salvata insieme al prodotto.</p><p id="product-image-feedback" class="admin-small" role="status" aria-live="polite"></p><button type="button" id="remove-product-image" class="admin-text-button" hidden>Rimuovi fotografia</button></div></div><div class="admin-field"><label for="product-image-alt">Descrizione della fotografia</label><input id="product-image-alt" name="imageAlt" maxlength="250" aria-describedby="product-image-alt-help" /><p id="product-image-alt-help" class="admin-field-help">Obbligatoria con una foto: descrivi ciò che è visibile, ad esempio “Pigiama in cotone color salvia”.</p><p class="admin-field-error" id="product-image-alt-error" hidden></p></div></fieldset>
+        <div id="product-gallery-editor"></div><fieldset class="admin-switches"><legend>Visibilità e disponibilità</legend><label class="admin-check"><input id="product-featured" name="featured" type="checkbox"><span>Mostra in “In vetrina” nella Home<span class="admin-field-help">Visibile solo se articolo e reparto sono pubblicati e il prodotto è disponibile.</span></span></label><label class="admin-check"><input id="product-new-arrival" name="newArrival" type="checkbox"><span>Segna come novità<span class="admin-field-help">Scegli tu quali articoli presentare nella sezione Novità.</span></span></label><label class="admin-check"><input id="product-published" name="published" type="checkbox" checked /><span>Pubblica nel catalogo<span class="admin-field-help">Se disattivi questa voce, il prodotto resta visibile solo qui.</span></span></label><label class="admin-check"><input id="product-available" name="available" type="checkbox" checked /><span>Disponibile in negozio<span class="admin-field-help">Se disattivi questa voce, tutte le combinazioni risultano non disponibili.</span></span></label><label class="admin-check"><input id="product-demo" name="isDemo" type="checkbox" /><span>Prodotto fittizio di esempio<span class="admin-field-help">Mantieni questa indicazione per ogni articolo che non rappresenta l’assortimento reale.</span></span></label></fieldset>
+        <p id="product-save-feedback" class="admin-form-feedback" role="status" aria-live="polite"></p><div class="admin-dialog-actions"><button type="button" class="admin-button admin-button-quiet" data-close-dialog="product-dialog">Annulla</button><button type="submit" id="product-save" class="admin-button admin-button-primary">Salva prodotto <span aria-hidden="true">→</span></button></div>
+      </form>
+    </dialog>
+
+    <dialog id="category-dialog" class="admin-dialog admin-dialog-small" aria-labelledby="category-dialog-title"><div class="admin-dialog-heading"><div><p class="admin-eyebrow">Organizza il catalogo</p><h2 id="category-dialog-title">Nuova categoria</h2></div><button type="button" class="admin-close" data-close-dialog="category-dialog" aria-label="Chiudi il modulo categoria">×</button></div><form id="category-form" class="admin-editor" novalidate><div id="category-errors" class="admin-error-summary" tabindex="-1" role="alert" hidden></div><p class="admin-small">I campi contrassegnati con * sono obbligatori.</p><div class="admin-field"><label for="category-name">Nome categoria *</label><input id="category-name" name="name" required maxlength="80" /><p class="admin-field-error" id="category-name-error" hidden></p></div><div class="admin-field"><label for="category-slug">Identificativo nella pagina *</label><input id="category-slug" name="slug" required maxlength="80" pattern="[a-z0-9]+(?:-[a-z0-9]+)*" aria-describedby="category-slug-help" /><p id="category-slug-help" class="admin-field-help">Solo lettere minuscole, numeri e trattini, ad esempio “intimo-donna”.</p><p class="admin-field-error" id="category-slug-error" hidden></p></div><div class="admin-field"><label for="category-description">Descrizione</label><textarea id="category-description" name="description" rows="4" maxlength="1000"></textarea><p class="admin-field-error" id="category-description-error" hidden></p></div><div class="admin-field"><label for="category-order">Ordine di visualizzazione *</label><input id="category-order" name="order" type="number" min="0" max="9999" step="1" required value="0" /><p class="admin-field-error" id="category-order-error" hidden></p></div><label class="admin-check"><input id="category-published" name="published" type="checkbox" checked /><span>Pubblica questa categoria<span class="admin-field-help">Una categoria non pubblicata e i suoi prodotti non compaiono nel catalogo pubblico.</span></span></label><p id="category-save-feedback" class="admin-form-feedback" role="status" aria-live="polite"></p><div class="admin-dialog-actions"><button type="button" class="admin-button admin-button-quiet" data-close-dialog="category-dialog">Annulla</button><button type="submit" id="category-save" class="admin-button admin-button-primary">Salva categoria <span aria-hidden="true">→</span></button></div></form></dialog>
+
+    <dialog id="delete-dialog" class="admin-dialog admin-dialog-small" aria-labelledby="delete-title"><div class="admin-dialog-heading"><h2 id="delete-title">Eliminare questo elemento?</h2><button type="button" class="admin-close" data-close-dialog="delete-dialog" aria-label="Annulla eliminazione">×</button></div><p id="delete-description" class="admin-delete-description"></p><p id="delete-feedback" class="admin-form-feedback" role="alert"></p><div class="admin-dialog-actions"><button type="button" class="admin-button admin-button-quiet" data-close-dialog="delete-dialog" autofocus>Annulla</button><button type="button" id="delete-confirm" class="admin-button admin-button-danger">Elimina definitivamente</button></div></dialog>
+    <script type="module" src="/src/admin.js"></script>
+  </body>
+</html>

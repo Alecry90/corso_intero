@@ -1,0 +1,25 @@
+.home-campaigns,.home-business-details{max-width:1680px;margin-inline:auto;padding-inline:var(--gutter);color:var(--ink)}
+.home-campaigns[hidden],.home-business-details[hidden]{display:none}
+.home-campaigns>h2{max-width:650px;margin-bottom:48px;color:var(--wine)}
+.home-campaign-list{display:grid;gap:64px}
+.home-campaign{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(28px,5vw,80px);align-items:center}
+.home-campaign:not(:has(>.home-campaign-image)){grid-template-columns:1fr;background:var(--sage);padding:clamp(24px,4vw,60px)}
+.home-campaign-image{width:100%;aspect-ratio:4/3;object-fit:cover}
+.home-campaign-copy{min-width:0;max-width:800px}
+.home-campaign-copy h3{font-size:clamp(30px,3.7vw,50px);margin:0 0 20px;overflow-wrap:anywhere}
+.home-campaign-date{color:var(--wine);font-weight:600;font-size:17px;margin:0 0 20px}
+.home-campaign-body{font-size:17px;white-space:pre-line;line-height:1.65;margin:0 0 22px}
+.home-campaign-products{display:flex;gap:20px;overflow-x:auto;padding:28px 5px 8px;margin:0 -5px;scroll-snap-type:x proximity}
+.home-campaign-product{display:flex;align-items:flex-start;gap:12px;flex:0 0 210px;min-width:0;font-size:16px;scroll-snap-align:start;transition:transform .2s}
+.home-campaign-product:hover{transform:translateY(-3px)}
+.home-campaign-product img{width:65px;height:85px;object-fit:cover;flex-shrink:0}
+.home-business-details{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,7vw,112px);align-items:start}
+.home-business-intro h2{color:var(--wine);margin:0 0 24px}
+.home-business-intro .button{margin-top:24px}
+.shop-hours h3{font-size:clamp(28px,3vw,40px);margin:0 0 24px;color:var(--wine)}
+.shop-hours dl{display:grid;gap:12px;margin:0}
+.shop-hours dl>div{display:flex;justify-content:space-between;gap:24px;font-size:16px}
+.shop-hours dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+.home-business-note{font-size:14px;line-height:1.6;margin-top:18px;max-width:52ch}
+@media(max-width:700px){.home-campaign,.home-business-details{grid-template-columns:1fr}.home-campaign-list{gap:42px}.home-campaigns>h2{margin-bottom:32px}.home-campaign-image{max-height:380px}.shop-hours dl>div{flex-wrap:wrap;gap:4px 20px}.home-campaign-date{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.home-campaign-product{transition:none}.home-campaign-product:hover{transform:none}}

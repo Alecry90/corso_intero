@@ -1,0 +1,165 @@
+{
+  "title": "Capire il notebook sui rimborsi spese",
+  "subtitle": "Guida semplice a Esame ipynb del Gruppo 4",
+  "intro": [
+    "Questo esercizio costruisce un assistente che risponde a una domanda concreta: posso farmi rimborsare questa spesa dall’azienda? Per rispondere deve capire la richiesta, cercare i dati del dipendente e della spesa, applicare la regola aziendale giusta e preparare una risposta motivata.",
+    "La cosa da capire per prima è questa: il modello di intelligenza artificiale aiuta a leggere il testo e a usare gli strumenti. La verifica dei limiti e della ricevuta viene fatta dalla funzione Python verifica_regole. Il Reviewer controlla poi la coerenza e può impedire di confermare l’esito finale.",
+    "Puoi leggere questa guida a piccoli pezzi. Prima guarda il percorso generale; poi apri il notebook accanto al Word e segui una cella alla volta. Per ogni cella trovi a cosa serve, i passaggi del codice e il risultato. Non serve ricordare subito tutti i nomi. Cerca prima di riconoscere quale informazione entra e quale informazione esce."
+  ],
+  "sections": [
+    {
+      "title": "1 Il senso del programma",
+      "paragraphs": [
+        "Immagina un ufficio rimborsi. Un dipendente dice: sono E001, vorrei il rimborso della spesa CLM001, un treno da 110 EUR del 2026-10-08. Il sistema deve trasformare questa frase in dati utilizzabili e confrontarli con i dati aziendali.",
+        "Il Request Agent fa il lavoro di chi legge la domanda e compila la scheda. L’Employee Agent cerca la persona. Il Claims Agent cerca la spesa e la policy, cioè la regola aziendale. Il Reviewer Agent rilegge il caso e segnala se la decisione è coerente. Sono quattro ruoli costruiti sullo stesso oggetto llm; il notebook non carica quattro modelli diversi.",
+        "Il grafo principale organizza il lavoro di questi ruoli. Un nodo è un passaggio da eseguire; un collegamento dice quale passaggio viene dopo. Un collegamento condizionale sceglie la strada in base ai dati: per esempio, se manca la data si chiede un chiarimento.",
+        "Lo stato condiviso è come una cartellina che passa da una scrivania all’altra. All’inizio contiene la frase dell’utente. Ogni passaggio aggiunge o aggiorna i propri campi: il dipendente, la spesa, la policy, il risultato delle regole, la revisione e la risposta finale.",
+        "Questo notebook valuta la richiesta e produce un testo. Non versa denaro, non invia messaggi al responsabile e non aggiorna i file JSON. Le risposte umane dei test vengono simulate passando valori a Command(resume=...)."
+      ],
+      "flow": [
+        "Richiesta in italiano",
+        "Request interpreta il testo",
+        "Se mancano dati Chiarimento mette in pausa e poi torna a Request",
+        "Employee recupera il dipendente",
+        "Claims recupera spesa e policy",
+        "Regole verificano i requisiti",
+        "Reviewer controlla la coerenza quando esiste un esito verificabile",
+        "Se previsto Approvazione umana mette in pausa",
+        "Risposta finale comunica esito e motivo"
+      ]
+    },
+    {
+      "title": "2 Come leggere il notebook senza perdere il filo",
+      "paragraphs": [
+        "Le celle sono i blocchi del notebook. Una cella markdown contiene testo esplicativo e non esegue Python. Una cella di codice contiene istruzioni Python. L’output sotto la cella mostra ciò che è stato stampato o visualizzato nell’esecuzione salvata.",
+        "Qui Cella 1, Cella 2 e così via indicano la posizione del blocco nel file, contando anche le celle di testo. Il numero In [1], In [2] e così via indica invece l’ordine di esecuzione salvato di una cella di codice. Per esempio, la Cella 2 della guida è In [1] nel notebook. La Cella 4 è In [2]. Non sono due numerazioni equivalenti.",
+        "Definire una funzione con def significa preparare una procedura. Il suo corpo viene eseguito quando qualcuno la chiama. Definire una classe significa descrivere un tipo di oggetto. Scrivere RequestAgent(...) crea un oggetto concreto di quel tipo e avvia il suo metodo __init__.",
+        "Le celle preparano i pezzi dall’alto verso il basso: prima librerie e dati, poi classi, strumenti, funzioni e infine grafo e prove. Una cella con print('Nodo definito') conferma che la definizione è stata eseguita; non dimostra che il nodo abbia già valutato un rimborso.",
+        "Le celle segnate TEST provano un pezzo del sistema. Le ultime celle provano invece il percorso completo. Gli output dipendenti dal modello sono risultati di una specifica esecuzione salvata: un nuovo avvio può estrarre dati o produrre revisioni diverse, anche con temperature=0."
+      ]
+    },
+    {
+      "title": "3 I dati del programma",
+      "paragraphs": [
+        "employees.json contiene tre dipendenti. claims.json contiene quattro spese già registrate. policies.json contiene quattro regole, una per categoria. json.load carica questi file in liste e dizionari Python. I nomi EMPLOYEES_DB, CLAIMS_DB e POLICIES_DB ricordano un database, ma qui sono dati caricati in memoria.",
+        "Un claim è una richiesta o registrazione di spesa. employee_id identifica una persona, come E001. claim_id identifica una spesa, come CLM001. expense_type è il codice della categoria. receipt_id è l’identificativo di una ricevuta; null significa che non c’è un valore.",
+        "Le tabelle sotto riassumono i dati. L’esito indicato per i claim è quello della sola funzione verifica_regole, confermato dall’output della Cella 26. Il workflow completo aggiunge la revisione e può quindi concludere diversamente."
+      ],
+      "tables": [
+        {
+          "headers": ["ID", "Dipendente", "Ruolo", "Progetto"],
+          "rows": [["E001", "Luca Bianchi", "Consultant", "PRJ-DELTA"], ["E002", "Sara Rossi", "Analyst", "PRJ-OMEGA"], ["E003", "Marco Verdi", "Manager", "PRJ-DELTA"]],
+          "widths": [800, 2800, 2100, 2800]
+        },
+        {
+          "headers": ["Categoria", "Massimo EUR", "Soglia umana EUR", "Ruoli ammessi"],
+          "rows": [["travel_train", "250", "250", "Analyst Consultant Manager"], ["hotel", "180", "180", "Analyst Consultant Manager"], ["meal", "60", "60", "Analyst Consultant Manager"], ["client_meal", "120", "120", "Consultant Manager"]],
+          "widths": [2300, 1500, 1700, 3000]
+        },
+        {
+          "headers": ["Claim", "Persona e spesa", "Ricevuta", "Esito delle regole"],
+          "rows": [["CLM001", "E001 treno 110 EUR", "R001", "APPROVABILE"], ["CLM002", "E002 hotel 240 EUR", "R002", "NON_APPROVABILE importo oltre 180"], ["CLM003", "E001 pasto 48 EUR", "Assente", "NON_APPROVABILE ricevuta mancante"], ["CLM004", "E003 cena cliente 95 EUR", "R004", "APPROVABILE"]],
+          "widths": [1000, 2600, 1200, 3700]
+        }
+      ],
+      "after": [
+        "Tutte le policy richiedono una ricevuta. Il codice controlla che receipt_id sia presente: non apre un’immagine o un PDF e non verifica il contenuto della ricevuta.",
+        "Il campo max_amount è il tetto massimo rimborsabile. approval_over è la soglia oltre la quale il codice richiederebbe la decisione umana, purché l’importo resti entro il massimo. Nei JSON attuali questi due valori sono uguali per ogni categoria. Perciò nessun importo può entrare in quella fascia: questo spiega un problema del test CLM002."
+      ]
+    },
+    {
+      "title": "4 Un esempio completo prima dei dettagli",
+      "paragraphs": [
+        "Seguiamo CLM001, il treno di Luca Bianchi. Il testo iniziale contiene E001, CLM001, 110 EUR e la data. Il Request Agent estrae questi valori e interpreta il tipo di spesa come travel_train. Se estrae correttamente tutti i dati obbligatori, missing_info è una lista vuota e il percorso continua.",
+        "employee_node chiede al suo agente di usare get_employee_info con E001. Il tool trova Luca Bianchi, ruolo Consultant. claims_node chiede al suo agente il claim CLM001: il primo tool trova il treno da 110 EUR con ricevuta R001; il secondo tool trova la policy travel_train.",
+        "verifica_regole confronta i dati. La spesa appartiene a E001; categoria e policy coincidono; Consultant è un ruolo ammesso; R001 è presente; 110 è positivo e non supera 250. Restituisce deterministic_result='APPROVABILE' e la motivazione.",
+        "reviewer_node passa questo caso al Reviewer. Nell’output salvato della Cella 45, reviewer_coerente è True. risposta_finale_node può quindi confermare APPROVABILE e aggiungere che l’approvazione è automatica secondo la policy.",
+        "Il risultato finale è una frase simile a questa: Richiesta CLM001: APPROVABILE. Dipendente, categoria, ricevuta e importo rispettano la policy. Approvazione automatica secondo la policy.",
+        "Se nella stessa richiesta manca la data, il sistema si ferma prima del recupero dei dati e chiede un chiarimento. La risposta 'La spesa è del 2026-10-08' viene aggiunta al testo iniziale, poi Request lo interpreta di nuovo. È il percorso mostrato nelle Celle 48 e 49."
+      ]
+    }
+  ],
+  "closing": [
+    {
+      "title": "6 I punti che possono confondere",
+      "paragraphs": [
+        "CLM002 non dimostra un rifiuto umano. La Cella 44 presenta questo test come un caso di approvazione umana poi negata. Ma l’hotel costa 240 EUR e il massimo è 180 EUR: la funzione verifica_regole restituisce NON_APPROVABILE. Inoltre tutte le policy hanno approval_over uguale a max_amount, quindi il ramo NECESSARIA_APPROVAZIONE non è raggiungibile con questi limiti.",
+        "Nell’output salvato della Cella 46, la pausa è addirittura di tipo chiarimento: manca il claim_id estratto, pur essendo CLM002 nella frase. Il print dice 'per approvazione', ma è una scritta fissa; il campo tipo='chiarimento' descrive la pausa reale. Per scegliere la risposta da inviare devi guardare il contenuto della pausa.",
+        "La Cella 47 invia un dizionario di approvazione alla pausa ancora aperta. Command non sceglie automaticamente il nodo di approvazione: riprende il punto sospeso del thread. In questo caso chiarimento_node trasforma il dizionario in testo e lo aggiunge alla richiesta. human_decision resta None nell’output: non c’è stata una decisione del responsabile.",
+        "Il Reviewer può cambiare la conclusione finale in DATI_INSUFFICIENTI. Per CLM003 le regole dicono NON_APPROVABILE perché manca la ricevuta. Nell’output della Cella 45, reviewer_coerente è False, mentre la spiegazione del Reviewer descrive proprio quella decisione come coerente. Il codice usa il booleano False e il finale diventa DATI_INSUFFICIENTI. Sono un giudizio del modello e un testo tra loro incoerenti, non una nuova regola sulla ricevuta.",
+        "L’importo decisivo viene dal claim nei JSON. Request può estrarre amount=110 dal testo, ma verifica_regole legge expense_data['amount'], cioè l’importo recuperato dal tool. Lo stesso vale per la categoria: la policy viene cercata usando expense_type del claim, anche se il testo dell’utente dice altro. Il codice non confronta esplicitamente tutti i valori estratti con quelli registrati.",
+        "Alcuni dati sono presenti ma non diventano controlli. Il progetto, il limite annuo e il manager del dipendente vengono recuperati, ma verifica_regole non controlla la corrispondenza del progetto o il totale annuo. travel_approval è dichiarato nello stato ma non è usato. re è importato ma non è usato. La data viene richiesta e validata, ma non confrontata con una data del claim, che nel dataset non è presente.",
+        "La valuta non viene verificata o convertita. I claim forniti sono tutti in EUR e le motivazioni delle regole scrivono EUR direttamente. Non c’è una logica per confrontare importi in valute diverse.",
+        "I tipi sono indicazioni, non controlli automatici su ogni valore. TypedDict descrive la struttura attesa; total=False rende facoltative le chiavi nella descrizione. Le annotazioni come -> dict aiutano a leggere il codice. I veri controlli durante l’esecuzione sono gli if, isinstance, le conversioni e le eccezioni scritti nelle funzioni.",
+        "Le prove stampate hanno scopi diversi. La Cella 23 usa assert e interrompe la cella se una condizione è falsa. La Cella 40 stampa OK o errore per i router ma non usa assert. Le Celle 45-49 mostrano il comportamento del workflow con il modello: non garantiscono che tutte le intenzioni descritte nei commenti siano state raggiunte."
+      ]
+    },
+    {
+      "title": "7 Le parole e i simboli di Python",
+      "entries": [
+        ["Variabile e assegnazione", "llm = ... dà un nome a un oggetto. Il simbolo = assegna un valore; == confronta due valori."],
+        ["Stringa e numero", "'E001' è testo, cioè str. 110 è un numero intero. 110.0 è un numero con decimali, cioè float. float('110') converte testo numerico in numero."],
+        ["Dizionario", "{'employee_id': 'E001'} associa una chiave a un valore. state['employee_id'] legge la chiave e dà errore se manca. state.get('employee_id') restituisce None se manca. state.get('errori', []) usa la lista vuota come alternativa."],
+        ["Lista e ultimo elemento", "[] è una lista vuota. [response] è una lista con un elemento. messages[-1] prende l’ultimo messaggio. append aggiunge un elemento. reversed visita gli elementi dall’ultimo al primo."],
+        ["Tupla e assegnazione multipla", "('CLM001', richiesta) contiene due valori. for claim_id, richiesta in casi_test assegna i due valori a due nomi a ogni giro."],
+        ["None null e booleani", "None indica l’assenza di un valore in Python; null è la forma JSON. True e False sono valori booleani; nel JSON sono true e false. bool([]) è False, bool(['expense_date']) è True."],
+        ["if elif else", "Sono alternative. if controlla la prima condizione, elif un’altra se la precedente non vale, else il caso restante. Nell’ordine dei controlli, la prima condizione vera può determinare l’uscita."],
+        ["for break e continue", "for ripete le istruzioni per ogni elemento. break esce dal ciclo. continue salta al giro successivo senza eseguire il resto di quello attuale."],
+        ["return e print", "return consegna un valore a chi ha chiamato la funzione e termina quella chiamata. print mostra un testo nell’output; non aggiunge da solo un campo allo stato."],
+        ["Funzione e parametri", "def employee_node(state): definisce una procedura che riceve state. employee_node(stato_prova) la esegue. Il nome usato come parametro è locale alla funzione."],
+        ["Classe oggetto e self", "class EmployeeAgent descrive un tipo di oggetto. employee_agent è un oggetto concreto. self indica quell’oggetto dentro i suoi metodi. self.model conserva il modello; __init__ prepara l’oggetto quando lo crei."],
+        ["Metodo e attributo", "Un metodo è una funzione associata a un oggetto, come graph.invoke(...). Un attributo è un’informazione dell’oggetto, come message.content o message.name."],
+        ["Import e alias di percorso", "import rende disponibili librerie e nomi. Path('../data') rappresenta la cartella data un livello sopra la cartella di lavoro. DATA_DIR / 'claims.json' costruisce il percorso del file."],
+        ["with open", "Apre un file, lo usa e lo chiude quando esce dal blocco. as f dà il nome f al file aperto."],
+        ["json load loads e dumps", "json.load legge JSON da un file. json.loads legge JSON da una stringa. json.dumps trasforma dati Python in una stringa JSON. indent=2 rende l’output leggibile; ensure_ascii=False mantiene accenti e altri caratteri direttamente."],
+        ["try except e raise", "try tenta operazioni che possono fallire. except gestisce il tipo di errore indicato. raise ValueError(...) segnala un problema. raise senza argomento nel blocco except rilancia l’errore già intercettato."],
+        ["isinstance e getattr", "isinstance(dati, dict) verifica il tipo del valore. getattr(message, 'tool_calls', []) legge un attributo e usa [] se l’attributo manca."],
+        ["and or not e is", "and richiede entrambe le condizioni. or sceglie il primo valore considerato vero, come claim_id or 'non indicato'. not nega una condizione. is True controlla che il valore sia proprio il booleano True."],
+        ["in e not in", "Controllano l’appartenenza. role in allowed_roles verifica se il ruolo è nella lista. nome not in self.tools verifica che un tool non sia disponibile."],
+        ["Unpacking con due asterischi", "{'status': 'OK', **employee} copia nel nuovo dizionario le coppie chiave valore di employee. Non è una chiamata al modello."],
+        ["Comprehension e set", "{policy['expense_type'] for policy in POLICIES_DB} crea un insieme di categorie senza duplicati. {t.name: t for t in tools} crea un dizionario di tool. [etichette.get(c, c) for c in mancanti] crea una lista di nomi leggibili."],
+        ["sorted join e strip", "sorted ordina. ', '.join(lista) unisce stringhe usando virgola e spazio. strip() elimina spazi e a capo ai bordi di una stringa."],
+        ["f string e formato g", "f'Richiesta {claim_id}' inserisce un valore nel testo. {importo:g} scrive un numero in modo compatto, per esempio 240 invece di 240.0. In una f string, {{ e }} producono parentesi graffe letterali."],
+        ["Tipi e annotazioni", "str | None significa testo oppure assenza di valore. list[str] indica una lista di testi. -> dict descrive un risultato atteso di tipo dizionario. Non converte automaticamente i dati."],
+        ["TypedDict e Annotated", "TypedDict descrive le chiavi attese di un dizionario. Annotated aggiunge un’informazione al tipo. LangGraph usa operator.add nei messages per concatenare i messaggi nuovi a quelli già presenti."],
+        ["Decoratore tool", "@tool rende la funzione uno strumento LangChain con nome e schema degli argomenti. Il modello può chiedere di usarlo. La docstring tra triple virgolette spiega cosa fa lo strumento e quali dati riceve."],
+        ["invoke e bind_tools", "invoke avvia la chiamata di un modello, di un grafo o di un tool; il risultato dipende dall’oggetto chiamato. bind_tools presenta al modello gli strumenti disponibili; eseguirli davvero è il compito di take_action."],
+        ["Messaggi", "HumanMessage contiene il testo dell’utente. SystemMessage contiene istruzioni per il modello. ToolMessage contiene la risposta di uno strumento e l’ID della chiamata a cui risponde. AnyMessage è un tipo generale di messaggio."],
+        ["Grafo e compile", "StateGraph crea la struttura del percorso. add_node registra un passaggio, add_edge un collegamento fisso, add_conditional_edges una scelta. compile prepara il grafo eseguibile. START e END indicano inizio e fine."],
+        ["Memoria e thread", "MemorySaver salva gli stati del grafo in memoria durante questa sessione. thread_id identifica una pratica. Per riprendere la stessa pratica devi usare lo stesso ID. uuid4().hex genera un identificativo casuale scritto senza trattini."],
+        ["Pausa e ripresa", "interrupt(...) sospende il grafo e restituisce al chiamante una richiesta di input. Command(resume=...) fornisce la risposta per la pausa di quel thread. __interrupt__ è la chiave del risultato che segnala la pausa; [0].value legge il contenuto della prima interruzione."],
+        ["assert", "assert condizione interrompe l’esecuzione con AssertionError se la condizione è falsa. Serve qui a verificare che i tool abbiano trovato il claim e la policy attesi."],
+        ["Commento e indentazione", "Il testo dopo # è un commento e non viene eseguito. Gli spazi a sinistra raggruppano le istruzioni dentro funzioni, cicli e condizioni. Un commento può essere impreciso: per il comportamento guarda le istruzioni."],
+        ["len str e date", "len conta gli elementi, str converte un valore in testo. date.fromisoformat interpreta una data e isoformat la riscrive nella forma anno mese giorno separati da trattini; una data impossibile genera un errore."]
+      ]
+    },
+    {
+      "title": "8 Una spiegazione da dire a voce",
+      "paragraphs": [
+        "Ho costruito un assistente per valutare richieste di rimborso spese. Il Request Agent estrae i dati dal testo. L’Employee Agent recupera il dipendente, mentre il Claims Agent recupera la spesa e la policy tramite tool. Una funzione Python applica le regole e produce un esito motivato. Il Reviewer controlla la coerenza; se non la conferma, il sistema restituisce dati insufficienti. LangGraph collega questi passaggi e può sospendere la pratica per un chiarimento o per una decisione umana.",
+        "Con i dati attuali, CLM001 e CLM004 rispettano le regole; CLM002 supera il massimo per l’hotel e CLM003 non ha la ricevuta. Il percorso di approvazione umana è implementato, ma le soglie attuali lo rendono irraggiungibile. Gli output del modello possono inoltre differire da quanto descritto nei commenti: per questo distinguo il risultato delle regole dall’esito finale del workflow."
+      ]
+    },
+    {
+      "title": "9 Piccole domande per controllare se hai capito",
+      "entries": [
+        ["Chi decide se 240 EUR supera il massimo di 180 EUR", "La funzione verifica_regole, con un confronto numerico in Python."],
+        ["Differenza tra Employee Agent e get employee info", "L’agente usa il modello per chiedere uno strumento. Il tool cerca concretamente un ID nei dati caricati."],
+        ["Perché serve lo stato condiviso", "Per passare le informazioni tra nodi: ciò che un nodo recupera deve poter essere letto dai successivi."],
+        ["Perché una richiesta con Luca Bianchi può chiedere un chiarimento", "Perché il codice richiede employee_id. Il nome della persona non viene trasformato automaticamente in E001."],
+        ["Differenza tra risultato delle regole ed esito finale", "Il primo deriva dai controlli Python. Il finale considera anche la revisione e, quando prevista, la decisione umana."],
+        ["Come riprendo una richiesta sospesa", "Con expense_graph.invoke(Command(resume=risposta), config=stessa_config). Il thread_id deve essere quello della pausa."],
+        ["Perché CLM002 non passa al responsabile", "Perché 240 supera già max_amount=180; inoltre approval_over=180 non lascia una fascia entro il massimo che richieda approvazione."],
+        ["Che cosa restituisce un nodo", "Di solito un dizionario con i campi da aggiornare. LangGraph aggiorna quei campi nello stato; gli altri restano disponibili."]
+      ]
+    },
+    {
+      "title": "10 Riferimenti per approfondire",
+      "paragraphs": [
+        "Il codice da affiancare a questa guida è Gruppo 4/deliverables/Esame.ipynb. I dati sono nei file employees.json, claims.json e policies.json della cartella Gruppo 4/data.",
+        "Per il comportamento delle pause: documentazione ufficiale LangGraph Interrupts. La risposta di resume diventa il valore restituito da interrupt; alla ripresa il nodo riparte dall’inizio, mentre gli stati precedenti sono recuperati dal checkpointer. https://docs.langchain.com/oss/python/langgraph/interrupts",
+        "Per stato, nodi, collegamenti e aggiornamento dei messaggi: documentazione ufficiale LangGraph Graph API overview. Le chiavi senza un reducer esplicito vengono aggiornate con il valore restituito dal nodo; operator.add concatena le liste nei messages degli agenti. https://docs.langchain.com/oss/python/langgraph/graph-api"
+      ]
+    }
+  ]
+}

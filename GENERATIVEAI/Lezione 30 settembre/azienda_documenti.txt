@@ -1,0 +1,162 @@
+MANUALE AZIENDALE - TECHSPHERE S.R.L.
+Versione 3.2 | Aggiornamento: Gennaio 2024
+========================================
+
+SEZIONE 1 - PROFILO AZIENDALE
+------------------------------
+
+TechSphere S.r.l. è una società italiana fondata nel 2010 con sede principale a Milano, in Via della Innovazione 42.
+L'azienda opera nel settore dello sviluppo software, della consulenza IT e dei servizi cloud.
+Il codice fiscale e partita IVA della società è IT09876543210.
+TechSphere conta attualmente 350 dipendenti distribuiti in quattro sedi: Milano (sede principale), Roma, Torino e Bologna.
+La missione aziendale è "Accelerare la trasformazione digitale delle imprese attraverso tecnologie innovative e sostenibili."
+Il fatturato annuo per il 2023 è stato di 42 milioni di euro, con una crescita del 18% rispetto all'anno precedente.
+
+
+SEZIONE 2 - STRUTTURA ORGANIZZATIVA
+-------------------------------------
+
+L'organigramma di TechSphere è composto dai seguenti dipartimenti:
+- Direzione Generale: guidata dal CEO Marco Ferretti
+- Direzione Tecnica (CTO): Laura Conti supervisiona tutte le attività di sviluppo software
+- Dipartimento Commerciale e Vendite: gestito da Roberto Mancini, con 45 commerciali attivi
+- Dipartimento Risorse Umane (HR): responsabile Giulia Rossi, gestisce assunzioni, formazione e welfare
+- Dipartimento Finance e Amministrazione: CFO Stefano Bianchi
+- Dipartimento Marketing e Comunicazione: responsabile Anna Vitali
+- Dipartimento Ricerca e Sviluppo (R&D): team di 60 ingegneri coordinati da Davide Esposito
+- Dipartimento Customer Success: gestito da Federica Longo, 30 consulenti dedicati ai clienti
+
+
+SEZIONE 3 - PRODOTTI E SERVIZI
+--------------------------------
+
+TechSphere offre una gamma completa di prodotti e servizi:
+
+3.1 PRODOTTI SOFTWARE PROPRIETARI
+- SphereERP: sistema gestionale ERP per PMI, disponibile in versione cloud e on-premise. Prezzo base: 299 euro/mese per licenza.
+- SphereHR: piattaforma per la gestione delle risorse umane, include moduli per paghe, presenze e formazione. Prezzo base: 149 euro/mese.
+- SphereCRM: sistema CRM avanzato con intelligenza artificiale per la gestione dei clienti e dei lead. Prezzo base: 199 euro/mese.
+- SphereAnalytics: piattaforma di business intelligence con dashboard personalizzabili. Prezzo base: 249 euro/mese.
+
+3.2 SERVIZI DI CONSULENZA
+- Consulenza per la migrazione verso il cloud (AWS, Azure, Google Cloud)
+- Sviluppo software su misura e integrazione di sistemi
+- Audit di sicurezza informatica e penetration testing
+- Formazione tecnica e certificazioni per i team dei clienti
+
+3.3 SERVIZI GESTITI (MSP)
+- Gestione dell'infrastruttura IT (server, rete, sicurezza)
+- Monitoraggio H24 dei sistemi critici
+- Backup e disaster recovery
+- Help desk di primo e secondo livello
+
+
+SEZIONE 4 - POLITICHE HR E BENEFIT
+-------------------------------------
+
+4.1 ORARIO DI LAVORO
+I dipendenti TechSphere lavorano 40 ore settimanali su base contrattuale.
+È disponibile la flessibilità oraria con finestra obbligatoria dalle 10:00 alle 16:00.
+Lo smart working è previsto fino a 3 giorni a settimana per tutti i ruoli compatibili.
+
+4.2 FERIE E PERMESSI
+Ogni dipendente ha diritto a 26 giorni di ferie all'anno.
+Sono previsti 4 giorni di permesso retribuito (ex-festività) aggiuntivi.
+Per malattia, i primi 3 giorni sono a carico dell'azienda al 100% della retribuzione.
+I congedi parentali seguono quanto previsto dalla normativa italiana vigente, con un'integrazione aziendale fino all'80% della retribuzione per i primi 6 mesi.
+
+4.3 FORMAZIONE
+TechSphere investe fortemente nella crescita professionale dei propri dipendenti.
+Ogni dipendente dispone di un budget annuo di formazione di 1.500 euro.
+Sono disponibili accessi gratuiti alle piattaforme Coursera, Udemy Business e Pluralsight.
+L'azienda organizza internamente il "TechSphere Academy Program", un percorso di 6 mesi per i neoassunti.
+Vengono organizzate mensilmente le "Tech Talks": sessioni interne di condivisione delle conoscenze.
+
+4.4 BENEFIT AZIENDALI
+- Assicurazione sanitaria integrativa per il dipendente e i familiari a carico
+- Ticket restaurant del valore di 8 euro al giorno
+- Rimborso abbonamento mezzi pubblici fino a 100 euro/mese
+- Convenzioni con palestre (contributo aziendale di 300 euro/anno)
+- Piano di welfare aziendale con piattaforma Edenred (800 euro/anno)
+- Stock option plan per dipendenti senior (oltre 3 anni di anzianità)
+- Laptop e smartphone aziendale per tutti i dipendenti
+
+
+SEZIONE 5 - CLIENTI E PARTNER
+--------------------------------
+
+5.1 CLIENTI PRINCIPALI
+TechSphere serve oltre 500 clienti attivi, principalmente PMI e grandi imprese nei settori:
+- Manufacturing e industria (35% del portafoglio clienti)
+- Retail e distribuzione (25%)
+- Servizi finanziari e assicurazioni (20%)
+- Sanità e farmaceutica (12%)
+- Pubblica Amministrazione (8%)
+
+Tra i clienti più importanti figurano: Gruppo Meridiani S.p.A., Farmaceutica Nordest, Banca Centrale Veneta, Distribuzione Italia S.r.l.
+
+5.2 PARTNERSHIP TECNOLOGICHE
+TechSphere è partner certificato di:
+- Microsoft (Gold Partner per Azure e Microsoft 365)
+- AWS (Advanced Consulting Partner)
+- Google Cloud (Partner Premier)
+- Salesforce (Consulting Partner)
+- SAP (Silver Partner)
+
+
+SEZIONE 6 - SICUREZZA INFORMATICA E COMPLIANCE
+------------------------------------------------
+
+TechSphere adotta un approccio "Security by Design" in tutti i processi di sviluppo.
+L'azienda è certificata ISO/IEC 27001:2022 per la gestione della sicurezza delle informazioni.
+È inoltre certificata ISO 9001:2015 per la qualità dei processi.
+Tutti i dati dei clienti sono trattati in conformità con il GDPR (Regolamento UE 2016/679).
+Il Data Protection Officer (DPO) aziendale è l'avv. Carla Monti.
+TechSphere esegue penetration test trimestrali sulla propria infrastruttura.
+Tutti i dipendenti devono completare annualmente il corso di Security Awareness.
+
+
+SEZIONE 7 - PROCESSI INTERNI
+------------------------------
+
+7.1 ONBOARDING NUOVI DIPENDENTI
+Il processo di onboarding dura 4 settimane:
+- Settimana 1: orientamento aziendale, setup strumenti, introduzione ai team
+- Settimana 2: formazione sui prodotti e servizi TechSphere
+- Settimana 3: affiancamento al team di destinazione
+- Settimana 4: primo assignment autonomo con supervisione
+
+7.2 GESTIONE DEI PROGETTI
+TechSphere adotta la metodologia Agile con framework Scrum per tutti i progetti di sviluppo.
+Gli sprint hanno durata di 2 settimane.
+Ogni progetto ha un Project Manager certificato PMP o PSM.
+Il tool principale per il project management è Jira; per la comunicazione interna si usa Slack.
+La documentazione tecnica è centralizzata su Confluence.
+
+7.3 PROCESSO DI ASSUNZIONE
+Le candidature vengono raccolte tramite il sito careers.techsphere.it e LinkedIn.
+Il processo di selezione prevede: screening CV, colloquio HR, test tecnico, colloquio con il team, offerta.
+I tempi medi di selezione sono di 3-4 settimane dall'invio della candidatura.
+
+7.4 VALUTAZIONE DELLE PERFORMANCE
+La valutazione delle performance avviene due volte l'anno (giugno e dicembre).
+Il sistema adottato è il modello OKR (Objectives and Key Results).
+I risultati della valutazione influenzano gli aumenti di stipendio e i bonus annuali.
+Il bonus annuale può arrivare fino al 15% della retribuzione annua lorda per i dipendenti con performance eccellente.
+
+
+SEZIONE 8 - CONTATTI E RIFERIMENTI
+-------------------------------------
+
+Sede legale e principale: Via della Innovazione 42, 20121 Milano (MI)
+Sede di Roma: Via Tiburtina 890, 00159 Roma (RM)
+Sede di Torino: Corso Inghilterra 15, 10138 Torino (TO)
+Sede di Bologna: Via Stalingrado 100, 40128 Bologna (BO)
+
+Centralino: +39 02 9876 5432
+Email generale: info@techsphere.it
+Email HR: hr@techsphere.it
+Email supporto clienti: support@techsphere.it
+Sito web: www.techsphere.it
+
+Orari di ufficio: Lunedì - Venerdì, 09:00 - 18:00

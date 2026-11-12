@@ -1,0 +1,19 @@
+{
+  "id": "01_rimborso_spese",
+  "title": "Assistente per richiesta rimborso spese",
+  "domain": "Finance / HR",
+  "goal": "Valutare una richiesta di rimborso sulla base di dipendente, policy, ricevute e autorizzazione della trasferta.",
+  "simulation": "Dataset didattico simulato. Le date dei casi demo sono fisse e le soglie sono scelte per mostrare tutti i rami del workflow.",
+  "files": {
+    "employees.json": "Anagrafica dei dipendenti; manager identifica il responsabile assegnato.",
+    "claims.json": "Spese con data, importo, valuta, progetto e riferimento della ricevuta.",
+    "policies.json": "Regole per categoria di spesa.",
+    "travel_approvals.json": "Autorizzazioni simulate per dipendente e data: approved=false indica un diniego; l'assenza del record indica un dato sconosciuto."
+  },
+  "definitions": {
+    "max_amount": "Massimale inderogabile: un importo superiore viene rifiutato.",
+    "approval_over": "Soglia per la revisione del responsabile: un importo superiore, ma entro max_amount, richiede approvazione manuale.",
+    "human_final_confirmation": "Tutte le richieste idonee richiedono conferma umana prima dell'approvazione finale; quelle oltre approval_over richiedono la revisione del responsabile.",
+    "receipt_id": "Riferimento simulato a una ricevuta; il dataset non contiene file o servizi per verificarne l'autenticita."
+  }
+}

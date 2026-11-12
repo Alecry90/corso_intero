@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python A-Z: Il Glossario per Principianti</title>
+    <meta name="description" content="Impara le basi di Python dalla A alla Z. Un glossario semplice, interattivo e con esempi di codice per chi inizia a programmare.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+    </div>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Python <span class="gradient-text">A-Z</span></h1>
+            <p class="subtitle">Il glossario definitivo per imparare a programmare da zero.</p>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Cerca un concetto (es. Cicli, Variabili...)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="alphabet-filter" id="alphabetFilter">
+            <!-- Lettere generate dinamicamente via JS -->
+        </div>
+
+        <div class="terms-grid" id="termsGrid">
+            <!-- Termini generati dinamicamente via JS -->
+        </div>
+
+        <div id="noResults" class="no-results hidden">
+            <h3>Nessun concetto trovato!</h3>
+            <p>Prova a cercare qualcosa di diverso.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Creato per imparare Python in modo semplice e divertente.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

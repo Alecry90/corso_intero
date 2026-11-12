@@ -1,0 +1,26 @@
+[
+  {
+    "employee_id": "E001",
+    "date": "2026-10-08",
+    "approved": true,
+    "approved_by": "E900"
+  },
+  {
+    "employee_id": "E002",
+    "date": "2026-10-08",
+    "approved": true,
+    "approved_by": "E901"
+  },
+  {
+    "employee_id": "E003",
+    "date": "2026-10-08",
+    "approved": true,
+    "approved_by": "E900"
+  },
+  {
+    "employee_id": "E001",
+    "date": "2026-10-07",
+    "approved": false,
+    "approved_by": "E900"
+  }
+]

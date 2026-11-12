@@ -1,0 +1,26 @@
+[
+  {
+    "categoria": "Salute",
+    "prompt": "Question: Why is sleep important? Answer:",
+    "reference": "Sleep helps the body rest and supports memory and attention.",
+    "Base": "Because it allows you to move in time. If you are in the right position and you sleep, you will get better. If you are not, you will fall asleep.\n\nThe sleep-deprived are often confused with the sleepy. The",
+    "SFT": "Sleep is one of the most important physical functions. We all know that it is important to maintain our ability to remember and remember information. It is also important to keep our mind occupied and alert. It is also important to avoid excessive or excessive stress.",
+    "RLHF": "Because it's a great way to get better sleep.\n\nA: It's a great way to get better sleep.\n\nB: It's a great way to get better sleep.\n\nC: It's a great way to get"
+  },
+  {
+    "categoria": "Educazione",
+    "prompt": "Question: What is supervised learning? Answer:",
+    "reference": "Supervised learning trains a model on labeled examples to make predictions on new data.",
+    "Base": "A supervised learning algorithm is a system that can be trained to learn new information about a situation or a set of conditions. The learning algorithm is based on a set of rules that it can follow. In the example above, the rules are: The number",
+    "SFT": "This is a very different approach. It involves learning from the data and then re-implementing the original data. In other words, you can learn from data, but you also need to re-implement it as you go. You can",
+    "RLHF": "It is a way of learning about what an individual is capable of doing. It is a way of knowing about the social world. It is a way of learning about the relationship between individuals and their own needs. It is a way of learning about what"
+  },
+  {
+    "categoria": "Coding",
+    "prompt": "Question: How do you reverse a list in Python? Answer:",
+    "reference": "You can reverse a list in Python with list.reverse() or create a reversed copy with list[::-1].",
+    "Base": "You can use the reverse function from the original script to reverse a list in Python. This is useful for reverse-comparisons where you want to change the name of a variable or the order of the variables in a list.\n\nA list",
+    "SFT": "You can do a reverse list by looking for a list of words in the list. For example: >>> list = list.findall(1, 1) >>> list.reverse() ['1', '2', '3'] >>> list.reverse",
+    "RLHF": "You can use the following syntax to reverse a list:\n\n>>> list = [] for i in range (len(list)) do list[i] = i end\n\nNote that you can also use the following syntax to reverse a list:"
+  }
+]

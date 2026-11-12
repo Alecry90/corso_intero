@@ -1,0 +1,1 @@
+Python è un linguaggio di programmazione versatile, molto usato in AI e data science.
