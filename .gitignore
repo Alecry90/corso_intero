@@ -218,3 +218,5 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+/GENERATIVEAI/Lezione 28 settembre/Mistral-7B-v0.1/model-00001-of-00002.safetensors
+/GENERATIVEAI/Lezione 28 settembre/Mistral-7B-v0.1/model-00002-of-00002.safetensors
